@@ -5,16 +5,16 @@ import { useEffect, useRef, useState } from "react";
 import type { Doctor } from "@prisma/client";
 
 export function TeamSlider({ doctors }: { doctors: Doctor[] }) {
-  const [position, setPosition] = useState(1);
-  const [dragOffset, setDragOffset] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-  const [animate, setAnimate] = useState(true);
-  const startX = useRef(0);
-  const suppressClick = useRef(false);
-  const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const count = doctors.length;
-  const loopedDoctors = count > 1 ? [doctors[count - 1], ...doctors, doctors[0]] : doctors;
-  const index = count > 0 ? ((position - 1 + count) % count) : 0;
+  const cloneCount = Math.min(4, count);
+  const [position, setPosition] = useState(cloneCount);
+  const wheelLocked = useRef(false);
+  const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const loopedDoctors =
+    count > 1
+      ? [...doctors.slice(-cloneCount), ...doctors, ...doctors.slice(0, cloneCount)]
+      : doctors;
+  const index = count > 0 ? ((position - cloneCount + count) % count) : 0;
 
   useEffect(() => () => {
     if (resetTimer.current) clearTimeout(resetTimer.current);
@@ -22,50 +22,31 @@ export function TeamSlider({ doctors }: { doctors: Doctor[] }) {
 
   const settleLoop = (nextPosition: number) => {
     setPosition(nextPosition);
-    if (nextPosition === 0 || nextPosition === count + 1) {
+    if (nextPosition === cloneCount - 1 || nextPosition === count + cloneCount) {
       resetTimer.current = setTimeout(() => {
-        setAnimate(false);
-        setPosition(nextPosition === 0 ? count : 1);
-        requestAnimationFrame(() => requestAnimationFrame(() => setAnimate(true)));
+        setPosition(nextPosition === cloneCount - 1 ? count + cloneCount - 1 : cloneCount);
       }, 520);
     }
   };
 
   const prev = () => {
     if (count < 2) return;
-    setDragOffset(0);
     settleLoop(position - 1);
   };
   const next = () => {
     if (count < 2) return;
-    setDragOffset(0);
     settleLoop(position + 1);
   };
 
-  const onPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType === "mouse" && event.button !== 0) return;
-    startX.current = event.clientX;
-    suppressClick.current = false;
-    setIsDragging(true);
-    event.currentTarget.setPointerCapture(event.pointerId);
-  };
-
-  const onPointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (!isDragging) return;
-    const delta = event.clientX - startX.current;
-    if (Math.abs(delta) > 8) suppressClick.current = true;
-    setDragOffset(delta);
-  };
-
-  const onPointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (!isDragging) return;
-    const delta = event.clientX - startX.current;
-    setIsDragging(false);
-    setDragOffset(0);
-    if (Math.abs(delta) > 55) {
-      if (delta < 0) next();
-      else prev();
-    }
+  const onWheel = (event: React.WheelEvent<HTMLDivElement>) => {
+    if (Math.abs(event.deltaY) < Math.abs(event.deltaX) || wheelLocked.current) return;
+    event.preventDefault();
+    wheelLocked.current = true;
+    if (event.deltaY > 0) next();
+    else prev();
+    window.setTimeout(() => {
+      wheelLocked.current = false;
+    }, 460);
   };
 
   return (
@@ -132,26 +113,11 @@ export function TeamSlider({ doctors }: { doctors: Doctor[] }) {
       </div>
 
       {/* Doctor Cards Carousel */}
-      <div
-        className={`mt-10 overflow-hidden touch-pan-y ${isDragging ? "cursor-grabbing" : "cursor-grab"}`}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={onPointerUp}
-        onPointerCancel={onPointerUp}
-        onClickCapture={(event) => {
-          if (suppressClick.current) {
-            event.preventDefault();
-            event.stopPropagation();
-            suppressClick.current = false;
-          }
-        }}
-      >
+      <div className="mt-10 overflow-hidden" onWheel={onWheel}>
         <div
-          className={`flex gap-4 [--card-step:316px] md:[--card-step:336px] ${
-            animate ? "transition-transform duration-500 ease-out" : ""
-          }`}
+          className="flex gap-4 [--card-step:316px] transition-transform duration-500 ease-out md:[--card-step:336px]"
           style={{
-            transform: `translate3d(calc(-1 * var(--card-step) * ${count > 1 ? position : 0} + ${dragOffset}px), 0, 0)`,
+            transform: `translate3d(calc(-1 * var(--card-step) * ${count > 1 ? position : 0}), 0, 0)`,
           }}
         >
           {loopedDoctors.map((doctor, cardIndex) => (
