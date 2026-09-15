@@ -160,6 +160,8 @@ export default async function HomePage() {
               key={image.id}
               src={image.url}
               alt={image.alt}
+                    loading="lazy"
+                    decoding="async"
               className="h-44 w-full rounded-[26px] object-cover shadow-sm md:h-52"
             />
           ))}

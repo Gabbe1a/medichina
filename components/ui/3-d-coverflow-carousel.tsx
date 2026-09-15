@@ -83,6 +83,8 @@ export function CoverFlowCarousel({
         <img
           src={items[currentIndex]?.img}
           alt=""
+          loading="lazy"
+          decoding="async"
           className="h-full w-full scale-110 object-cover opacity-25 blur-3xl transition-all duration-700"
         />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(21,83,151,.2),rgba(4,18,39,.96)_75%)]" />
@@ -144,7 +146,13 @@ export function CoverFlowCarousel({
                 className="absolute h-[430px] w-[280px] cursor-pointer overflow-hidden rounded-[24px] border border-white/15 bg-[#102f5d] shadow-2xl transition-all duration-700 ease-[cubic-bezier(.25,1,.5,1)] md:h-[500px] md:w-[330px]"
                 style={{ transform, opacity, zIndex, filter }}
               >
-                <img src={item.img} alt={item.titleLine1} className="absolute inset-0 h-full w-full object-cover" />
+                <img
+                  src={item.img}
+                  alt={item.titleLine1}
+                  loading={isCenter ? "eager" : "lazy"}
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-[#04152f]" />
                 <div
                   className={`relative z-10 flex h-full flex-col justify-between p-5 transition-opacity duration-500 ${

@@ -150,6 +150,8 @@ export function BeforeAfterInteractive() {
           <img
             src="/images/cases/case-after.webp"
             alt="После лечения"
+            loading="lazy"
+            decoding="async"
             className="absolute inset-0 h-full w-full object-cover"
           />
           <span className="absolute right-4 top-4 z-10 rounded-full bg-black/60 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-md">
@@ -164,6 +166,8 @@ export function BeforeAfterInteractive() {
             <img
               src="/images/cases/case-before.webp"
               alt="До лечения"
+              loading="lazy"
+              decoding="async"
               className="absolute inset-0 h-full w-full max-w-none object-cover"
               style={{ width: "380px" }}
             />
@@ -199,6 +203,8 @@ export function BeforeAfterInteractive() {
           <img
             src="/images/cases/case-after.webp"
             alt="Улыбка пациента"
+            loading="lazy"
+            decoding="async"
             className="h-28 w-28 rounded-full border-4 border-white object-cover shadow-md"
           />
           <p className="mt-4 italic text-sm text-navy font-medium">
