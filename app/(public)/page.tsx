@@ -220,24 +220,21 @@ export default async function HomePage() {
             Полный каталог →
           </Link>
         </div>
-        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-8 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {services.map((service) => (
             <Link
               key={service.id}
               href={serviceHref(service)}
-              className="group rounded-[28px] bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+              className="group flex min-h-[132px] flex-col justify-between rounded-[24px] border border-white/80 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-[#9fc4f5] hover:shadow-[0_14px_30px_rgba(0,47,108,0.12)]"
             >
-              <h3 className="text-xl font-bold text-navy group-hover:text-accent">
+              <h3 className="text-lg font-extrabold leading-tight text-navy group-hover:text-accent md:text-xl">
                 {service.title}
               </h3>
-              <p className="mt-2.5 line-clamp-3 text-xs leading-relaxed text-muted">
-                {service.description.replace(/\n+/g, " ").slice(0, 160)}…
-              </p>
-              <div className="mt-4 flex items-center justify-between border-t border-[var(--line)] pt-3 text-xs">
-                <span className="font-extrabold uppercase tracking-wider text-accent">
+              <div className="mt-4 flex items-center justify-between border-t border-[var(--line)] pt-3 text-[11px]">
+                <span className="font-extrabold uppercase tracking-[0.08em] text-accent">
                   {service.children.length} подразделов
                 </span>
-                <span className="font-bold text-navy group-hover:translate-x-1 transition-transform">
+                <span className="font-extrabold text-navy transition-transform group-hover:translate-x-1">
                   Перейти →
                 </span>
               </div>
