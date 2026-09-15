@@ -27,11 +27,11 @@ export default async function HomePage() {
 
   return (
     <div className="mx-auto max-w-[1440px] px-4 pb-20 md:px-8">
-      {/* HERO SECTION — Clean background with seamless right-side art and left-side solid text layer */}
-      <section className="relative mt-6 min-h-[580px] overflow-hidden rounded-[40px] border border-white/60 bg-[#98c9ff] shadow-[0_30px_90px_rgba(0,85,255,0.18)]">
-        <div className="grid min-h-[580px] lg:grid-cols-[1.1fr_0.9fr]">
+      {/* HERO SECTION — Full-bleed artwork with a readable left text veil */}
+      <section className="relative mt-6 min-h-[620px] overflow-hidden rounded-[40px] border border-white/60 bg-[#b9ddff] shadow-[0_30px_90px_rgba(0,85,255,0.18)]">
+        <div className="grid min-h-[620px] lg:grid-cols-[0.95fr_1.05fr]">
           {/* Left Column: Solid text layer */}
-          <div className="relative z-10 flex flex-col justify-between bg-gradient-to-r from-[#98c9ff] via-[#98c9ff] to-[#98c9ff]/80 px-6 py-12 md:px-14 md:py-16">
+          <div className="relative z-10 flex flex-col justify-between bg-gradient-to-r from-[#98c9ff] via-[#98c9ff]/95 to-[#98c9ff]/55 px-6 py-12 md:px-14 md:py-16 lg:bg-gradient-to-r lg:from-[#98c9ff] lg:via-[#98c9ff]/95 lg:to-transparent">
             <div>
               <span className="inline-block rounded-full bg-white/50 px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-[0.24em] text-navy backdrop-blur-sm">
                 Стоматология на Войковской
@@ -94,12 +94,12 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* Right Column: High-res 3D tooth artwork */}
-          <div className="relative flex items-center justify-center p-4 lg:p-8">
+          {/* Right Column: artwork fills the panel instead of sitting in a white box */}
+          <div className="relative -ml-8 min-h-[300px] overflow-hidden lg:-ml-24 lg:min-h-0">
             <img
               src="/images/hero-clean.png"
               alt="Сюрреалистичный 3D-образ: имплант и врачи клиники"
-              className="h-full max-h-[540px] w-full object-contain drop-shadow-[0_20px_50px_rgba(0,47,108,0.25)]"
+              className="absolute inset-0 h-full w-full scale-[1.12] object-cover object-[72%_50%] drop-shadow-[0_20px_50px_rgba(0,47,108,0.25)] lg:scale-[1.18] lg:object-[70%_50%]"
             />
           </div>
         </div>

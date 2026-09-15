@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type ServiceItem = {
   id: string;
@@ -62,7 +62,12 @@ const SERVICES_DATA: ServiceItem[] = [
 ];
 
 export function ServicesAccordion() {
-  const [activeId, setActiveId] = useState("implant");
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [coarsePointer, setCoarsePointer] = useState(false);
+
+  useEffect(() => {
+    setCoarsePointer(window.matchMedia("(pointer: coarse)").matches);
+  }, []);
 
   return (
     <div className="relative overflow-hidden rounded-[36px] border border-white/80 bg-white p-6 shadow-[0_20px_60px_rgba(0,47,108,0.06)] md:p-10">
@@ -82,13 +87,19 @@ export function ServicesAccordion() {
       {/* Accordion container */}
       <div className="mt-10 flex flex-col gap-3 lg:h-[380px] lg:flex-row">
         {SERVICES_DATA.map((item) => {
-          const isActive = item.id === activeId;
           return (
             <div
               key={item.id}
-              onClick={() => setActiveId(item.id)}
+              onMouseEnter={() => setHoveredId(item.id)}
+              onMouseLeave={() => setHoveredId(null)}
+              onFocus={() => setHoveredId(item.id)}
+              onBlur={() => setHoveredId(null)}
+              onClick={() => {
+                if (coarsePointer) setHoveredId((current) => (current === item.id ? null : item.id));
+              }}
+              tabIndex={0}
               className={`group relative flex cursor-pointer flex-col justify-between overflow-hidden rounded-[26px] p-5 transition-all duration-500 ease-out ${
-                isActive
+                hoveredId === item.id
                   ? "bg-gradient-to-br from-[#0c4080] via-[#093264] to-[#041a36] text-white lg:flex-[2.5]"
                   : "bg-gradient-to-b from-[#1b5299] to-[#0d3468] text-white/90 hover:from-[#235fae] lg:flex-1"
               }`}
@@ -109,14 +120,21 @@ export function ServicesAccordion() {
                     src={item.image}
                     alt={item.title}
                     className={`object-contain transition-transform duration-500 ${
-                      isActive ? "h-36 w-36 scale-110 drop-shadow-[0_15px_30px_rgba(0,149,255,0.45)]" : "h-24 w-24 opacity-85 group-hover:scale-105"
+                      hoveredId === item.id
+                        ? "h-36 w-36 scale-110 drop-shadow-[0_15px_30px_rgba(0,149,255,0.45)]"
+                        : "h-24 w-24 opacity-85 group-hover:scale-105"
                     }`}
                   />
                 </div>
 
                 {/* Expanded content */}
-                {isActive ? (
-                  <div className="mt-3 rounded-2xl bg-white/10 p-4 backdrop-blur-md">
+                <div
+                  className={`mt-3 rounded-2xl bg-white/10 p-4 backdrop-blur-md transition-all duration-300 ${
+                    hoveredId === item.id
+                      ? "visible translate-y-0 opacity-100"
+                      : "pointer-events-none invisible translate-y-2 opacity-0"
+                  }`}
+                >
                     <p className="text-xs leading-relaxed text-white/90 md:text-sm">
                       {item.highlight}
                     </p>
@@ -130,13 +148,15 @@ export function ServicesAccordion() {
                         Подробнее →
                       </Link>
                     </div>
-                  </div>
-                ) : (
-                  <div className="flex items-center justify-between text-xs text-white/70">
-                    <span>Подробнее</span>
-                    <span className="text-base font-bold">→</span>
-                  </div>
-                )}
+                </div>
+                <div
+                  className={`flex items-center justify-between text-xs text-white/70 transition-opacity duration-300 ${
+                    hoveredId === item.id ? "opacity-0" : "opacity-100"
+                  }`}
+                >
+                  <span>Наведите для деталей</span>
+                  <span className="text-base font-bold">→</span>
+                </div>
               </div>
             </div>
           );
