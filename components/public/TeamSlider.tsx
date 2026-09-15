@@ -8,8 +8,9 @@ export function TeamSlider({ doctors }: { doctors: Doctor[] }) {
   const count = doctors.length;
   const cloneCount = Math.min(4, count);
   const [position, setPosition] = useState(cloneCount);
+  const carouselRef = useRef<HTMLDivElement>(null);
   const wheelLocked = useRef(false);
-  const wheelDelta = useRef(0);
+  const wheelUnlockTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const loopedDoctors =
     count > 1
@@ -17,7 +18,34 @@ export function TeamSlider({ doctors }: { doctors: Doctor[] }) {
       : doctors;
   const index = count > 0 ? ((position - cloneCount + count) % count) : 0;
 
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    const handleWheel = (event: WheelEvent) => {
+      // This listener must stay non-passive: the page must not receive this wheel gesture.
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (wheelUnlockTimer.current) clearTimeout(wheelUnlockTimer.current);
+      if (!wheelLocked.current && Math.abs(event.deltaY) >= Math.abs(event.deltaX)) {
+        wheelLocked.current = true;
+        if (event.deltaY > 0) next();
+        else if (event.deltaY < 0) prev();
+      }
+
+      // Treat a burst of wheel events as one gesture.
+      wheelUnlockTimer.current = setTimeout(() => {
+        wheelLocked.current = false;
+      }, 850);
+    };
+
+    carousel.addEventListener("wheel", handleWheel, { passive: false });
+    return () => carousel.removeEventListener("wheel", handleWheel);
+  }, [position, count, cloneCount]);
+
   useEffect(() => () => {
+    if (wheelUnlockTimer.current) clearTimeout(wheelUnlockTimer.current);
     if (resetTimer.current) clearTimeout(resetTimer.current);
   }, []);
 
@@ -37,25 +65,6 @@ export function TeamSlider({ doctors }: { doctors: Doctor[] }) {
   const next = () => {
     if (count < 2) return;
     settleLoop(position + 1);
-  };
-
-  const onWheel = (event: React.WheelEvent<HTMLDivElement>) => {
-    if (Math.abs(event.deltaY) < Math.abs(event.deltaX)) return;
-    event.preventDefault();
-    event.stopPropagation();
-    if (wheelLocked.current) return;
-
-    wheelDelta.current += event.deltaY;
-    if (Math.abs(wheelDelta.current) < 90) return;
-
-    const direction = wheelDelta.current > 0 ? 1 : -1;
-    wheelDelta.current = 0;
-    wheelLocked.current = true;
-    if (direction > 0) next();
-    else prev();
-    window.setTimeout(() => {
-      wheelLocked.current = false;
-    }, 700);
   };
 
   return (
@@ -122,7 +131,7 @@ export function TeamSlider({ doctors }: { doctors: Doctor[] }) {
       </div>
 
       {/* Doctor Cards Carousel */}
-      <div className="mt-10 overflow-hidden" onWheelCapture={onWheel}>
+      <div ref={carouselRef} className="mt-10 overflow-hidden">
         <div
           className="flex gap-4 [--card-step:316px] transition-transform duration-500 ease-out md:[--card-step:336px]"
           style={{
