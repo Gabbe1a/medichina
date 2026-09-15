@@ -1,0 +1,15 @@
+# Runtime compose used on the VPS after uploading a standalone build.
+# Does not rebuild Next on the server (disk is tight; other projects stay untouched).
+services:
+  app:
+    image: node:22-bookworm-slim
+    container_name: odin-k-odnomu
+    restart: unless-stopped
+    working_dir: /app
+    env_file:
+      - .env
+    ports:
+      - "8091:3000"
+    volumes:
+      - .:/app
+    command: ["node", "server.js"]
