@@ -18,7 +18,8 @@ export function getSessionOptions(): SessionOptions {
     cookieName: "oko_admin_session",
     cookieOptions: {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      // HTTP VPS preview uses SESSION_SECURE=false; browsers drop Secure cookies on http://
+      secure: process.env.SESSION_SECURE === "true",
       sameSite: "lax",
       maxAge: 60 * 60 * 12,
       path: "/",

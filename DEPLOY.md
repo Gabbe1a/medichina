@@ -24,6 +24,7 @@ ADMIN_EMAIL=<рабочий email администратора>
 ADMIN_PASSWORD=<длинный пароль>
 ADMIN_NAME=Администратор
 NEXT_PUBLIC_SITE_URL=http://<VPS>:8091
+SESSION_SECURE=false
 ```
 
 ## Фактический способ на этом VPS (мало места)
@@ -59,14 +60,11 @@ curl -I http://127.0.0.1:8091/api/health
 
 ## Обновление
 
-Залить новый код в `/opt/odin-k-odnomu`, затем:
+Залить новый standalone-бандл в `/opt/odin-k-odnomu` (не затирая серверный `.env` и `data/prod.db`), затем:
 
 ```bash
-docker compose build app
-docker compose up -d
+docker restart odin-k-odnomu
 ```
-
-Volume с базой и загрузками сохраняется.
 
 ## Healthcheck
 
