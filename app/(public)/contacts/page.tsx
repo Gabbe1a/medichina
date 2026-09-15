@@ -10,7 +10,7 @@ export default async function ContactsPage() {
 
   return (
     <div className="mx-auto grid max-w-[1200px] gap-10 px-4 py-12 md:grid-cols-2 md:px-8">
-      <div>
+      <div className="rounded-[32px] bg-white p-6 shadow-[0_20px_60px_rgba(0,47,108,0.1)] md:p-8">
         <p className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-accent">Контакты</p>
         <h1 className="mt-3 text-5xl font-semibold tracking-tight text-navy">Как нас найти</h1>
         <div className="mt-6 grid gap-3 text-muted">

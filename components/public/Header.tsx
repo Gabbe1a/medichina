@@ -40,17 +40,19 @@ export function Header({
               Услуги
             </Link>
             {servicesOpen ? (
-              <div className="absolute left-1/2 top-full z-50 mt-3 w-[640px] -translate-x-1/2 rounded-[28px] border border-white/80 bg-white p-5 shadow-[0_20px_60px_rgba(0,47,108,0.12)]">
-                <div className="grid grid-cols-2 gap-2">
-                  {services.map((item) => (
-                    <Link
-                      key={item.id}
-                      href={serviceHref(item)}
-                      className="rounded-2xl px-3 py-2 text-sm font-semibold text-navy hover:bg-[#f3f8ff]"
-                    >
-                      {item.title}
-                    </Link>
-                  ))}
+              <div className="absolute left-1/2 top-full z-50 w-[640px] -translate-x-1/2 pt-3">
+                <div className="rounded-[28px] border border-white/80 bg-white p-5 shadow-[0_20px_60px_rgba(0,47,108,0.12)]">
+                  <div className="grid grid-cols-2 gap-2">
+                    {services.map((item) => (
+                      <Link
+                        key={item.id}
+                        href={serviceHref(item)}
+                        className="rounded-2xl px-3 py-2 text-sm font-semibold text-navy transition hover:bg-[#f3f8ff]"
+                      >
+                        {item.title}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
             ) : null}

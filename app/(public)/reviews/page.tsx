@@ -66,7 +66,7 @@ export default async function ReviewsPage() {
           {reviews.map((review) => (
             <article
               key={review.id}
-              className="rounded-[28px] border border-white/80 bg-white p-6 shadow-sm"
+              className="group min-h-[270px] rounded-[28px] border border-white/80 bg-white p-6 shadow-sm"
             >
               <div className="flex items-center gap-3">
                 <div className="grid h-11 w-11 place-items-center rounded-full bg-[#e8f2ff] text-sm font-bold text-navy">
@@ -79,7 +79,16 @@ export default async function ReviewsPage() {
                   </p>
                 </div>
               </div>
-              <p className="mt-4 text-xs leading-relaxed text-muted">{review.text}</p>
+              <p className="mt-4 line-clamp-5 text-xs leading-relaxed text-muted">{review.text}</p>
+              <details className="mt-3">
+                <summary className="flex cursor-pointer list-none items-center justify-between text-xs font-bold text-accent [&::-webkit-details-marker]:hidden">
+                  <span>Читать отзыв</span>
+                  <span className="grid h-7 w-7 place-items-center rounded-full bg-[#edf5ff] text-sm transition-transform group-open:rotate-180">
+                    ↓
+                  </span>
+                </summary>
+                <p className="mt-3 text-xs leading-relaxed text-muted">{review.text}</p>
+              </details>
             </article>
           ))}
         </div>
