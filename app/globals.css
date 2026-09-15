@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+:root {
+  --page: #e8f2ff;
+  --page-2: #f7fbff;
+  --ink: #001133;
+  --navy: #002f6c;
+  --accent: #0055ff;
+  --muted: #4b6488;
+  --lime: #e7ff4a;
+  --card: #ffffff;
+  --footer: #071324;
+  --line: rgba(0, 47, 108, 0.12);
+}
+
+@theme inline {
+  --color-page: var(--page);
+  --color-ink: var(--ink);
+  --color-navy: var(--navy);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-lime: var(--lime);
+  --color-card: var(--card);
+  --color-footer: var(--footer);
+  --font-sans: var(--font-manrope);
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(87, 149, 255, 0.22), transparent 60%),
+    linear-gradient(180deg, #d9ebff 0%, #eef5ff 28%, #f7fbff 100%);
+  color: var(--ink);
+  font-family: var(--font-manrope), "Manrope", sans-serif;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+.prose-clinic h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 1.6rem 0 0.7rem;
+}
+
+.prose-clinic p,
+.prose-clinic li {
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 0.8rem;
+}
+
+.prose-clinic ul {
+  list-style: disc;
+  padding-left: 1.2rem;
+}
