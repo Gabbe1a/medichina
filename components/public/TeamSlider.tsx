@@ -9,6 +9,7 @@ export function TeamSlider({ doctors }: { doctors: Doctor[] }) {
   const cloneCount = Math.min(4, count);
   const [position, setPosition] = useState(cloneCount);
   const wheelLocked = useRef(false);
+  const wheelDelta = useRef(0);
   const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const loopedDoctors =
     count > 1
@@ -39,14 +40,22 @@ export function TeamSlider({ doctors }: { doctors: Doctor[] }) {
   };
 
   const onWheel = (event: React.WheelEvent<HTMLDivElement>) => {
-    if (Math.abs(event.deltaY) < Math.abs(event.deltaX) || wheelLocked.current) return;
+    if (Math.abs(event.deltaY) < Math.abs(event.deltaX)) return;
     event.preventDefault();
+    event.stopPropagation();
+    if (wheelLocked.current) return;
+
+    wheelDelta.current += event.deltaY;
+    if (Math.abs(wheelDelta.current) < 90) return;
+
+    const direction = wheelDelta.current > 0 ? 1 : -1;
+    wheelDelta.current = 0;
     wheelLocked.current = true;
-    if (event.deltaY > 0) next();
+    if (direction > 0) next();
     else prev();
     window.setTimeout(() => {
       wheelLocked.current = false;
-    }, 460);
+    }, 700);
   };
 
   return (
@@ -113,7 +122,7 @@ export function TeamSlider({ doctors }: { doctors: Doctor[] }) {
       </div>
 
       {/* Doctor Cards Carousel */}
-      <div className="mt-10 overflow-hidden" onWheel={onWheel}>
+      <div className="mt-10 overflow-hidden" onWheelCapture={onWheel}>
         <div
           className="flex gap-4 [--card-step:316px] transition-transform duration-500 ease-out md:[--card-step:336px]"
           style={{
