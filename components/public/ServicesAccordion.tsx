@@ -20,7 +20,7 @@ const SERVICES_DATA: ServiceItem[] = [
     category: "Виниры и эстетика",
     desc: "Прямые терапевтические виниры, керамика E-max и художественное восстановление анатомической формы зуба.",
     href: "/services/terapevticheskaja_stomatologija/terapevticheskie_viniry",
-    image: "/images/services/aesthetic.png",
+    image: "/images/services/aesthetic.webp",
     highlight: "Восстановление природной формы за 1–2 визита без агрессивной обточки эмали.",
   },
   {
@@ -29,7 +29,7 @@ const SERVICES_DATA: ServiceItem[] = [
     category: "Исправление прикуса",
     desc: "Прозрачные каппы, самолигирующие брекет-системы и гнатологический контроль височно-нижнечелюстного сустава.",
     href: "/services/ortodonticheskoe_lechenie/ortodonticheskoe_ispravlenie_prikusa",
-    image: "/images/services/ortho.png",
+    image: "/images/services/ortho.webp",
     highlight: "Цифровое планирование движения каждого зуба с предсказуемым результатом.",
   },
   {
@@ -38,7 +38,7 @@ const SERVICES_DATA: ServiceItem[] = [
     category: "Имплантология",
     desc: "Установка премиальных систем Astra Tech, Ankylos и Osstem. Одномоментная имплантация и костная пластика.",
     href: "/services/implantaciya_zubov/odnomomentnaja_implantacija",
-    image: "/images/services/implant.png",
+    image: "/images/services/implant.webp",
     highlight: "3D-навигационные шаблоны, приживаемость 98.7% и пожизненная поддержка системы.",
   },
   {
@@ -47,7 +47,7 @@ const SERVICES_DATA: ServiceItem[] = [
     category: "Zoom & Boost",
     desc: "Бережное осветление эмали до 8 оттенков без гиперчувствительности с глубокой реминерализирующей терапией.",
     href: "/services/otbelivanie_zubov/klinicheskoe",
-    image: "/images/services/whitening.png",
+    image: "/images/services/whitening.webp",
     highlight: "Холодный спектр ламп и защитные гели сохраняют прочность кристаллической решётки зуба.",
   },
   {
@@ -56,7 +56,7 @@ const SERVICES_DATA: ServiceItem[] = [
     category: "Бережная хирургия",
     desc: "Атравматичное удаление, резекция верхушек корней и микрохирургическая пластика десневого контура.",
     href: "/services/hirurgicheskaja_stomatologija/zubosohranjajushhie_manipuljacii",
-    image: "/images/services/surgery.png",
+    image: "/images/services/surgery.webp",
     highlight: "Приоритет клиники — сохранение собственных корней и тканей пациента при любой возможности.",
   },
 ];

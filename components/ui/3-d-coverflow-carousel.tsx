@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export interface CarouselItem {
   tag?: string;
@@ -43,6 +44,7 @@ export function CoverFlowCarousel({
   autoplay = false,
   autoplayDelay = 5000,
 }: CoverFlowCarouselProps) {
+  const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const touchStartX = useRef(0);
@@ -125,8 +127,20 @@ export function CoverFlowCarousel({
               <article
                 key={item.titleLine1}
                 onClick={() => {
-                  if (!isCenter) setCurrentIndex(itemIndex);
+                  if (!isCenter) {
+                    setCurrentIndex(itemIndex);
+                  } else if (item.ctaUrl) {
+                    router.push(item.ctaUrl);
+                  }
                 }}
+                onKeyDown={(event) => {
+                  if ((event.key === "Enter" || event.key === " ") && isCenter && item.ctaUrl) {
+                    event.preventDefault();
+                    router.push(item.ctaUrl);
+                  }
+                }}
+                role="link"
+                tabIndex={0}
                 className="absolute h-[430px] w-[280px] cursor-pointer overflow-hidden rounded-[24px] border border-white/15 bg-[#102f5d] shadow-2xl transition-all duration-700 ease-[cubic-bezier(.25,1,.5,1)] md:h-[500px] md:w-[330px]"
                 style={{ transform, opacity, zIndex, filter }}
               >

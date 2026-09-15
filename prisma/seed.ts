@@ -58,9 +58,11 @@ function parseDoctors(markdown: string) {
       rest.join("\n").match(/\*\*Должность \/ специализация:\*\*\s*(.+)/)?.[1]?.trim() ??
       "Специалист";
     const photoLine = rest.join("\n").match(/\*\*Фото:\*\*\s*(.+)/)?.[1] ?? "";
-    const photoName = path.basename(photoLine.replace(/`/g, "").trim());
+    const photoName = path
+      .basename(photoLine.replace(/`/g, "").trim())
+      .replace(/\.(jpe?g|png)$/i, ".webp");
     const bioRaw = rest.join("\n").split("### Биография / описание")[1] ?? "";
-    const slug = photoName.replace(/\.(jpe?g|png)$/i, "");
+    const slug = photoName.replace(/\.(jpe?g|png|webp)$/i, "");
 
     // Extract detailed education and experience
     let experience = "Опыт более 10 лет";
@@ -208,7 +210,7 @@ function parseGallery() {
   if (!fs.existsSync(dir)) return [];
   return fs
     .readdirSync(dir)
-    .filter((name) => !name.includes("_209x125"))
+    .filter((name) => name.endsWith(".webp") && !name.includes("_209x125"))
     .sort()
     .map((name, index) => ({
       url: `/media/gallery/${name}`,
@@ -250,7 +252,7 @@ const LEGAL_BODY = `
 
 Первичная доврачебная помощь: рентгенология, сестринское дело, стоматология, стоматология профилактическая. Амбулаторная помощь: анестезиология и реаниматология, ортодонтия, стоматология общей практики, ортопедическая, терапевтическая и хирургическая стоматология.
 
-Скан лицензии: /media/legal/license_1.jpg и /media/legal/license_2.jpg
+Скан лицензии: /media/legal/license_1.webp и /media/legal/license_2.webp
 `.trim();
 
 const FAQS = [

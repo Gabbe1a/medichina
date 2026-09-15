@@ -11,7 +11,7 @@ const VIDEO_REVIEWS = [
     duration: "1:45",
     title: "«Мне вытянули и спасли зуб, который в трех клиниках предлагали только удалить»",
     quote: "Мы прошли отбеливание, один имплант и три коронки. Но главное — бережное отношение и никакой спешки.",
-    thumbnail: "/images/video/review-1.png",
+    thumbnail: "/images/video/review-1.webp",
   },
   {
     id: "vid-2",
@@ -20,7 +20,7 @@ const VIDEO_REVIEWS = [
     duration: "2:10",
     title: "«Большой комплексный план лечения: от гигиены до имплантации»",
     quote: "Здесь смогли найти индивидуальный подход к моей деликатной проблеме и сделали улыбку мечты.",
-    thumbnail: "/images/cases/case-after.png",
+    thumbnail: "/images/cases/case-after.webp",
   },
   {
     id: "vid-3",
@@ -29,7 +29,7 @@ const VIDEO_REVIEWS = [
     duration: "1:20",
     title: "«Ходим всей семьей уже больше десяти лет — только сюда»",
     quote: "Устанавливали импланты, коронки и художественную реставрацию. Всегда стремятся сохранить свои зубы.",
-    thumbnail: "/images/video/review-1.png",
+    thumbnail: "/images/video/review-1.webp",
   },
 ];
 

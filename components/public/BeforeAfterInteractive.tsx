@@ -148,7 +148,7 @@ export function BeforeAfterInteractive() {
         <div className="relative mx-auto aspect-square w-full max-w-[380px] overflow-hidden rounded-[28px] border-2 border-white shadow-xl">
           {/* After image (background) */}
           <img
-            src="/images/cases/case-after.png"
+            src="/images/cases/case-after.webp"
             alt="После лечения"
             className="absolute inset-0 h-full w-full object-cover"
           />
@@ -162,7 +162,7 @@ export function BeforeAfterInteractive() {
             style={{ width: `${sliderPos}%` }}
           >
             <img
-              src="/images/cases/case-before.png"
+              src="/images/cases/case-before.webp"
               alt="До лечения"
               className="absolute inset-0 h-full w-full max-w-none object-cover"
               style={{ width: "380px" }}
@@ -197,7 +197,7 @@ export function BeforeAfterInteractive() {
         {/* Right: patient portrait & quote */}
         <div className="flex flex-col items-center rounded-[28px] bg-[#f4f8ff] p-6 text-center">
           <img
-            src="/images/cases/case-after.png"
+            src="/images/cases/case-after.webp"
             alt="Улыбка пациента"
             className="h-28 w-28 rounded-full border-4 border-white object-cover shadow-md"
           />
