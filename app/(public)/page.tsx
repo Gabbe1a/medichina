@@ -28,10 +28,10 @@ export default async function HomePage() {
   return (
     <div className="mx-auto max-w-[1440px] px-4 pb-20 md:px-8">
       {/* HERO SECTION — Full-bleed artwork with a readable left text veil */}
-      <section className="relative mt-6 min-h-0 overflow-hidden rounded-[32px] border border-white/60 bg-[#b9ddff] shadow-[0_30px_90px_rgba(0,85,255,0.18)] md:min-h-[620px] md:rounded-[40px]">
-        <div className="grid min-h-0 md:min-h-[620px] md:grid-cols-[0.95fr_1.05fr]">
+      <section className="relative mt-6 min-h-[760px] overflow-hidden rounded-[32px] border border-white/60 bg-[#b9ddff] shadow-[0_30px_90px_rgba(0,85,255,0.18)] md:min-h-[620px] md:rounded-[40px]">
+        <div className="grid min-h-[760px] md:min-h-[620px] md:grid-cols-[0.95fr_1.05fr]">
           {/* Left Column: Solid text layer */}
-          <div className="relative z-10 flex flex-col justify-between bg-gradient-to-r from-[#98c9ff] via-[#98c9ff]/95 to-[#98c9ff]/55 px-6 py-8 md:bg-gradient-to-r md:from-[#98c9ff] md:via-[#98c9ff]/95 md:to-transparent md:px-10 md:py-12 lg:px-14 lg:py-16">
+          <div className="relative z-10 flex flex-col justify-between bg-gradient-to-b from-[#98c9ff]/95 via-[#98c9ff]/75 to-[#98c9ff]/25 px-6 py-8 md:bg-gradient-to-r md:from-[#98c9ff] md:via-[#98c9ff]/95 md:to-transparent md:px-10 md:py-12 lg:px-14 lg:py-16">
             <div>
               <span className="inline-block rounded-full bg-white/50 px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-[0.24em] text-navy backdrop-blur-sm">
                 Стоматология на Войковской
@@ -95,7 +95,7 @@ export default async function HomePage() {
           </div>
 
           {/* Right Column: artwork fills the panel instead of sitting in a white box */}
-          <div className="relative -ml-8 min-h-[300px] overflow-hidden md:-ml-12 md:min-h-[620px] lg:absolute lg:inset-0 lg:z-0 lg:m-0 lg:min-h-0">
+          <div className="absolute inset-0 z-0 m-0 min-h-0 overflow-hidden md:relative md:inset-auto md:z-auto md:-ml-12 md:min-h-[620px] lg:absolute lg:inset-0 lg:z-0 lg:m-0 lg:min-h-0">
             <img
               src="/images/hero-clean.webp"
               alt="Сюрреалистичный 3D-образ: имплант и врачи клиники"
