@@ -95,11 +95,11 @@ export default async function HomePage() {
           </div>
 
           {/* Right Column: artwork fills the panel instead of sitting in a white box */}
-          <div className="relative -ml-8 min-h-[300px] overflow-hidden lg:-ml-24 lg:min-h-0">
+          <div className="relative -ml-8 min-h-[300px] overflow-hidden lg:absolute lg:inset-0 lg:z-0 lg:m-0 lg:min-h-0">
             <img
               src="/images/hero-clean.png"
               alt="Сюрреалистичный 3D-образ: имплант и врачи клиники"
-              className="absolute inset-0 h-full w-full scale-[1.12] object-cover object-[72%_50%] drop-shadow-[0_20px_50px_rgba(0,47,108,0.25)] lg:scale-[1.18] lg:object-[70%_50%]"
+              className="absolute inset-0 h-full w-full scale-[1.12] object-cover object-[72%_50%] drop-shadow-[0_20px_50px_rgba(0,47,108,0.25)] lg:scale-[1.08] lg:object-[70%_50%]"
             />
           </div>
         </div>
