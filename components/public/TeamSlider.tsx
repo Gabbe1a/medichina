@@ -1,14 +1,72 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Doctor } from "@prisma/client";
 
 export function TeamSlider({ doctors }: { doctors: Doctor[] }) {
-  const [index, setIndex] = useState(0);
+  const [position, setPosition] = useState(1);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [animate, setAnimate] = useState(true);
+  const startX = useRef(0);
+  const suppressClick = useRef(false);
+  const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const count = doctors.length;
+  const loopedDoctors = count > 1 ? [doctors[count - 1], ...doctors, doctors[0]] : doctors;
+  const index = count > 0 ? ((position - 1 + count) % count) : 0;
 
-  const prev = () => setIndex((i) => Math.max(0, i - 1));
-  const next = () => setIndex((i) => Math.min(doctors.length - 1, i + 1));
+  useEffect(() => () => {
+    if (resetTimer.current) clearTimeout(resetTimer.current);
+  }, []);
+
+  const settleLoop = (nextPosition: number) => {
+    setPosition(nextPosition);
+    if (nextPosition === 0 || nextPosition === count + 1) {
+      resetTimer.current = setTimeout(() => {
+        setAnimate(false);
+        setPosition(nextPosition === 0 ? count : 1);
+        requestAnimationFrame(() => requestAnimationFrame(() => setAnimate(true)));
+      }, 520);
+    }
+  };
+
+  const prev = () => {
+    if (count < 2) return;
+    setDragOffset(0);
+    settleLoop(position - 1);
+  };
+  const next = () => {
+    if (count < 2) return;
+    setDragOffset(0);
+    settleLoop(position + 1);
+  };
+
+  const onPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    startX.current = event.clientX;
+    suppressClick.current = false;
+    setIsDragging(true);
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const onPointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    const delta = event.clientX - startX.current;
+    if (Math.abs(delta) > 8) suppressClick.current = true;
+    setDragOffset(delta);
+  };
+
+  const onPointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    const delta = event.clientX - startX.current;
+    setIsDragging(false);
+    setDragOffset(0);
+    if (Math.abs(delta) > 55) {
+      if (delta < 0) next();
+      else prev();
+    }
+  };
 
   return (
     <div className="relative overflow-hidden rounded-[36px] border border-white/80 bg-white p-6 shadow-[0_20px_60px_rgba(0,47,108,0.06)] md:p-10">
@@ -54,7 +112,6 @@ export function TeamSlider({ doctors }: { doctors: Doctor[] }) {
           <button
             type="button"
             onClick={prev}
-            disabled={index === 0}
             className="grid h-11 w-11 place-items-center rounded-full border border-[var(--line)] bg-white text-lg font-bold text-navy shadow-sm transition hover:bg-[#f4f8ff] disabled:opacity-40"
             aria-label="Назад"
           >
@@ -66,7 +123,6 @@ export function TeamSlider({ doctors }: { doctors: Doctor[] }) {
           <button
             type="button"
             onClick={next}
-            disabled={index >= doctors.length - 1}
             className="grid h-11 w-11 place-items-center rounded-full border border-[var(--line)] bg-white text-lg font-bold text-navy shadow-sm transition hover:bg-[#f4f8ff] disabled:opacity-40"
             aria-label="Вперед"
           >
@@ -76,14 +132,31 @@ export function TeamSlider({ doctors }: { doctors: Doctor[] }) {
       </div>
 
       {/* Doctor Cards Carousel */}
-      <div className="mt-10 overflow-hidden">
+      <div
+        className={`mt-10 overflow-hidden touch-pan-y ${isDragging ? "cursor-grabbing" : "cursor-grab"}`}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
+        onClickCapture={(event) => {
+          if (suppressClick.current) {
+            event.preventDefault();
+            event.stopPropagation();
+            suppressClick.current = false;
+          }
+        }}
+      >
         <div
-          className="flex gap-4 transition-transform duration-500 ease-out"
-          style={{ transform: `translateX(-${index * 320}px)` }}
+          className={`flex gap-4 [--card-step:316px] md:[--card-step:336px] ${
+            animate ? "transition-transform duration-500 ease-out" : ""
+          }`}
+          style={{
+            transform: `translate3d(calc(-1 * var(--card-step) * ${count > 1 ? position : 0} + ${dragOffset}px), 0, 0)`,
+          }}
         >
-          {doctors.map((doctor) => (
+          {loopedDoctors.map((doctor, cardIndex) => (
             <div
-              key={doctor.id}
+              key={`${doctor.id}-${cardIndex}`}
               className="w-[300px] shrink-0 rounded-[28px] bg-gradient-to-b from-[#0e3b75] to-[#07244b] p-3 text-white shadow-md md:w-[320px]"
             >
               {/* Doctor photo container */}
