@@ -1,72 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { ExpandOnHoverDoctors } from "@/components/ui/expand-on-hover";
 import type { Doctor } from "@prisma/client";
 
 export function TeamSlider({ doctors }: { doctors: Doctor[] }) {
-  const count = doctors.length;
-  const cloneCount = Math.min(4, count);
-  const [position, setPosition] = useState(cloneCount);
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const wheelLocked = useRef(false);
-  const wheelUnlockTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const loopedDoctors =
-    count > 1
-      ? [...doctors.slice(-cloneCount), ...doctors, ...doctors.slice(0, cloneCount)]
-      : doctors;
-  const index = count > 0 ? ((position - cloneCount + count) % count) : 0;
-
-  useEffect(() => {
-    const carousel = carouselRef.current;
-    if (!carousel) return;
-
-    const handleWheel = (event: WheelEvent) => {
-      // This listener must stay non-passive: the page must not receive this wheel gesture.
-      event.preventDefault();
-      event.stopPropagation();
-
-      if (wheelUnlockTimer.current) clearTimeout(wheelUnlockTimer.current);
-      if (!wheelLocked.current && Math.abs(event.deltaY) >= Math.abs(event.deltaX)) {
-        wheelLocked.current = true;
-        if (event.deltaY > 0) next();
-        else if (event.deltaY < 0) prev();
-      }
-
-      // Treat a burst of wheel events as one gesture.
-      wheelUnlockTimer.current = setTimeout(() => {
-        wheelLocked.current = false;
-      }, 850);
-    };
-
-    carousel.addEventListener("wheel", handleWheel, { passive: false });
-    return () => carousel.removeEventListener("wheel", handleWheel);
-  }, [position, count, cloneCount]);
-
-  useEffect(() => () => {
-    if (wheelUnlockTimer.current) clearTimeout(wheelUnlockTimer.current);
-    if (resetTimer.current) clearTimeout(resetTimer.current);
-  }, []);
-
-  const settleLoop = (nextPosition: number) => {
-    setPosition(nextPosition);
-    if (nextPosition === cloneCount - 1 || nextPosition === count + cloneCount) {
-      resetTimer.current = setTimeout(() => {
-        setPosition(nextPosition === cloneCount - 1 ? count + cloneCount - 1 : cloneCount);
-      }, 520);
-    }
-  };
-
-  const prev = () => {
-    if (count < 2) return;
-    settleLoop(position - 1);
-  };
-  const next = () => {
-    if (count < 2) return;
-    settleLoop(position + 1);
-  };
-
   return (
     <div className="relative overflow-hidden rounded-[36px] border border-white/80 bg-white p-6 shadow-[0_20px_60px_rgba(0,47,108,0.06)] md:p-10">
       <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
@@ -76,11 +14,11 @@ export function TeamSlider({ doctors }: { doctors: Doctor[] }) {
               Команда
             </span>
             <div className="flex -space-x-2">
-              {doctors.slice(0, 3).map((d) => (
+              {doctors.slice(0, 3).map((doctor) => (
                 <img
-                  key={d.id}
-                  src={d.photoUrl}
-                  alt={d.name}
+                  key={doctor.id}
+                  src={doctor.photoUrl}
+                  alt={doctor.name}
                   className="h-6 w-6 rounded-full border border-white object-cover"
                 />
               ))}
@@ -105,80 +43,10 @@ export function TeamSlider({ doctors }: { doctors: Doctor[] }) {
             </Link>
           </div>
         </div>
-
-        {/* Navigation arrows */}
-        <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={prev}
-            className="grid h-11 w-11 place-items-center rounded-full border border-[var(--line)] bg-white text-lg font-bold text-navy shadow-sm transition hover:bg-[#f4f8ff] disabled:opacity-40"
-            aria-label="Назад"
-          >
-            ←
-          </button>
-          <span className="text-xs font-bold tracking-widest text-muted">
-            {String(index + 1).padStart(2, "0")} / {String(doctors.length).padStart(2, "0")}
-          </span>
-          <button
-            type="button"
-            onClick={next}
-            className="grid h-11 w-11 place-items-center rounded-full border border-[var(--line)] bg-white text-lg font-bold text-navy shadow-sm transition hover:bg-[#f4f8ff] disabled:opacity-40"
-            aria-label="Вперед"
-          >
-            →
-          </button>
-        </div>
       </div>
 
-      {/* Doctor Cards Carousel */}
-      <div ref={carouselRef} className="mt-10 overflow-hidden">
-        <div
-          className="flex gap-4 [--card-step:316px] transition-transform duration-500 ease-out md:[--card-step:336px]"
-          style={{
-            transform: `translate3d(calc(-1 * var(--card-step) * ${count > 1 ? position : 0}), 0, 0)`,
-          }}
-        >
-          {loopedDoctors.map((doctor, cardIndex) => (
-            <div
-              key={`${doctor.id}-${cardIndex}`}
-              className="w-[300px] shrink-0 rounded-[28px] bg-gradient-to-b from-[#0e3b75] to-[#07244b] p-3 text-white shadow-md md:w-[320px]"
-            >
-              {/* Doctor photo container */}
-              <div className="relative overflow-hidden rounded-[22px] bg-white">
-                <span className="absolute left-3 top-3 z-10 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-navy backdrop-blur-sm">
-                  {doctor.specialty || doctor.role.split(",")[0]}
-                </span>
-                <img
-                  src={doctor.photoUrl}
-                  alt={doctor.name}
-                  className="h-64 w-full object-cover transition-transform duration-500 hover:scale-105"
-                />
-              </div>
-
-              {/* Card body */}
-              <div className="p-4">
-                <h3 className="text-lg font-bold leading-snug">{doctor.name}</h3>
-                <p className="mt-1 line-clamp-2 text-xs text-white/80">{doctor.role}</p>
-
-                <div className="mt-3 border-t border-white/10 pt-3">
-                  <p className="text-[11px] font-semibold text-[#93c5fd]">
-                    {doctor.experience || "Опыт более 12 лет"}
-                  </p>
-                  <p className="mt-1 line-clamp-2 text-[11px] text-white/70">
-                    {doctor.education}
-                  </p>
-                </div>
-
-                <Link
-                  href={`/doctors/${doctor.slug}`}
-                  className="mt-4 block rounded-xl bg-white/10 py-2 text-center text-xs font-bold text-white transition hover:bg-white hover:text-navy"
-                >
-                  Биография и дипломы →
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="mt-10">
+        <ExpandOnHoverDoctors doctors={doctors} />
       </div>
     </div>
   );
