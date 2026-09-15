@@ -17,6 +17,9 @@ export default async function EditDoctorPage({
         <input name="name" defaultValue={item?.name} placeholder="ФИО" className="rounded-2xl border px-4 py-3" required />
         <input name="slug" defaultValue={item?.slug} placeholder="slug" className="rounded-2xl border px-4 py-3" required />
         <input name="role" defaultValue={item?.role} placeholder="Должность" className="rounded-2xl border px-4 py-3" required />
+        <input name="specialty" defaultValue={item?.specialty} placeholder="Специализация (напр. Хирург-имплантолог)" className="rounded-2xl border px-4 py-3" />
+        <input name="experience" defaultValue={item?.experience} placeholder="Стаж / Опыт (напр. Практика с 2012 года)" className="rounded-2xl border px-4 py-3" />
+        <textarea name="education" defaultValue={item?.education} rows={4} placeholder="Образование и дипломы" className="rounded-2xl border px-4 py-3" />
         <input name="photoUrl" defaultValue={item?.photoUrl} placeholder="/media/doctors/..." className="rounded-2xl border px-4 py-3" required />
         <textarea name="bio" defaultValue={item?.bio} rows={12} className="rounded-2xl border px-4 py-3" />
         <input name="sortOrder" type="number" defaultValue={item?.sortOrder ?? 0} className="rounded-2xl border px-4 py-3" />

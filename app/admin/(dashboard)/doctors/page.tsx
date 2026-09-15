@@ -20,6 +20,7 @@ export default async function AdminDoctorsPage() {
             <div className="flex-1">
               <p className="font-bold text-navy">{doctor.name}</p>
               <p className="text-sm text-muted">{doctor.role}</p>
+              <p className="text-xs text-accent mt-0.5">{doctor.experience}</p>
             </div>
             <Link href={`/admin/doctors/${doctor.id}`} className="font-semibold text-accent">
               Изменить

@@ -47,14 +47,17 @@ model PriceItem {
 }
 
 model Doctor {
-  id        String  @id @default(cuid())
-  slug      String  @unique
-  name      String
-  role      String
-  bio       String  @default("")
-  photoUrl  String
-  published Boolean @default(true)
-  sortOrder Int     @default(0)
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  role        String
+  specialty   String   @default("")
+  experience  String   @default("")
+  education   String   @default("")
+  bio         String   @default("")
+  photoUrl    String
+  published   Boolean  @default(true)
+  sortOrder   Int      @default(0)
 }
 
 model Review {

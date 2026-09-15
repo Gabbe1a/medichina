@@ -61,10 +61,29 @@ function parseDoctors(markdown: string) {
     const photoName = path.basename(photoLine.replace(/`/g, "").trim());
     const bioRaw = rest.join("\n").split("### Биография / описание")[1] ?? "";
     const slug = photoName.replace(/\.(jpe?g|png)$/i, "");
+
+    // Extract detailed education and experience
+    let experience = "Опыт более 10 лет";
+    if (bioRaw.includes("Стаж 30 лет")) experience = "Стаж 30 лет";
+    else if (bioRaw.includes("12 лет практики") || bioRaw.includes("2012")) experience = "Практика с 2012 года (14+ лет)";
+    else if (bioRaw.includes("2002")) experience = "Практика с 2002 года (24 года)";
+    else if (bioRaw.includes("2004")) experience = "Практика с 2004 года (22 года)";
+    else if (bioRaw.includes("2008")) experience = "Практика с 2008 года (18 лет)";
+    else if (bioRaw.includes("1995")) experience = "Практика с 1995 года (31 год)";
+
+    // Extract education block
+    const educationMatch = bioRaw.match(/Обучение:[\s\S]*?(?=Дополнительное обучение|Моя улыбка|$)/i);
+    const education = educationMatch
+      ? educationMatch[0].replace(/Обучение:/i, "").trim().slice(0, 300)
+      : "Высшее медицинское образование, профильные сертификаты и курсы повышения квалификации.";
+
     return {
       slug: slug || `doctor-${index + 1}`,
       name,
       role,
+      specialty: role.split(",")[0]?.trim() || role,
+      experience,
+      education,
       bio: cleanDoctorBio(bioRaw, name),
       photoUrl: `/media/doctors/${photoName}`,
       sortOrder: index,

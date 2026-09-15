@@ -8,10 +8,10 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
   const [settings, services] = await Promise.all([getSettings(), getTopServices()]);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen text-ink">
       <Metrika counter={settings.metrika} />
       <Header services={services} phone={settings.phone1} />
-      <main>{children}</main>
+      <main className="py-4">{children}</main>
       <Footer settings={settings} />
       <CookieBanner />
     </div>
