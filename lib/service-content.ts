@@ -19,6 +19,7 @@ const PROMO_LINE =
   /^(Записаться на |Цены на лечение в стоматологии|Прямо сейчас Вы можете|В нашей клинике всегда доступные|Подробную информацию о стоимости|Выбор клиники «Один|Здесь пациентам предлагаются|В клинике работают опытные)/i;
 
 function isParagraph(line: string) {
+  if (line.endsWith(";")) return false;
   if (line.length >= 88) return true;
   const words = line.split(/\s+/).filter(Boolean).length;
   return words >= 11 && /[.!?]/.test(line);
@@ -85,6 +86,7 @@ function isHeading(line: string, next?: string) {
   if (line.endsWith(";") || /\.$/.test(line)) return false;
   if (line.length > 110) return false;
   if (/^(показания|противопоказания)\b/i.test(line) || (line.endsWith(":") && line.length < 80)) return true;
+  if (line.endsWith("?") && line.length <= 90) return true;
   if (/^[а-яёa-z]/.test(line)) return false;
   if (next && /^(показания|противопоказания)\b/i.test(next)) return false;
   if (HEADING_START.test(line)) return true;
