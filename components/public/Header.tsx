@@ -94,7 +94,12 @@ export function Header({
           <button
             type="button"
             className="rounded-full border border-[var(--line)] px-3 py-2 text-sm font-bold text-navy lg:hidden"
-            onClick={() => setOpen((value) => !value)}
+            onClick={() => {
+              setOpen((value) => {
+                if (value) setMobileServicesOpen(false);
+                return !value;
+              });
+            }}
             aria-expanded={open}
           >
             Меню
@@ -107,22 +112,26 @@ export function Header({
           <div className="grid gap-2 text-sm font-semibold text-navy">
             <Link href="/about" onClick={() => setOpen(false)}>О клинике</Link>
             <div className="rounded-2xl bg-[#f4f8ff]">
-              <div className="flex items-center justify-between">
-                <Link href="/services" className="flex-1 px-3 py-2.5" onClick={() => setOpen(false)}>
-                  Услуги
-                </Link>
-                <button
-                  type="button"
-                  aria-label={mobileServicesOpen ? "Скрыть направления" : "Показать направления"}
-                  aria-expanded={mobileServicesOpen}
-                  onClick={() => setMobileServicesOpen((value) => !value)}
-                  className="px-4 py-2.5 text-lg font-bold text-accent"
-                >
-                  <span className={`block transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`}>⌄</span>
-                </button>
-              </div>
+              <button
+                type="button"
+                aria-expanded={mobileServicesOpen}
+                onClick={() => setMobileServicesOpen((value) => !value)}
+                className="flex w-full items-center justify-between px-3 py-2.5 text-left"
+              >
+                <span>Услуги</span>
+                <span className={`text-lg font-bold text-accent transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`}>
+                  ⌄
+                </span>
+              </button>
               {mobileServicesOpen ? (
                 <div className="grid gap-1 border-t border-[#dceafd] px-3 pb-3 pt-2">
+                  <Link
+                    href="/services"
+                    className="rounded-xl bg-white px-3 py-2 text-sm font-bold text-accent"
+                    onClick={() => setOpen(false)}
+                  >
+                    Все направления →
+                  </Link>
                   {services.map((item) => (
                     <Link
                       key={item.id}
