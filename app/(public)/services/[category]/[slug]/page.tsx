@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ServiceArticle } from "@/components/public/ServiceArticle";
 import { prisma } from "@/lib/prisma";
 import { formatPrice } from "@/lib/format";
 import { serviceHref } from "@/lib/routes";
 import { serviceArtwork } from "@/lib/service-art";
-import { getDetailedServiceDescription } from "@/lib/service-content";
+import { parseServiceArticle } from "@/lib/service-content";
 
 export const dynamic = "force-dynamic";
 
@@ -43,35 +44,45 @@ export default async function ServiceDetailPage({
   const { category, slug } = await params;
   const service = await findService(category, slug);
   if (!service) notFound();
+  const article = parseServiceArticle(service.path, service.description);
 
   return (
     <div className="mx-auto max-w-[1200px] px-4 py-8 md:px-8 md:py-12">
-      <div className="overflow-hidden rounded-[36px] bg-white shadow-[0_20px_60px_rgba(0,47,108,0.1)]">
+      <div className="overflow-hidden rounded-[28px] bg-white shadow-[0_20px_60px_rgba(0,47,108,0.1)] md:rounded-[36px]">
         <div className="grid md:grid-cols-[1.05fr_.95fr]">
-          <div className="p-6 md:p-10">
+          <div className="p-5 md:p-10">
             <div className="flex flex-wrap gap-2 text-xs font-bold text-accent">
               <Link href="/services">Услуги</Link>
-              <span>/</span>
+              <span className="text-slate-400">/</span>
               <Link href={`/services/${category}`}>{service.parent?.title ?? category}</Link>
             </div>
-            <p className="mt-8 text-[11px] font-extrabold uppercase tracking-[0.22em] text-accent">Процедура</p>
-            <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-navy md:text-5xl">{service.title}</h1>
-            <p className="mt-5 text-base font-medium leading-relaxed text-muted">
-              {getDetailedServiceDescription(service.path, service.description)}
-            </p>
-            <Link href="/contacts#zapis" className="mt-7 inline-flex rounded-full bg-navy px-6 py-3 text-sm font-bold text-white transition hover:bg-accent">
+            <p className="mt-6 text-[11px] font-extrabold uppercase tracking-[0.22em] text-accent">Процедура</p>
+            <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">{service.title}</h1>
+            <div className="mt-5 space-y-3">
+              {article.lead.map((paragraph) => (
+                <p key={paragraph.slice(0, 40)} className="text-sm font-medium leading-relaxed text-muted md:text-base">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+            <Link
+              href="/contacts#zapis"
+              className="mt-7 inline-flex rounded-full bg-navy px-6 py-3 text-sm font-bold text-white transition hover:bg-accent"
+            >
               Записаться на консультацию →
             </Link>
           </div>
-          <div className="relative min-h-[280px] overflow-hidden bg-[#0a2c5b] md:min-h-[420px]">
+          <div className="relative min-h-[200px] overflow-hidden bg-[#0a2c5b] md:min-h-[420px]">
             <Image src={serviceArtwork(category)} alt="" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover opacity-90" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#061a38]/80 to-transparent" />
           </div>
         </div>
       </div>
 
+      <ServiceArticle article={article} />
+
       {service.children.length > 0 && (
-        <section className="mt-8 rounded-[32px] bg-white p-6 shadow-sm md:p-10">
+        <section className="mt-8 rounded-[28px] bg-white p-5 shadow-sm md:rounded-[32px] md:p-10">
           <h2 className="text-2xl font-extrabold text-navy">Связанные процедуры</h2>
           <div className="mt-5 grid gap-3 md:grid-cols-2">
             {service.children.map((child) => (
@@ -84,21 +95,23 @@ export default async function ServiceDetailPage({
       )}
 
       {service.prices.length > 0 && (
-        <section className="mt-8 overflow-hidden rounded-[32px] bg-white shadow-sm">
-          <div className="flex items-center justify-between bg-[#f3f8ff] px-6 py-5">
-            <h2 className="text-2xl font-extrabold text-navy">Стоимость процедуры</h2>
+        <section className="mt-8 overflow-hidden rounded-[28px] bg-white shadow-sm md:rounded-[32px]">
+          <div className="flex items-center justify-between bg-[#f3f8ff] px-5 py-4 md:px-6 md:py-5">
+            <h2 className="text-xl font-extrabold text-navy md:text-2xl">Стоимость процедуры</h2>
             <span className="text-xs font-bold text-muted">{service.prices.length} позиций</span>
           </div>
-          <table className="w-full text-sm">
-            <tbody>
-              {service.prices.map((item) => (
-                <tr key={item.id} className="border-t border-[var(--line)]">
-                  <td className="px-6 py-4 text-ink">{item.title}</td>
-                  <td className="whitespace-nowrap px-6 py-4 text-right font-extrabold text-navy">{formatPrice(item.price)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[320px] text-sm">
+              <tbody>
+                {service.prices.map((item) => (
+                  <tr key={item.id} className="border-t border-[var(--line)]">
+                    <td className="px-5 py-4 text-ink md:px-6">{item.title}</td>
+                    <td className="whitespace-nowrap px-5 py-4 text-right font-extrabold text-navy md:px-6">{formatPrice(item.price)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
       )}
     </div>
