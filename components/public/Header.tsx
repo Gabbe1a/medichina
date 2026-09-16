@@ -58,6 +58,9 @@ export function Header({
               </div>
             ) : null}
           </div>
+          <Link className="rounded-full px-3 py-2 text-[11px] font-extrabold uppercase tracking-[0.14em] text-navy hover:bg-[#f3f8ff]" href="/akcii">
+            Акции
+          </Link>
           <Link className="rounded-full px-3 py-2 text-[11px] font-extrabold uppercase tracking-[0.14em] text-navy hover:bg-[#f3f8ff]" href="/doctors">
             Врачи
           </Link>
@@ -133,6 +136,7 @@ export function Header({
                 </div>
               ) : null}
             </div>
+            <Link href="/akcii" onClick={() => setOpen(false)}>Акции</Link>
             <Link href="/doctors" onClick={() => setOpen(false)}>Врачи</Link>
             <Link href="/prices" onClick={() => setOpen(false)}>Цены</Link>
             <Link href="/reviews" onClick={() => setOpen(false)}>Отзывы</Link>
