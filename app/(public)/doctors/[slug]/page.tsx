@@ -27,12 +27,18 @@ export default async function DoctorPage({
 
   return (
     <div className="mx-auto max-w-[1200px] px-4 py-12 md:px-8">
-      <p className="text-xs font-bold uppercase tracking-widest text-muted">
-        <Link href="/doctors" className="hover:text-accent">
+      <nav
+        aria-label="Навигация"
+        className="inline-flex max-w-full flex-wrap items-center gap-x-2 rounded-full bg-white px-4 py-2 text-xs font-bold uppercase tracking-widest text-navy shadow-[0_10px_30px_rgba(0,47,108,0.12)]"
+      >
+        <Link href="/doctors" className="text-accent transition hover:text-navy">
           Врачи
-        </Link>{" "}
-        / {doctor.name}
-      </p>
+        </Link>
+        <span className="text-slate-400" aria-hidden>
+          /
+        </span>
+        <span className="truncate">{doctor.name}</span>
+      </nav>
 
       <div className="mt-6 grid gap-10 lg:grid-cols-[380px_1fr]">
         {/* Left: Photo & quick facts */}
@@ -73,12 +79,14 @@ export default async function DoctorPage({
 
         {/* Right: Detailed bio, qualifications, education */}
         <div>
-          <span className="rounded-full bg-[#e8f2ff] px-3 py-1 text-xs font-bold text-accent">
-            {doctor.role}
-          </span>
-          <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-navy md:text-5xl">
-            {doctor.name}
-          </h1>
+          <div className="rounded-[28px] bg-white p-6 shadow-[0_20px_60px_rgba(0,47,108,0.1)]">
+            <span className="rounded-full bg-[#e8f2ff] px-3 py-1 text-xs font-bold text-accent">
+              {doctor.role}
+            </span>
+            <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-navy md:text-5xl">
+              {doctor.name}
+            </h1>
+          </div>
 
           {/* Education pill box */}
           <div className="mt-6 rounded-[28px] border border-white/80 bg-white p-6 shadow-sm">
