@@ -19,6 +19,7 @@ type CoverFlowCarouselProps = {
   sectionLabel?: string;
   autoplay?: boolean;
   autoplayDelay?: number;
+  initialIndex?: number;
 };
 
 const Chevron = ({ direction }: { direction: "left" | "right" }) => (
@@ -43,9 +44,12 @@ export function CoverFlowCarousel({
   sectionLabel = "Специалисты клиники",
   autoplay = false,
   autoplayDelay = 5000,
+  initialIndex = 0,
 }: CoverFlowCarouselProps) {
   const router = useRouter();
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(() =>
+    Math.min(Math.max(initialIndex, 0), Math.max(items.length - 1, 0)),
+  );
   const [isHovered, setIsHovered] = useState(false);
   const touchStartX = useRef(0);
   const total = items.length;

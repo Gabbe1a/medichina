@@ -35,7 +35,12 @@ export function TeamSlider({ doctors }: { doctors: Doctor[] }) {
       </div>
 
       <div className="mt-10">
-        <CoverFlowCarousel items={items} sectionLabel="Специалисты клиники" autoplay={false} />
+        <CoverFlowCarousel
+          items={items}
+          sectionLabel="Специалисты клиники"
+          autoplay={false}
+          initialIndex={1}
+        />
       </div>
     </div>
   );
