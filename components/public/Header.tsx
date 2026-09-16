@@ -16,6 +16,7 @@ export function Header({
 }) {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-40 px-4 pt-4 md:px-8">
@@ -102,17 +103,36 @@ export function Header({
         <div className="mx-auto mt-2 max-w-[1440px] rounded-[28px] bg-white p-5 shadow-lg lg:hidden">
           <div className="grid gap-2 text-sm font-semibold text-navy">
             <Link href="/about" onClick={() => setOpen(false)}>О клинике</Link>
-            <Link href="/services" onClick={() => setOpen(false)}>Услуги</Link>
-            {services.map((item) => (
-              <Link
-                key={item.id}
-                href={serviceHref(item)}
-                className="pl-3 text-muted"
-                onClick={() => setOpen(false)}
-              >
-                {item.title}
-              </Link>
-            ))}
+            <div className="rounded-2xl bg-[#f4f8ff]">
+              <div className="flex items-center justify-between">
+                <Link href="/services" className="flex-1 px-3 py-2.5" onClick={() => setOpen(false)}>
+                  Услуги
+                </Link>
+                <button
+                  type="button"
+                  aria-label={mobileServicesOpen ? "Скрыть направления" : "Показать направления"}
+                  aria-expanded={mobileServicesOpen}
+                  onClick={() => setMobileServicesOpen((value) => !value)}
+                  className="px-4 py-2.5 text-lg font-bold text-accent"
+                >
+                  <span className={`block transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`}>⌄</span>
+                </button>
+              </div>
+              {mobileServicesOpen ? (
+                <div className="grid gap-1 border-t border-[#dceafd] px-3 pb-3 pt-2">
+                  {services.map((item) => (
+                    <Link
+                      key={item.id}
+                      href={serviceHref(item)}
+                      className="rounded-xl px-3 py-2 text-sm font-medium text-muted transition hover:bg-white hover:text-navy"
+                      onClick={() => setOpen(false)}
+                    >
+                      {item.title}
+                    </Link>
+                  ))}
+                </div>
+              ) : null}
+            </div>
             <Link href="/doctors" onClick={() => setOpen(false)}>Врачи</Link>
             <Link href="/prices" onClick={() => setOpen(false)}>Цены</Link>
             <Link href="/reviews" onClick={() => setOpen(false)}>Отзывы</Link>
