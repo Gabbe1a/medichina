@@ -2,12 +2,10 @@ import type { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
 import { serviceHref } from "@/lib/routes";
 
+import { publicSiteUrl } from "@/lib/site";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const configured = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
-  const base =
-    configured && !configured.includes("localhost") && !configured.includes("127.0.0.1")
-      ? configured
-      : "http://94.249.239.210:8091";
+  const base = publicSiteUrl();
   const [services, doctors] = await Promise.all([
     prisma.service.findMany({ where: { published: true } }),
     prisma.doctor.findMany({ where: { published: true } }),
@@ -30,6 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     ...staticRoutes.map((path) => ({ url: `${base}${path}`, changeFrequency: "weekly" as const, priority: path === "" ? 1 : 0.7 })),
+    { url: `${base}/llms.txt`, changeFrequency: "monthly" as const, priority: 0.2 },
     ...services.map((service) => ({ url: `${base}${serviceHref(service)}`, changeFrequency: "monthly" as const, priority: 0.6 })),
     ...doctors.map((doctor) => ({ url: `${base}/doctors/${doctor.slug}`, changeFrequency: "monthly" as const, priority: 0.5 })),
   ];

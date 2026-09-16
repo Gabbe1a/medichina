@@ -62,7 +62,17 @@ export default async function HomePage() {
                   <p className="text-sm font-bold text-navy">
                     {settings.rating} ★ · {settings.reviewsCount} отзывов
                   </p>
-                  <p className="text-xs text-navy/70">Реальные оценки на Яндекс Картах</p>
+                  <p className="text-xs text-navy/70">
+                    Реальные оценки на{" "}
+                    <a
+                      className="font-bold underline decoration-navy/20"
+                      href={`https://yandex.ru/maps/org/${settings.yandexOrgId}/`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Яндекс Картах
+                    </a>
+                  </p>
                 </div>
               </div>
 
@@ -132,7 +142,7 @@ export default async function HomePage() {
             О клинике
           </span>
           <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">
-            Лечение, в котором легко разобраться
+            Почему лечение ведут в одном здании у Войковской?
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted md:text-lg">
             Мы работаем у Войковской больше пятнадцати лет: терапия, микроскопия, хирургия, имплантация,
@@ -197,9 +207,9 @@ export default async function HomePage() {
         <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
           Как мы работаем
         </span>
-        <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">
-          Прозрачный путь без суеты
-        </h2>
+          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">
+            Как проходит первый визит и лечение?
+          </h2>
         <div className="mt-8 grid gap-4 md:grid-cols-4">
           {[
             ["01", "Консультация и диалог", "Вы рассказываете, что беспокоит. Мы внимательно слушаем и проводим первичный осмотр без спешки."],
@@ -296,7 +306,7 @@ export default async function HomePage() {
             Вопросы и ответы
           </span>
           <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">
-            Коротко о важном
+            Какие вопросы пациенты задают чаще всего?
           </h2>
           <p className="mt-3 text-sm text-muted">
             Собрали ответы на самые популярные вопросы пациентов об обезболивании, гарантиях и приёме.
@@ -322,7 +332,7 @@ export default async function HomePage() {
             Запись на приём
           </span>
           <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-navy md:text-4xl">
-            Подберём удобное время
+            Как записаться на приём?
           </h2>
           <p className="mt-3 text-sm text-muted">
             Или позвоните нам напрямую:{" "}

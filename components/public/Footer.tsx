@@ -8,7 +8,7 @@ export function Footer({ settings }: { settings: Setting }) {
       <div className="mx-auto grid max-w-[1440px] gap-10 px-5 py-16 md:grid-cols-4 md:px-10">
         <div>
           <div className="flex items-center gap-3">
-            <img src="/media/logos/logo.svg" alt="" className="h-12 w-12 rounded-2xl bg-white" />
+            <img src="/media/logos/logo.svg" alt="Логотип стоматологии «Один к Одному»" className="h-12 w-12 rounded-2xl bg-white" />
             <div>
               <p className="text-lg font-extrabold">Один к Одному</p>
               <p className="text-xs uppercase tracking-[0.16em] text-white/60">стоматология</p>
@@ -60,7 +60,17 @@ export function Footer({ settings }: { settings: Setting }) {
           <p>
             © {new Date().getFullYear()} {settings.legalEntity}. Лицензия {settings.license}
           </p>
-          <p>ОГРН {settings.ogrn}</p>
+          <p>
+            Источник рейтинга:{" "}
+            <a
+              className="underline decoration-white/30 hover:text-white"
+              href={`https://yandex.ru/maps/org/${settings.yandexOrgId}/`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Яндекс Карты
+            </a>
+          </p>
         </div>
       </div>
     </footer>
