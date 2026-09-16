@@ -8,7 +8,7 @@ type CatalogService = Service & { children: Service[] };
 
 export function DirectionsCatalog({ services }: { services: CatalogService[] }) {
   return (
-    <section className="mt-20">
+    <section id="catalog" className="mt-20">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">Каталог</span>
