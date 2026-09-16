@@ -19,7 +19,7 @@ export default async function ServicesPage() {
       <ServicesAccordion />
 
       {/* Full 11-category directory */}
-      <div className="mt-16">
+      <div className="mt-16 rounded-[36px] bg-white p-6 shadow-[0_20px_60px_rgba(0,47,108,0.08)] md:p-10">
         <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
           Все направления
         </span>
