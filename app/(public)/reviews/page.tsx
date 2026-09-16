@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BeforeAfterInteractive } from "@/components/public/BeforeAfterInteractive";
 import { VideoReviewsSection } from "@/components/public/VideoReviewsSection";
 import { LazyIframe } from "@/components/public/LazyIframe";
-import { initials } from "@/lib/format";
+import { ReviewCard } from "@/components/public/ReviewCard";
 import { getReviews, getSettings } from "@/lib/queries";
 
 export const metadata: Metadata = {
@@ -61,34 +61,14 @@ export default async function ReviewsPage() {
       {/* Detailed text reviews grid */}
       <div className="mt-16">
         <h2 className="text-2xl font-bold text-navy">Текстовые отзывы с подтверждённым посещением</h2>
-        <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {reviews.map((review) => (
-            <article
+        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {reviews.map((review, index) => (
+            <ReviewCard
               key={review.id}
-              className="group min-h-[270px] rounded-[28px] border border-white/80 bg-white p-6 shadow-sm"
-            >
-              <div className="flex items-center gap-3">
-                <div className="grid h-11 w-11 place-items-center rounded-full bg-[#e8f2ff] text-sm font-bold text-navy">
-                  {initials(review.author)}
-                </div>
-                <div>
-                  <p className="font-bold text-navy">{review.author}</p>
-                  <p className="text-xs text-muted">
-                    {review.rating}.0 ★ · {review.dateLabel}
-                  </p>
-                </div>
-              </div>
-              <p className="mt-4 line-clamp-5 text-xs leading-relaxed text-muted">{review.text}</p>
-              <details className="mt-3">
-                <summary className="flex cursor-pointer list-none items-center justify-between text-xs font-bold text-accent [&::-webkit-details-marker]:hidden">
-                  <span>Читать отзыв</span>
-                  <span className="grid h-7 w-7 place-items-center rounded-full bg-[#edf5ff] text-sm transition-transform group-open:rotate-180">
-                    ↓
-                  </span>
-                </summary>
-                <p className="mt-3 text-xs leading-relaxed text-muted">{review.text}</p>
-              </details>
-            </article>
+              review={review}
+              featured={index === 0}
+              sourceHref={`https://yandex.ru/maps/org/${settings.yandexOrgId}/`}
+            />
           ))}
         </div>
       </div>
