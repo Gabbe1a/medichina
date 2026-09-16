@@ -1,7 +1,10 @@
 export function serviceArtwork(category: string) {
-  if (category.includes("implant")) return "/images/services/implant.webp";
-  if (category.includes("otbel")) return "/images/services/whitening.webp";
-  if (category.includes("ortodont")) return "/images/services/ortho.webp";
-  if (category.includes("hirurg")) return "/images/services/surgery.webp";
+  const key = category.toLowerCase();
+  if (key.includes("implant") || key.includes("protez")) return "/images/services/implant.webp";
+  if (key.includes("otbel") || key.includes("chistka") || key.includes("gigien")) return "/images/services/whitening.webp";
+  if (key.includes("ortodont")) return "/images/services/ortho.webp";
+  if (key.includes("hirurg") || key.includes("parodont") || key.includes("boli") || key.includes("narkoz")) {
+    return "/images/services/surgery.webp";
+  }
   return "/images/services/aesthetic.webp";
 }

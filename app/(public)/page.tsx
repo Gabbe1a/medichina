@@ -15,7 +15,7 @@ import {
   getSettings,
   getTopServices,
 } from "@/lib/queries";
-import { serviceHref } from "@/lib/routes";
+import { DirectionsCatalog } from "@/components/public/DirectionsCatalog";
 
 export default async function HomePage() {
   const [settings, services, doctors, reviews, faqs, gallery] = await Promise.all([
@@ -226,43 +226,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 8: 11 NESTED SERVICES DIRECTORY */}
-      <section className="mt-20">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
-              Каталог
-            </span>
-            <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">
-              Все 11 направлений стоматологии
-            </h2>
-          </div>
-          <Link href="/services" className="hidden text-sm font-bold text-accent md:block">
-            Полный каталог →
-          </Link>
-        </div>
-        <div className="mt-8 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-          {services.map((service) => (
-            <Link
-              key={service.id}
-              href={serviceHref(service)}
-              className="group flex min-h-[132px] flex-col justify-between rounded-[24px] border border-white/80 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-[#9fc4f5] hover:shadow-[0_14px_30px_rgba(0,47,108,0.12)]"
-            >
-              <h3 className="text-lg font-extrabold leading-tight text-navy group-hover:text-accent md:text-xl">
-                {service.title}
-              </h3>
-              <div className="mt-4 flex items-center justify-between border-t border-[var(--line)] pt-3 text-[11px]">
-                <span className="font-extrabold uppercase tracking-[0.08em] text-accent">
-                  {service.children.length} подразделов
-                </span>
-                <span className="font-extrabold text-navy transition-transform group-hover:translate-x-1">
-                  Перейти →
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
+      <DirectionsCatalog services={services} />
 
       {/* SECTION 9: REVIEWS ARCHIVE */}
       <section className="mt-20">
