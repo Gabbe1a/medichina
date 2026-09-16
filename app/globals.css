@@ -27,6 +27,7 @@
 
 html {
   scroll-behavior: auto;
+  background: #1a6fd8;
 }
 
 body {
@@ -36,6 +37,17 @@ body {
   color: var(--ink);
   font-family: var(--font-manrope), "Manrope", sans-serif;
   min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.defer-render {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 700px;
+}
+
+.home-page > section:nth-of-type(n + 3) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 700px;
 }
 
 a {

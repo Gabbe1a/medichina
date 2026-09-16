@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { BeforeAfterInteractive } from "@/components/public/BeforeAfterInteractive";
 import { VideoReviewsSection } from "@/components/public/VideoReviewsSection";
+import { LazyIframe } from "@/components/public/LazyIframe";
 import { initials } from "@/lib/format";
 import { getReviews, getSettings } from "@/lib/queries";
 
@@ -16,7 +17,7 @@ export default async function ReviewsPage() {
   return (
     <div className="mx-auto max-w-[1300px] px-4 py-12 md:px-8">
       {/* Header */}
-      <div className="max-w-2xl">
+      <div className="max-w-2xl rounded-[32px] bg-white p-6 shadow-[0_20px_60px_rgba(0,47,108,0.1)] md:p-8">
         <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
           Репутация и опыт
         </span>
@@ -50,13 +51,11 @@ export default async function ReviewsPage() {
             ★ {settings.rating}
           </span>
         </div>
-        <div className="mt-6 overflow-hidden rounded-[24px]">
-          <iframe
-            title="Виджет отзывов Яндекс Карт"
-            src={`https://yandex.ru/maps-reviews-widget/${settings.yandexOrgId}?comments`}
-            className="h-[460px] w-full border-0"
-          />
-        </div>
+        <LazyIframe
+          title="Виджет отзывов Яндекс Карт"
+          src={`https://yandex.ru/maps-reviews-widget/${settings.yandexOrgId}?comments`}
+          className="mt-6 h-[460px] rounded-[24px]"
+        />
       </div>
 
       {/* Detailed text reviews grid */}
@@ -66,7 +65,7 @@ export default async function ReviewsPage() {
           {reviews.map((review) => (
             <article
               key={review.id}
-              className="rounded-[28px] border border-white/80 bg-white p-6 shadow-sm"
+              className="group min-h-[270px] rounded-[28px] border border-white/80 bg-white p-6 shadow-sm"
             >
               <div className="flex items-center gap-3">
                 <div className="grid h-11 w-11 place-items-center rounded-full bg-[#e8f2ff] text-sm font-bold text-navy">
@@ -79,7 +78,16 @@ export default async function ReviewsPage() {
                   </p>
                 </div>
               </div>
-              <p className="mt-4 text-xs leading-relaxed text-muted">{review.text}</p>
+              <p className="mt-4 line-clamp-5 text-xs leading-relaxed text-muted">{review.text}</p>
+              <details className="mt-3">
+                <summary className="flex cursor-pointer list-none items-center justify-between text-xs font-bold text-accent [&::-webkit-details-marker]:hidden">
+                  <span>Читать отзыв</span>
+                  <span className="grid h-7 w-7 place-items-center rounded-full bg-[#edf5ff] text-sm transition-transform group-open:rotate-180">
+                    ↓
+                  </span>
+                </summary>
+                <p className="mt-3 text-xs leading-relaxed text-muted">{review.text}</p>
+              </details>
             </article>
           ))}
         </div>

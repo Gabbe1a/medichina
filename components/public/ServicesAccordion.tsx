@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 type ServiceItem = {
@@ -20,7 +21,7 @@ const SERVICES_DATA: ServiceItem[] = [
     category: "Виниры и эстетика",
     desc: "Прямые терапевтические виниры, керамика E-max и художественное восстановление анатомической формы зуба.",
     href: "/services/terapevticheskaja_stomatologija/terapevticheskie_viniry",
-    image: "/images/services/aesthetic.png",
+    image: "/images/services/aesthetic.webp",
     highlight: "Восстановление природной формы за 1–2 визита без агрессивной обточки эмали.",
   },
   {
@@ -29,7 +30,7 @@ const SERVICES_DATA: ServiceItem[] = [
     category: "Исправление прикуса",
     desc: "Прозрачные каппы, самолигирующие брекет-системы и гнатологический контроль височно-нижнечелюстного сустава.",
     href: "/services/ortodonticheskoe_lechenie/ortodonticheskoe_ispravlenie_prikusa",
-    image: "/images/services/ortho.png",
+    image: "/images/services/ortho.webp",
     highlight: "Цифровое планирование движения каждого зуба с предсказуемым результатом.",
   },
   {
@@ -38,7 +39,7 @@ const SERVICES_DATA: ServiceItem[] = [
     category: "Имплантология",
     desc: "Установка премиальных систем Astra Tech, Ankylos и Osstem. Одномоментная имплантация и костная пластика.",
     href: "/services/implantaciya_zubov/odnomomentnaja_implantacija",
-    image: "/images/services/implant.png",
+    image: "/images/services/implant.webp",
     highlight: "3D-навигационные шаблоны, приживаемость 98.7% и пожизненная поддержка системы.",
   },
   {
@@ -47,7 +48,7 @@ const SERVICES_DATA: ServiceItem[] = [
     category: "Zoom & Boost",
     desc: "Бережное осветление эмали до 8 оттенков без гиперчувствительности с глубокой реминерализирующей терапией.",
     href: "/services/otbelivanie_zubov/klinicheskoe",
-    image: "/images/services/whitening.png",
+    image: "/images/services/whitening.webp",
     highlight: "Холодный спектр ламп и защитные гели сохраняют прочность кристаллической решётки зуба.",
   },
   {
@@ -56,7 +57,7 @@ const SERVICES_DATA: ServiceItem[] = [
     category: "Бережная хирургия",
     desc: "Атравматичное удаление, резекция верхушек корней и микрохирургическая пластика десневого контура.",
     href: "/services/hirurgicheskaja_stomatologija/zubosohranjajushhie_manipuljacii",
-    image: "/images/services/surgery.png",
+    image: "/images/services/surgery.webp",
     highlight: "Приоритет клиники — сохранение собственных корней и тканей пациента при любой возможности.",
   },
 ];
@@ -98,59 +99,59 @@ export function ServicesAccordion() {
                 if (coarsePointer) setHoveredId((current) => (current === item.id ? null : item.id));
               }}
               tabIndex={0}
-              className={`group relative flex cursor-pointer flex-col justify-between overflow-hidden rounded-[26px] p-5 transition-all duration-500 ease-out ${
+              className={`group relative h-[360px] cursor-pointer overflow-hidden rounded-[26px] p-5 transition-[flex,background-color,transform] duration-500 ease-out lg:h-full ${
                 hoveredId === item.id
                   ? "bg-gradient-to-br from-[#0c4080] via-[#093264] to-[#041a36] text-white lg:flex-[2.5]"
                   : "bg-gradient-to-b from-[#1b5299] to-[#0d3468] text-white/90 hover:from-[#235fae] lg:flex-1"
               }`}
             >
-              <div className="relative z-10 flex h-full flex-col justify-between">
-                <div>
+              {/* The artwork is the card surface, not a small icon floating in empty space. */}
+              <div className="absolute inset-x-0 bottom-0 h-[78%] overflow-hidden">
+                <Image
+                  src={item.image}
+                  alt=""
+                  aria-hidden="true"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 24vw"
+                  className={`h-full w-full object-cover transition-transform duration-500 ${
+                    hoveredId === item.id ? "scale-105" : "scale-100"
+                  }`}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#061d3d] via-[#061d3d]/45 to-transparent" />
+              </div>
+
+              <div className="relative z-10 flex h-full flex-col">
+                <div className="shrink-0">
                   <span className="text-[10px] font-bold uppercase tracking-widest text-[#93c5fd]">
                     {item.category}
                   </span>
-                  <h3 className="mt-1 text-xl font-bold leading-tight md:text-2xl">
+                  <h3 className="mt-1 max-w-[22rem] text-xl font-bold leading-tight md:text-2xl">
                     {item.title}
                   </h3>
                 </div>
 
-                {/* 3D icon / art */}
-                <div className="my-auto flex items-center justify-center py-4">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className={`object-contain transition-transform duration-500 ${
-                      hoveredId === item.id
-                        ? "h-36 w-36 scale-110 drop-shadow-[0_15px_30px_rgba(0,149,255,0.45)]"
-                        : "h-24 w-24 opacity-85 group-hover:scale-105"
-                    }`}
-                  />
-                </div>
-
-                {/* Expanded content */}
+                {/* Hover content stays inside the card, so it cannot be clipped. */}
                 <div
-                  className={`mt-3 rounded-2xl bg-white/10 p-4 backdrop-blur-md transition-all duration-300 ${
+                  className={`absolute inset-x-0 bottom-0 rounded-2xl bg-[#092b55]/95 p-4 transition-[opacity,transform,visibility] duration-300 ${
                     hoveredId === item.id
                       ? "visible translate-y-0 opacity-100"
                       : "pointer-events-none invisible translate-y-2 opacity-0"
                   }`}
                 >
-                    <p className="text-xs leading-relaxed text-white/90 md:text-sm">
-                      {item.highlight}
-                    </p>
-                    <div className="mt-3 flex items-center justify-between">
-                      <span className="text-xs text-white/70">{item.desc}</span>
-                      <Link
-                        href={item.href}
-                        className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-xs font-bold text-navy transition hover:bg-lime hover:text-navy"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        Подробнее →
-                      </Link>
-                    </div>
+                  <p className="text-xs leading-relaxed text-white/90 md:text-sm">{item.highlight}</p>
+                  <div className="mt-3 flex items-end justify-between gap-3">
+                    <span className="line-clamp-2 text-xs text-white/70">{item.desc}</span>
+                    <Link
+                      href={item.href}
+                      className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-xs font-bold text-navy transition hover:bg-lime hover:text-navy"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Подробнее →
+                    </Link>
+                  </div>
                 </div>
                 <div
-                  className={`flex items-center justify-between text-xs text-white/70 transition-opacity duration-300 ${
+                  className={`absolute inset-x-0 bottom-1 flex items-center justify-between text-xs text-white/70 transition-opacity duration-300 ${
                     hoveredId === item.id ? "opacity-0" : "opacity-100"
                   }`}
                 >

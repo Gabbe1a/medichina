@@ -1,4 +1,6 @@
 import { prisma } from "@/lib/prisma";
+import fs from "node:fs";
+import path from "node:path";
 
 export async function getSettings() {
   const settings = await prisma.setting.findUnique({ where: { id: "site" } });
@@ -65,10 +67,32 @@ export async function getReviews(limit?: number) {
 }
 
 export async function getFaqs() {
-  return prisma.faq.findMany({
+  const stored = await prisma.faq.findMany({
     where: { published: true },
     orderBy: { sortOrder: "asc" },
   });
+  if (stored.length >= 20) return stored;
+
+  const dir = path.join(process.cwd(), "content", "intake", "pages");
+  if (!fs.existsSync(dir)) return stored;
+  const intake = fs
+    .readdirSync(dir)
+    .filter((name) => name.startsWith("paczientam__faq__") && name.endsWith(".md"))
+    .map((name, index) => {
+      const raw = fs.readFileSync(path.join(dir, name), "utf8");
+      const question = raw.match(/^#\s+(.+)$/m)?.[1]?.trim() ?? "";
+      const marker = raw.lastIndexOf("Записаться на бесплатную консультацию");
+      const answer = (marker >= 0 ? raw.slice(0, marker) : raw)
+        .split("\n")
+        .filter((line) => line.trim() && !line.startsWith("URL:") && !line.startsWith("#"))
+        .slice(-30)
+        .join(" ")
+        .replace(/\s+/g, " ")
+        .trim();
+      return { id: `intake-${index}`, question, answer, published: true, sortOrder: stored.length + index };
+    })
+    .filter((item) => item.question && item.answer);
+  return [...stored, ...intake];
 }
 
 export async function getPage(slug: string) {
@@ -79,7 +103,13 @@ export async function getPage(slug: string) {
 
 export async function getGallery(limit?: number) {
   return prisma.galleryImage.findMany({
-    where: { published: true },
+    where: {
+      published: true,
+      NOT: [
+        { url: { contains: "telegram" } },
+        { url: { contains: "whatsapp" } },
+      ],
+    },
     orderBy: { sortOrder: "asc" },
     take: limit,
   });

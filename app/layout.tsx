@@ -17,8 +17,8 @@ export const metadata: Metadata = {
   description:
     "Клиника «Один к Одному» у метро Войковская: диагностика, лечение, имплантация и протезирование. Рейтинг 4.9 на Яндексе.",
   icons: {
-    icon: "/media/logos/favicon-32x32.png",
-    apple: "/apple-touch-icon.png",
+    icon: "/media/logos/favicon-32x32.webp",
+    apple: "/apple-touch-icon.webp",
   },
 };
 

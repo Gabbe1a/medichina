@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
 
 const VIDEO_REVIEWS = [
   {
@@ -11,7 +12,7 @@ const VIDEO_REVIEWS = [
     duration: "1:45",
     title: "«Мне вытянули и спасли зуб, который в трех клиниках предлагали только удалить»",
     quote: "Мы прошли отбеливание, один имплант и три коронки. Но главное — бережное отношение и никакой спешки.",
-    thumbnail: "/images/video/review-1.png",
+    thumbnail: "/images/video/review-1.webp",
   },
   {
     id: "vid-2",
@@ -20,7 +21,7 @@ const VIDEO_REVIEWS = [
     duration: "2:10",
     title: "«Большой комплексный план лечения: от гигиены до имплантации»",
     quote: "Здесь смогли найти индивидуальный подход к моей деликатной проблеме и сделали улыбку мечты.",
-    thumbnail: "/images/cases/case-after.png",
+    thumbnail: "/images/cases/case-after.webp",
   },
   {
     id: "vid-3",
@@ -29,7 +30,7 @@ const VIDEO_REVIEWS = [
     duration: "1:20",
     title: "«Ходим всей семьей уже больше десяти лет — только сюда»",
     quote: "Устанавливали импланты, коронки и художественную реставрацию. Всегда стремятся сохранить свои зубы.",
-    thumbnail: "/images/video/review-1.png",
+    thumbnail: "/images/video/review-1.webp",
   },
 ];
 
@@ -63,20 +64,22 @@ export function VideoReviewsSection() {
           <div
             key={vid.id}
             onClick={() => setActiveVideo(vid.title)}
-            className="group cursor-pointer overflow-hidden rounded-[26px] bg-[#f4f8ff] transition-all hover:-translate-y-1 hover:shadow-xl"
+            className="group cursor-pointer overflow-hidden rounded-[26px] bg-[#f4f8ff] transition-[transform,box-shadow] hover:-translate-y-1 hover:shadow-xl"
           >
             {/* Thumbnail with overlay play button */}
             <div className="relative aspect-video w-full overflow-hidden bg-navy">
-              <img
+              <Image
                 src={vid.thumbnail}
                 alt={vid.author}
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-85"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
               
               {/* Play badge */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="grid h-14 w-14 place-items-center rounded-full bg-white/90 text-navy shadow-lg backdrop-blur-md transition-transform duration-300 group-hover:scale-110 group-hover:bg-accent group-hover:text-white">
+                <span className="grid h-14 w-14 place-items-center rounded-full bg-white text-navy shadow-lg transition-[transform,background-color,color] duration-300 group-hover:scale-110 group-hover:bg-accent group-hover:text-white">
                   ▶
                 </span>
               </div>
@@ -106,7 +109,7 @@ export function VideoReviewsSection() {
       {/* Lightbox / Video Modal */}
       {activeVideo && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
           onClick={() => setActiveVideo(null)}
         >
           <div

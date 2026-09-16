@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 type CaseData = {
   id: string;
@@ -102,7 +103,7 @@ export function BeforeAfterInteractive() {
             key={c.id}
             type="button"
             onClick={() => setActiveTab(c.id)}
-            className={`rounded-full px-5 py-2 text-xs font-bold transition-all ${
+            className={`rounded-full px-5 py-2 text-xs font-bold transition-[color,background-color,box-shadow] ${
               activeTab === c.id
                 ? "bg-navy text-white shadow-md"
                 : "bg-transparent text-navy hover:bg-[#f4f8ff]"
@@ -147,27 +148,30 @@ export function BeforeAfterInteractive() {
         {/* Center: interactive before/after slider */}
         <div className="relative mx-auto aspect-square w-full max-w-[380px] overflow-hidden rounded-[28px] border-2 border-white shadow-xl">
           {/* After image (background) */}
-          <img
-            src="/images/cases/case-after.png"
+          <Image
+            src="/images/cases/case-after.webp"
             alt="После лечения"
+            fill
+            sizes="380px"
             className="absolute inset-0 h-full w-full object-cover"
           />
-          <span className="absolute right-4 top-4 z-10 rounded-full bg-black/60 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-md">
+          <span className="absolute right-4 top-4 z-10 rounded-full bg-black/75 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
             После
           </span>
 
           {/* Before image (clipped) */}
           <div
-            className="absolute inset-y-0 left-0 overflow-hidden"
-            style={{ width: `${sliderPos}%` }}
+            className="absolute inset-0 overflow-hidden"
+            style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
           >
-            <img
-              src="/images/cases/case-before.png"
+            <Image
+              src="/images/cases/case-before.webp"
               alt="До лечения"
-              className="absolute inset-0 h-full w-full max-w-none object-cover"
-              style={{ width: "380px" }}
+              fill
+              sizes="380px"
+              className="absolute inset-0 h-full w-full object-cover"
             />
-            <span className="absolute left-4 top-4 z-10 rounded-full bg-black/60 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-md">
+            <span className="absolute left-4 top-4 z-10 rounded-full bg-black/75 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
               До
             </span>
           </div>
@@ -196,9 +200,12 @@ export function BeforeAfterInteractive() {
 
         {/* Right: patient portrait & quote */}
         <div className="flex flex-col items-center rounded-[28px] bg-[#f4f8ff] p-6 text-center">
-          <img
-            src="/images/cases/case-after.png"
+          <Image
+            src="/images/cases/case-after.webp"
             alt="Улыбка пациента"
+            width={112}
+            height={112}
+            sizes="112px"
             className="h-28 w-28 rounded-full border-4 border-white object-cover shadow-md"
           />
           <p className="mt-4 italic text-sm text-navy font-medium">
