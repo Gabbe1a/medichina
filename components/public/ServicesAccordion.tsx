@@ -109,8 +109,7 @@ export function ServicesAccordion() {
               <div className="absolute inset-x-0 bottom-0 h-[78%] overflow-hidden">
                 <Image
                   src={item.image}
-                  alt=""
-                  aria-hidden="true"
+                  alt={item.title}
                   fill
                   sizes="(max-width: 1024px) 100vw, 24vw"
                   className={`h-full w-full object-cover transition-transform duration-500 ${

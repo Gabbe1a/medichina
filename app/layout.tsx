@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
+import { rootMetadata } from "@/lib/seo";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -8,19 +8,7 @@ const manrope = Manrope({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://superdentos.ru"),
-  title: {
-    default: "Стоматология «Один к Одному» на Войковской",
-    template: "%s — Один к Одному",
-  },
-  description:
-    "Клиника «Один к Одному» у метро Войковская: диагностика, лечение, имплантация и протезирование. Рейтинг 4.9 на Яндексе.",
-  icons: {
-    icon: "/media/logos/favicon-32x32.webp",
-    apple: "/apple-touch-icon.webp",
-  },
-};
+export const metadata = rootMetadata;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
