@@ -7,6 +7,9 @@ import { serviceHref } from "@/lib/routes";
 
 type NavService = Service & { children: Service[] };
 
+const navLinkClass =
+  "inline-flex h-9 items-center rounded-full px-3 text-[11px] font-extrabold uppercase leading-none tracking-[0.14em] text-navy hover:bg-[#f3f8ff]";
+
 export function Header({
   services,
   phone,
@@ -29,15 +32,15 @@ export function Header({
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">
-          <Link className="rounded-full px-3 py-2 text-[11px] font-extrabold uppercase tracking-[0.14em] text-navy hover:bg-[#f3f8ff]" href="/about">
+          <Link className={navLinkClass} href="/about">
             О клинике
           </Link>
           <div
-            className="relative"
+            className="relative flex items-center"
             onMouseEnter={() => setServicesOpen(true)}
             onMouseLeave={() => setServicesOpen(false)}
           >
-            <Link className="rounded-full px-3 py-2 text-[11px] font-extrabold uppercase tracking-[0.14em] text-navy hover:bg-[#f3f8ff]" href="/services">
+            <Link className={navLinkClass} href="/services">
               Услуги
             </Link>
             {servicesOpen ? (
@@ -58,22 +61,22 @@ export function Header({
               </div>
             ) : null}
           </div>
-          <Link className="rounded-full px-3 py-2 text-[11px] font-extrabold uppercase tracking-[0.14em] text-navy hover:bg-[#f3f8ff]" href="/akcii">
+          <Link className={navLinkClass} href="/akcii">
             Акции
           </Link>
-          <Link className="rounded-full px-3 py-2 text-[11px] font-extrabold uppercase tracking-[0.14em] text-navy hover:bg-[#f3f8ff]" href="/doctors">
+          <Link className={navLinkClass} href="/doctors">
             Врачи
           </Link>
-          <Link className="rounded-full px-3 py-2 text-[11px] font-extrabold uppercase tracking-[0.14em] text-navy hover:bg-[#f3f8ff]" href="/prices">
+          <Link className={navLinkClass} href="/prices">
             Цены
           </Link>
-          <Link className="rounded-full px-3 py-2 text-[11px] font-extrabold uppercase tracking-[0.14em] text-navy hover:bg-[#f3f8ff]" href="/reviews">
+          <Link className={navLinkClass} href="/reviews">
             Отзывы
           </Link>
-          <Link className="rounded-full px-3 py-2 text-[11px] font-extrabold uppercase tracking-[0.14em] text-navy hover:bg-[#f3f8ff]" href="/patients/faq">
+          <Link className={navLinkClass} href="/patients/faq">
             Вопросы
           </Link>
-          <Link className="rounded-full px-3 py-2 text-[11px] font-extrabold uppercase tracking-[0.14em] text-navy hover:bg-[#f3f8ff]" href="/contacts">
+          <Link className={navLinkClass} href="/contacts">
             Контакты
           </Link>
         </nav>
