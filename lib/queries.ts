@@ -103,7 +103,13 @@ export async function getPage(slug: string) {
 
 export async function getGallery(limit?: number) {
   return prisma.galleryImage.findMany({
-    where: { published: true },
+    where: {
+      published: true,
+      NOT: [
+        { url: { contains: "telegram" } },
+        { url: { contains: "whatsapp" } },
+      ],
+    },
     orderBy: { sortOrder: "asc" },
     take: limit,
   });

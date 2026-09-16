@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AppointmentForm } from "@/components/public/AppointmentForm";
+import { LazyIframe } from "@/components/public/LazyIframe";
 import { phoneHref } from "@/lib/format";
 import { getSettings } from "@/lib/queries";
 
@@ -39,10 +40,10 @@ export default async function ContactsPage() {
           </p>
         </div>
         <p className="mt-6 max-w-xl text-sm leading-6 text-muted">{settings.howToGet}</p>
-        <iframe
+        <LazyIframe
           title="Карта клиники"
           src={`https://yandex.ru/map-widget/v1/?ll=${settings.lon}%2C${settings.lat}&z=16&pt=${settings.lon},${settings.lat},pm2rdm&oid=${settings.yandexOrgId}`}
-          className="mt-6 h-80 w-full rounded-[28px] border-0"
+          className="mt-6 h-80 rounded-[28px]"
         />
       </div>
       <div className="rounded-[32px] bg-white p-6 md:p-8">

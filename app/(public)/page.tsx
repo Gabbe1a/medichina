@@ -1,9 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 import { AppointmentForm } from "@/components/public/AppointmentForm";
 import { ServicesAccordion } from "@/components/public/ServicesAccordion";
 import { TeamSlider } from "@/components/public/TeamSlider";
 import { BeforeAfterInteractive } from "@/components/public/BeforeAfterInteractive";
 import { VideoReviewsSection } from "@/components/public/VideoReviewsSection";
+import { LazyIframe } from "@/components/public/LazyIframe";
 import { initials } from "@/lib/format";
 import {
   getDoctors,
@@ -26,14 +28,14 @@ export default async function HomePage() {
   ]);
 
   return (
-    <div className="mx-auto max-w-[1440px] px-4 pb-20 md:px-8">
+    <div className="home-page mx-auto max-w-[1440px] px-4 pb-20 md:px-8">
       {/* HERO SECTION — Full-bleed artwork with a readable left text veil */}
       <section className="relative mt-6 min-h-[760px] overflow-hidden rounded-[32px] border border-white/60 bg-[#b9ddff] shadow-[0_30px_90px_rgba(0,85,255,0.18)] md:min-h-[620px] md:rounded-[40px]">
         <div className="grid min-h-[760px] md:min-h-[620px] md:grid-cols-[0.95fr_1.05fr]">
           {/* Left Column: Solid text layer */}
           <div className="relative z-10 flex flex-col justify-between bg-gradient-to-b from-[#98c9ff]/95 via-[#98c9ff]/75 to-[#98c9ff]/25 px-6 py-8 md:bg-gradient-to-r md:from-[#98c9ff] md:via-[#98c9ff]/95 md:to-transparent md:px-10 md:py-12 lg:px-14 lg:py-16">
             <div>
-              <span className="inline-block rounded-full bg-white/50 px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-[0.24em] text-navy backdrop-blur-sm">
+              <span className="inline-block rounded-full bg-white/75 px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-[0.24em] text-navy">
                 Стоматология на Войковской
               </span>
 
@@ -45,10 +47,13 @@ export default async function HomePage() {
               <div className="mt-6 flex items-center gap-3">
                 <div className="flex -space-x-3">
                   {doctors.slice(0, 4).map((doctor) => (
-                    <img
+                    <Image
                       key={doctor.id}
                       src={doctor.photoUrl}
                       alt={doctor.name}
+                      width={40}
+                      height={40}
+                      sizes="40px"
                       className="h-10 w-10 rounded-full border-2 border-white object-cover shadow-sm"
                     />
                   ))}
@@ -77,7 +82,7 @@ export default async function HomePage() {
                 </Link>
                 <Link
                   href="/prices"
-                  className="inline-flex items-center gap-2 rounded-full border border-navy/20 bg-white/70 px-6 py-4 text-sm font-bold text-navy backdrop-blur-md transition hover:bg-white"
+                  className="inline-flex items-center gap-2 rounded-full border border-navy/20 bg-white/85 px-6 py-4 text-sm font-bold text-navy transition-colors hover:bg-white"
                 >
                   Посмотреть цены
                 </Link>
@@ -85,7 +90,7 @@ export default async function HomePage() {
             </div>
 
             {/* Rating card */}
-            <div className="mt-8 inline-flex items-center gap-4 rounded-[22px] bg-white/95 p-4 shadow-sm backdrop-blur-md max-w-md">
+            <div className="mt-8 inline-flex max-w-md items-center gap-4 rounded-[22px] bg-white p-4 shadow-sm">
               <span className="text-3xl font-black text-navy">{settings.rating}</span>
               <div className="text-xs leading-tight text-muted">
                 <p className="font-bold text-navy">Рейтинг клиники</p>
@@ -96,16 +101,19 @@ export default async function HomePage() {
 
           {/* Right Column: artwork fills the panel instead of sitting in a white box */}
           <div className="absolute inset-0 z-0 m-0 min-h-0 overflow-hidden md:relative md:inset-auto md:z-auto md:-ml-12 md:min-h-[620px] lg:absolute lg:inset-0 lg:z-0 lg:m-0 lg:min-h-0">
-            <img
+            <Image
               src="/images/hero-clean.webp"
               alt="Сюрреалистичный 3D-образ: имплант и врачи клиники"
-              className="absolute inset-0 h-full w-full scale-[1.12] object-cover object-[72%_50%] drop-shadow-[0_20px_50px_rgba(0,47,108,0.25)] lg:scale-[1.08] lg:object-[70%_50%]"
+              fill
+              priority
+              sizes="100vw"
+              className="absolute inset-0 h-full w-full scale-[1.08] object-cover object-[72%_50%] lg:object-[70%_50%]"
             />
           </div>
         </div>
 
         {/* Bottom micro info */}
-        <div className="relative z-10 border-t border-white/20 bg-white/30 px-6 py-3 backdrop-blur-md md:px-14">
+        <div className="relative z-10 border-t border-white/30 bg-white/65 px-6 py-3 md:px-14">
           <p className="text-xs font-semibold text-navy/80">
             Москва, 1-й Новоподмосковный пер., 2/1 (5 мин от м. Войковская) · Ежедневно 09:00–21:00
           </p>
@@ -156,14 +164,15 @@ export default async function HomePage() {
         {/* Gallery preview */}
         <div className="grid grid-cols-2 gap-3">
           {gallery.slice(0, 4).map((image) => (
-            <img
-              key={image.id}
-              src={image.url}
-              alt={image.alt}
-                    loading="lazy"
-                    decoding="async"
-              className="h-44 w-full rounded-[26px] object-cover shadow-sm md:h-52"
-            />
+                  <div key={image.id} className="relative h-44 overflow-hidden rounded-[26px] shadow-sm md:h-52">
+                    <Image
+                      src={image.url}
+                      alt={image.alt}
+                      fill
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                      className="object-cover"
+                    />
+                  </div>
           ))}
         </div>
       </section>
@@ -322,14 +331,11 @@ export default async function HomePage() {
             </a>
             . Мы всегда на связи с 09:00 до 21:00.
           </p>
-          <div className="mt-6 overflow-hidden rounded-[26px]">
-            <iframe
-              title="Клиника Один к Одному на карте"
-              src={`https://yandex.ru/map-widget/v1/?ll=${settings.lon}%2C${settings.lat}&z=16&pt=${settings.lon},${settings.lat},pm2rdm&oid=${settings.yandexOrgId}`}
-              className="h-64 w-full border-0"
-              loading="lazy"
-            />
-          </div>
+          <LazyIframe
+            title="Клиника Один к Одному на карте"
+            src={`https://yandex.ru/map-widget/v1/?ll=${settings.lon}%2C${settings.lat}&z=16&pt=${settings.lon},${settings.lat},pm2rdm&oid=${settings.yandexOrgId}`}
+            className="mt-6 h-64 rounded-[26px]"
+          />
         </div>
         <AppointmentForm />
       </section>

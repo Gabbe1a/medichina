@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { getDoctors } from "@/lib/queries";
 
 export const metadata: Metadata = {
@@ -31,16 +32,18 @@ export default async function DoctorsPage() {
           <Link
             key={doctor.id}
             href={`/doctors/${doctor.slug}`}
-            className="group flex flex-col justify-between overflow-hidden rounded-[32px] bg-gradient-to-b from-[#0e3b75] to-[#07244b] p-3.5 text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+            className="group flex flex-col justify-between overflow-hidden rounded-[32px] bg-gradient-to-b from-[#0e3b75] to-[#07244b] p-3.5 text-white shadow-lg transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-2xl"
           >
             <div>
-              <div className="relative overflow-hidden rounded-[24px] bg-white">
-                <span className="absolute left-3 top-3 z-10 rounded-full bg-white/90 px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-navy backdrop-blur-md">
+              <div className="relative h-72 overflow-hidden rounded-[24px] bg-white">
+                <span className="absolute left-3 top-3 z-10 rounded-full bg-white px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-navy">
                   {doctor.specialty || doctor.role.split(",")[0]}
                 </span>
-                <img
+                <Image
                   src={doctor.photoUrl}
                   alt={doctor.name}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="h-72 w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>

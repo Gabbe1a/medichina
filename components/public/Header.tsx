@@ -20,7 +20,7 @@ export function Header({
 
   return (
     <header className="sticky top-0 z-40 px-4 pt-4 md:px-8">
-      <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 rounded-full border border-white/70 bg-white/75 px-4 py-2.5 shadow-[0_10px_40px_rgba(0,47,108,0.08)] backdrop-blur-xl md:px-6">
+      <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 rounded-full border border-white bg-white px-4 py-2.5 shadow-[0_10px_40px_rgba(0,47,108,0.1)] md:px-6">
         <Link href="/" className="flex items-center gap-3">
           <img src="/media/logos/logo.svg" alt="Один к Одному" className="h-10 w-10 rounded-2xl" />
           <span className="text-sm font-extrabold tracking-tight text-navy">

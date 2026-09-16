@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 type ServiceItem = {
@@ -98,7 +99,7 @@ export function ServicesAccordion() {
                 if (coarsePointer) setHoveredId((current) => (current === item.id ? null : item.id));
               }}
               tabIndex={0}
-              className={`group relative h-[360px] cursor-pointer overflow-hidden rounded-[26px] p-5 transition-all duration-500 ease-out lg:h-full ${
+              className={`group relative h-[360px] cursor-pointer overflow-hidden rounded-[26px] p-5 transition-[flex,background-color,transform] duration-500 ease-out lg:h-full ${
                 hoveredId === item.id
                   ? "bg-gradient-to-br from-[#0c4080] via-[#093264] to-[#041a36] text-white lg:flex-[2.5]"
                   : "bg-gradient-to-b from-[#1b5299] to-[#0d3468] text-white/90 hover:from-[#235fae] lg:flex-1"
@@ -106,10 +107,12 @@ export function ServicesAccordion() {
             >
               {/* The artwork is the card surface, not a small icon floating in empty space. */}
               <div className="absolute inset-x-0 bottom-0 h-[78%] overflow-hidden">
-                <img
+                <Image
                   src={item.image}
                   alt=""
                   aria-hidden="true"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 24vw"
                   className={`h-full w-full object-cover transition-transform duration-500 ${
                     hoveredId === item.id ? "scale-105" : "scale-100"
                   }`}
@@ -129,7 +132,7 @@ export function ServicesAccordion() {
 
                 {/* Hover content stays inside the card, so it cannot be clipped. */}
                 <div
-                  className={`absolute inset-x-0 bottom-0 rounded-2xl bg-[#092b55]/80 p-4 backdrop-blur-md transition-all duration-300 ${
+                  className={`absolute inset-x-0 bottom-0 rounded-2xl bg-[#092b55]/95 p-4 transition-[opacity,transform,visibility] duration-300 ${
                     hoveredId === item.id
                       ? "visible translate-y-0 opacity-100"
                       : "pointer-events-none invisible translate-y-2 opacity-0"

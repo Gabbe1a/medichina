@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { BeforeAfterInteractive } from "@/components/public/BeforeAfterInteractive";
 import { VideoReviewsSection } from "@/components/public/VideoReviewsSection";
+import { LazyIframe } from "@/components/public/LazyIframe";
 import { initials } from "@/lib/format";
 import { getReviews, getSettings } from "@/lib/queries";
 
@@ -50,13 +51,11 @@ export default async function ReviewsPage() {
             ★ {settings.rating}
           </span>
         </div>
-        <div className="mt-6 overflow-hidden rounded-[24px]">
-          <iframe
-            title="Виджет отзывов Яндекс Карт"
-            src={`https://yandex.ru/maps-reviews-widget/${settings.yandexOrgId}?comments`}
-            className="h-[460px] w-full border-0"
-          />
-        </div>
+        <LazyIframe
+          title="Виджет отзывов Яндекс Карт"
+          src={`https://yandex.ru/maps-reviews-widget/${settings.yandexOrgId}?comments`}
+          className="mt-6 h-[460px] rounded-[24px]"
+        />
       </div>
 
       {/* Detailed text reviews grid */}

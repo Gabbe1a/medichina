@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { getGallery, getPage, getSettings } from "@/lib/queries";
 
 export const metadata: Metadata = { title: "О клинике" };
@@ -34,7 +35,9 @@ export default async function AboutPage() {
       <h2 className="mt-12 text-3xl font-semibold text-white">Галерея клиники</h2>
       <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {gallery.map((image) => (
-          <img key={image.id} src={image.url} alt={image.alt} className="h-56 w-full rounded-[24px] object-cover" />
+          <div key={image.id} className="relative h-56 overflow-hidden rounded-[24px]">
+            <Image src={image.url} alt={image.alt} fill sizes="(max-width: 640px) 100vw, 33vw" className="object-cover" />
+          </div>
         ))}
       </div>
     </div>

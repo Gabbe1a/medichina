@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { getPage, getSettings } from "@/lib/queries";
 
 export const metadata: Metadata = { title: "Официальная информация" };
@@ -11,8 +12,8 @@ export default async function LegalPage() {
       <h1 className="text-4xl font-semibold tracking-tight text-navy">{page?.title}</h1>
       <div className="prose-clinic mt-6 whitespace-pre-line">{page?.body}</div>
       <div className="mt-8 grid gap-4 md:grid-cols-2">
-        <img src="/media/legal/license_1.webp" alt="Лицензия клиники, страница 1" className="rounded-[24px]" />
-        <img src="/media/legal/license_2.webp" alt="Лицензия клиники, страница 2" className="rounded-[24px]" />
+        <Image src="/media/legal/license_1.webp" alt="Лицензия клиники, страница 1" width={1240} height={1754} sizes="(max-width: 768px) 100vw, 50vw" className="rounded-[24px]" />
+        <Image src="/media/legal/license_2.webp" alt="Лицензия клиники, страница 2" width={1240} height={1754} sizes="(max-width: 768px) 100vw, 50vw" className="rounded-[24px]" />
       </div>
       <p className="mt-6 text-sm text-muted">{settings.receptionNote}</p>
     </div>

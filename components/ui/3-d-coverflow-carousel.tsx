@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -83,16 +84,7 @@ export function CoverFlowCarousel({
         if (Math.abs(diff) > 45) (diff < 0 ? nextSlide : prevSlide)();
       }}
     >
-      <div className="absolute inset-0 pointer-events-none">
-        <img
-          src={items[currentIndex]?.img}
-          alt=""
-          loading="lazy"
-          decoding="async"
-          className="h-full w-full scale-110 object-cover opacity-25 blur-3xl transition-all duration-700"
-        />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(21,83,151,.2),rgba(4,18,39,.96)_75%)]" />
-      </div>
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(21,83,151,.42),rgba(4,18,39,.98)_75%)]" />
 
       <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center">
         <div className="mb-6 flex items-center gap-3 text-center">
@@ -103,30 +95,26 @@ export function CoverFlowCarousel({
           <span className="h-px w-9 bg-gradient-to-l from-transparent to-[#93c5fd]" />
         </div>
 
-        <div className="relative flex h-[490px] w-full items-center justify-center [perspective:1400px] md:h-[540px]">
+        <div className="relative flex h-[490px] w-full items-center justify-center md:h-[540px]">
           {items.map((item, itemIndex) => {
             const offset = (itemIndex - currentIndex + total) % total;
-            let transform = "translateX(0) scale(.45) rotateY(0deg)";
+            let transform = "translateX(0) scale(.45)";
             let opacity = 0;
             let zIndex = 0;
-            let filter = "brightness(.35) blur(2px)";
             const isCenter = offset === 0;
 
             if (offset === 0) {
-              transform = "translateX(0) scale(1) rotateY(0deg)";
+              transform = "translateX(0) scale(1)";
               opacity = 1;
               zIndex = 30;
-              filter = "brightness(1)";
             } else if (offset === 1) {
-              transform = "translateX(275px) scale(.82) rotateY(-24deg)";
-              opacity = 0.65;
+              transform = "translateX(275px) scale(.82)";
+              opacity = 0.58;
               zIndex = 20;
-              filter = "brightness(.72)";
             } else if (offset === total - 1) {
-              transform = "translateX(-275px) scale(.82) rotateY(24deg)";
-              opacity = 0.65;
+              transform = "translateX(-275px) scale(.82)";
+              opacity = 0.58;
               zIndex = 20;
-              filter = "brightness(.72)";
             }
 
             return (
@@ -147,14 +135,14 @@ export function CoverFlowCarousel({
                 }}
                 role="link"
                 tabIndex={0}
-                className="absolute h-[430px] w-[280px] cursor-pointer overflow-hidden rounded-[24px] border border-white/15 bg-[#102f5d] shadow-2xl transition-all duration-700 ease-[cubic-bezier(.25,1,.5,1)] md:h-[500px] md:w-[330px]"
-                style={{ transform, opacity, zIndex, filter }}
+                className="absolute h-[430px] w-[280px] cursor-pointer overflow-hidden rounded-[24px] border border-white/15 bg-[#102f5d] shadow-2xl transition-[transform,opacity] duration-500 ease-[cubic-bezier(.25,1,.5,1)] md:h-[500px] md:w-[330px]"
+                style={{ transform, opacity, zIndex }}
               >
-                <img
+                <Image
                   src={item.img}
                   alt={item.titleLine1}
-                  loading={isCenter ? "eager" : "lazy"}
-                  decoding="async"
+                  fill
+                  sizes="(max-width: 768px) 280px, 330px"
                   className="absolute inset-0 h-full w-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-[#04152f]" />
@@ -190,7 +178,7 @@ export function CoverFlowCarousel({
             type="button"
             onClick={prevSlide}
             aria-label="Предыдущий врач"
-            className="absolute left-0 z-40 grid h-11 w-11 place-items-center rounded-full border border-white/20 bg-black/30 text-white backdrop-blur-md transition hover:bg-white hover:text-navy md:left-4"
+            className="absolute left-0 z-40 grid h-11 w-11 place-items-center rounded-full border border-white/20 bg-black/70 text-white transition-colors hover:bg-white hover:text-navy md:left-4"
           >
             <Chevron direction="left" />
           </button>
@@ -198,7 +186,7 @@ export function CoverFlowCarousel({
             type="button"
             onClick={nextSlide}
             aria-label="Следующий врач"
-            className="absolute right-0 z-40 grid h-11 w-11 place-items-center rounded-full border border-white/20 bg-black/30 text-white backdrop-blur-md transition hover:bg-white hover:text-navy md:right-4"
+            className="absolute right-0 z-40 grid h-11 w-11 place-items-center rounded-full border border-white/20 bg-black/70 text-white transition-colors hover:bg-white hover:text-navy md:right-4"
           >
             <Chevron direction="right" />
           </button>
@@ -211,7 +199,7 @@ export function CoverFlowCarousel({
               type="button"
               onClick={() => setCurrentIndex(itemIndex)}
               aria-label={`Врач ${itemIndex + 1}`}
-              className={`h-2 rounded-full transition-all ${
+              className={`h-2 rounded-full transition-[width,background-color] ${
                 itemIndex === currentIndex ? "w-7 bg-[#93c5fd]" : "w-2 bg-white/25"
               }`}
             />

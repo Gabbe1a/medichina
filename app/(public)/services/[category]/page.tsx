@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
@@ -62,7 +63,7 @@ export default async function CategoryPage({
             </div>
           </div>
           <div className="relative min-h-[280px] overflow-hidden bg-[#0a2c5b] md:min-h-[420px]">
-            <img src={serviceArtwork(category)} alt="" className="absolute inset-0 h-full w-full object-cover opacity-90" />
+            <Image src={serviceArtwork(category)} alt="" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover opacity-90" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#061a38]/80 to-transparent" />
             <span className="absolute bottom-6 left-6 rounded-full bg-white/90 px-4 py-2 text-xs font-bold text-navy">
               Бережный план лечения

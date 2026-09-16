@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getDoctor } from "@/lib/queries";
 
@@ -36,10 +37,12 @@ export default async function DoctorPage({
       <div className="mt-6 grid gap-10 lg:grid-cols-[380px_1fr]">
         {/* Left: Photo & quick facts */}
         <div>
-          <div className="overflow-hidden rounded-[36px] bg-gradient-to-b from-[#0e3b75] to-[#07244b] p-3 shadow-xl">
-            <img
+          <div className="relative h-[484px] overflow-hidden rounded-[36px] bg-gradient-to-b from-[#0e3b75] to-[#07244b] p-3 shadow-xl">
+            <Image
               src={doctor.photoUrl}
               alt={doctor.name}
+              fill
+              sizes="(max-width: 1024px) 100vw, 380px"
               className="h-[460px] w-full rounded-[28px] object-cover"
             />
           </div>
