@@ -169,6 +169,44 @@ function parseServiceDescriptions(markdown: string) {
   return map;
 }
 
+function parseDetailedServiceDescription(pathValue: string) {
+  const file = path.join(INTAKE, "pages", `cat__${pathValue.replaceAll("/", "__")}.md`);
+  if (!fs.existsSync(file)) return "";
+  let text = fs.readFileSync(file, "utf8");
+  const articleStart = text.lastIndexOf("_______________________________________");
+  if (articleStart >= 0) text = text.slice(articleStart + "_______________________________________".length);
+  text = text.split("Записаться на бесплатную консультацию")[0] ?? text;
+  return text
+    .replace(/^#.*$/gm, "")
+    .replace(/^URL:.*$/gm, "")
+    .replace(/^\s*(Услуги|Главная|Пациентам|Записаться на консультацию:?).*$/gim, "")
+    .replace(/^\s*\+7.*$/gm, "")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
+function parseIntakeFaqs() {
+  const dir = path.join(INTAKE, "pages");
+  if (!fs.existsSync(dir)) return [];
+  return fs
+    .readdirSync(dir)
+    .filter((name) => name.startsWith("paczientam__faq__") && name.endsWith(".md"))
+    .map((name) => {
+      const raw = fs.readFileSync(path.join(dir, name), "utf8");
+      const question = raw.match(/^#\s+(.+)$/m)?.[1]?.trim() ?? "";
+      const marker = raw.lastIndexOf("Записаться на бесплатную консультацию");
+      const answer = (marker >= 0 ? raw.slice(0, marker) : raw)
+        .split("\n")
+        .filter((line) => line.trim() && !line.startsWith("URL:") && !line.startsWith("#"))
+        .slice(-30)
+        .join(" ")
+        .replace(/\s+/g, " ")
+        .trim();
+      return question && answer ? { question, answer } : null;
+    })
+    .filter((item): item is { question: string; answer: string } => Boolean(item));
+}
+
 function parsePrices(markdown: string) {
   const part = markdown.split("# Прайс-лист")[1]?.split("# Описания разделов услуг")[0] ?? "";
   const sections = part.split(/\n## /).slice(1);
@@ -306,6 +344,7 @@ async function main() {
   const servicesMd = readIntake("SERVICES.md");
   const teamMd = readIntake("TEAM.md");
   const reviewsMd = readIntake("REVIEWS.md");
+  const intakeFaqs = parseIntakeFaqs();
 
   const tree = parseServiceTree(servicesMd);
   const descriptions = parseServiceDescriptions(servicesMd);
@@ -360,7 +399,7 @@ async function main() {
         path: item.path,
         title: item.title,
         description:
-          descriptions.get(item.path) ??
+          (parseDetailedServiceDescription(item.path) || descriptions.get(item.path)) ??
           descriptions.get(item.title.toLowerCase()) ??
           `${item.title} в клинике «Один к Одному» на Войковской. Запишитесь на консультацию — составим понятный план лечения.`,
         seoTitle: `${item.title} — клиника «Один к Одному»`,
@@ -439,7 +478,7 @@ async function main() {
   });
 
   await prisma.faq.createMany({
-    data: FAQS.map((item, index) => ({ ...item, sortOrder: index })),
+    data: [...FAQS, ...intakeFaqs].map((item, index) => ({ ...item, sortOrder: index })),
   });
 
   const passwordHash = await bcrypt.hash(adminPassword, 12);
@@ -461,7 +500,7 @@ async function main() {
         doctors: doctors.length,
         reviews: reviews.length,
         gallery: gallery.length,
-        faqs: FAQS.length,
+        faqs: FAQS.length + intakeFaqs.length,
         admin: adminEmail,
       },
       null,

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { serviceHref } from "@/lib/routes";
 import { serviceArtwork } from "@/lib/service-art";
+import { getDetailedServiceDescription } from "@/lib/service-content";
 
 export const dynamic = "force-dynamic";
 
@@ -46,7 +47,9 @@ export default async function CategoryPage({
               Направление стоматологии
             </p>
             <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-navy md:text-6xl">{service.title}</h1>
-            <p className="mt-5 text-lg font-semibold text-navy">{service.description.split("\n")[0]}</p>
+            <p className="mt-5 line-clamp-5 text-base leading-relaxed text-muted">
+              {getDetailedServiceDescription(service.path, service.description)}
+            </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <span className="rounded-full bg-[#edf5ff] px-4 py-2 text-xs font-bold text-navy">
                 {service.children.length} подразделов

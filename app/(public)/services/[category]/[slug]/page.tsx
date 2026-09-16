@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { formatPrice } from "@/lib/format";
 import { serviceHref } from "@/lib/routes";
 import { serviceArtwork } from "@/lib/service-art";
+import { getDetailedServiceDescription } from "@/lib/service-content";
 
 export const dynamic = "force-dynamic";
 
@@ -55,7 +56,7 @@ export default async function ServiceDetailPage({
             <p className="mt-8 text-[11px] font-extrabold uppercase tracking-[0.22em] text-accent">Процедура</p>
             <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-navy md:text-5xl">{service.title}</h1>
             <p className="mt-5 text-base font-medium leading-relaxed text-muted">
-              {service.description.split("\n").slice(0, 3).join(" ")}
+              {getDetailedServiceDescription(service.path, service.description)}
             </p>
             <Link href="/contacts#zapis" className="mt-7 inline-flex rounded-full bg-navy px-6 py-3 text-sm font-bold text-white transition hover:bg-accent">
               Записаться на консультацию →
