@@ -6,7 +6,7 @@ import { TeamSlider } from "@/components/public/TeamSlider";
 import { BeforeAfterInteractive } from "@/components/public/BeforeAfterInteractive";
 import { VideoReviewsSection } from "@/components/public/VideoReviewsSection";
 import { LazyIframe } from "@/components/public/LazyIframe";
-import { initials } from "@/lib/format";
+import { ReviewCard } from "@/components/public/ReviewCard";
 import {
   getDoctors,
   getFaqs,
@@ -228,37 +228,40 @@ export default async function HomePage() {
 
       <DirectionsCatalog services={services} />
 
-      {/* SECTION 9: REVIEWS ARCHIVE */}
       <section className="mt-20">
-        <div className="flex items-end justify-between">
+        <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
-              Отзывы Яндекса
-            </span>
+            <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">Отзывы Яндекса</span>
             <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">
               Слова благодарности от пациентов
             </h2>
+            <p className="mt-3 text-sm text-muted">
+              {settings.rating} из 5 на основе {settings.ratingsCount} оценок на{" "}
+              <a
+                className="font-bold text-accent hover:text-navy"
+                href={`https://yandex.ru/maps/org/${settings.yandexOrgId}/`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Яндекс Картах
+              </a>
+            </p>
           </div>
-          <Link href="/reviews" className="text-sm font-bold text-accent">
+          <Link
+            href="/reviews"
+            className="rounded-full bg-white px-5 py-2.5 text-sm font-bold text-navy shadow-sm transition hover:bg-navy hover:text-white"
+          >
             Все отзывы →
           </Link>
         </div>
         <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {reviews.map((review) => (
-            <article key={review.id} className="rounded-[28px] bg-white p-6 shadow-sm">
-              <div className="flex items-center gap-3">
-                <div className="grid h-11 w-11 place-items-center rounded-full bg-[#e8f2ff] text-sm font-bold text-navy">
-                  {initials(review.author)}
-                </div>
-                <div>
-                  <p className="font-bold text-navy">{review.author}</p>
-                  <p className="text-xs text-muted">
-                    {review.rating}.0 ★ · {review.dateLabel}
-                  </p>
-                </div>
-              </div>
-              <p className="mt-4 line-clamp-6 text-xs leading-relaxed text-muted">{review.text}</p>
-            </article>
+          {reviews.map((review, index) => (
+            <ReviewCard
+              key={review.id}
+              review={review}
+              featured={index === 0}
+              sourceHref={`https://yandex.ru/maps/org/${settings.yandexOrgId}/`}
+            />
           ))}
         </div>
       </section>
