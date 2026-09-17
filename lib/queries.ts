@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { toWebpUrl } from "@/lib/media";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -46,16 +47,19 @@ export async function getServiceBySlug(slug: string) {
 }
 
 export async function getDoctors() {
-  return prisma.doctor.findMany({
+  const doctors = await prisma.doctor.findMany({
     where: { published: true },
     orderBy: { sortOrder: "asc" },
   });
+  return doctors.map((doctor) => ({ ...doctor, photoUrl: toWebpUrl(doctor.photoUrl) }));
 }
 
 export async function getDoctor(slug: string) {
-  return prisma.doctor.findFirst({
+  const doctor = await prisma.doctor.findFirst({
     where: { slug, published: true },
   });
+  if (!doctor) return doctor;
+  return { ...doctor, photoUrl: toWebpUrl(doctor.photoUrl) };
 }
 
 export async function getReviews(limit?: number) {
@@ -102,7 +106,7 @@ export async function getPage(slug: string) {
 }
 
 export async function getGallery(limit?: number) {
-  return prisma.galleryImage.findMany({
+  const images = await prisma.galleryImage.findMany({
     where: {
       published: true,
       NOT: [
@@ -113,6 +117,7 @@ export async function getGallery(limit?: number) {
     orderBy: { sortOrder: "asc" },
     take: limit,
   });
+  return images.map((image) => ({ ...image, url: toWebpUrl(image.url) }));
 }
 
 export async function getPriceGroups() {

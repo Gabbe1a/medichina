@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
+import { toWebpUrl } from "@/lib/media";
 import { deleteDoctor } from "../actions";
 
 export default async function AdminDoctorsPage() {
@@ -16,7 +17,7 @@ export default async function AdminDoctorsPage() {
       <div className="mt-6 grid gap-3">
         {doctors.map((doctor) => (
           <div key={doctor.id} className="flex items-center gap-4 rounded-[24px] bg-white p-4">
-            <img src={doctor.photoUrl} alt="" className="h-16 w-16 rounded-2xl object-cover" />
+            <img src={toWebpUrl(doctor.photoUrl)} alt="" className="h-16 w-16 rounded-2xl object-cover" />
             <div className="flex-1">
               <p className="font-bold text-navy">{doctor.name}</p>
               <p className="text-sm text-muted">{doctor.role}</p>

@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/session";
+import { toWebpUrl } from "@/lib/media";
 
 async function guard() {
   const session = await requireAdmin();
@@ -79,7 +80,7 @@ export async function saveDoctor(formData: FormData) {
     experience: String(formData.get("experience") || ""),
     education: String(formData.get("education") || ""),
     bio: String(formData.get("bio") || ""),
-    photoUrl: String(formData.get("photoUrl") || ""),
+    photoUrl: toWebpUrl(String(formData.get("photoUrl") || "")),
     published: boolFromForm(formData.get("published")),
     sortOrder: Number(formData.get("sortOrder") || 0),
   };
@@ -177,7 +178,7 @@ export async function saveGallery(formData: FormData) {
   await guard();
   const id = String(formData.get("id") || "");
   const data = {
-    url: String(formData.get("url") || ""),
+    url: toWebpUrl(String(formData.get("url") || "")),
     alt: String(formData.get("alt") || ""),
     published: boolFromForm(formData.get("published")),
     sortOrder: Number(formData.get("sortOrder") || 0),
