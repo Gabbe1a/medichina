@@ -23,9 +23,6 @@ function uniqueSlides(items: Slide[]) {
 }
 
 export function HeroBento({ settings, doctors, gallery }: HeroBentoProps) {
-  const portrait =
-    doctors.find((doctor) => doctor.slug.includes("lushnikova")) ?? doctors[0];
-
   const slides = useMemo(
     () =>
       uniqueSlides([
@@ -160,16 +157,14 @@ export function HeroBento({ settings, doctors, gallery }: HeroBentoProps) {
           </div>
 
         <article className="relative order-2 min-h-[520px] overflow-hidden rounded-[28px] border border-[#eae3d9] bg-[#efe7dc] lg:order-none lg:col-start-2 lg:row-span-3 lg:min-h-0">
-          {portrait ? (
-            <Image
-              src={portrait.photoUrl}
-              alt={portrait.name}
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 46vw"
-              className="object-cover object-[50%_12%]"
-            />
-          ) : null}
+          <Image
+            src="/images/hero-smile.webp"
+            alt="Естественная улыбка с ровными белыми зубами"
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 46vw"
+            className="object-cover object-[50%_42%]"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1a120c]/55 via-transparent to-transparent" />
           <div className="absolute inset-x-3 bottom-3 grid gap-3 sm:grid-cols-2 lg:inset-x-4 lg:bottom-5">
             <Link
