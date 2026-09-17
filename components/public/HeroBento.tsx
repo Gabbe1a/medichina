@@ -169,7 +169,7 @@ export function HeroBento({ settings, doctors, gallery }: HeroBentoProps) {
           <div className="absolute inset-x-3 bottom-3 grid h-[34%] gap-3 sm:grid-cols-2 lg:inset-x-5 lg:bottom-5 lg:h-[38%]">
             <Link
               href="/services/implantaciya_zubov"
-              className="flex h-full flex-col justify-start rounded-2xl border border-white/60 bg-white/88 p-5 shadow-xs backdrop-blur-md transition hover:bg-white lg:p-6"
+              className="flex h-full flex-col justify-center rounded-2xl border border-white/60 bg-white/88 p-5 shadow-xs backdrop-blur-md transition hover:bg-white lg:p-6"
             >
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-accent">
                 Имплантация
@@ -180,7 +180,7 @@ export function HeroBento({ settings, doctors, gallery }: HeroBentoProps) {
             </Link>
             <Link
               href="/services/protesirovanie_zubov"
-              className="flex h-full flex-col justify-start rounded-2xl border border-white/60 bg-white/88 p-5 shadow-xs backdrop-blur-md transition hover:bg-white lg:p-6"
+              className="flex h-full flex-col justify-center rounded-2xl border border-white/60 bg-white/88 p-5 shadow-xs backdrop-blur-md transition hover:bg-white lg:p-6"
             >
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-accent">
                 Протезирование
