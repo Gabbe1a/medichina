@@ -56,7 +56,7 @@ export default async function ServiceDetailPage({
               <span className="text-slate-400">/</span>
               <Link href={`/services/${category}`} className="hover:text-navy">{service.parent?.title ?? category}</Link>
             </div>
-            <p className="mt-6 text-[11px] font-extrabold uppercase tracking-[0.22em] text-chocolate">Процедура</p>
+            <p className="mt-6 text-[11px] font-extrabold uppercase tracking-[0.22em] text-accent">Процедура</p>
             <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">{service.title}</h1>
             <div className="mt-5 space-y-3">
               {article.lead.map((paragraph) => (
@@ -74,7 +74,7 @@ export default async function ServiceDetailPage({
           </div>
           <div className="relative min-h-[200px] overflow-hidden bg-[#182332] md:min-h-[420px]">
             <Image src={serviceArtwork(category)} alt={service.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover opacity-90" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#151d28]/85 via-[#151d28]/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#402924]/85 via-[#402924]/30 to-transparent" />
           </div>
         </div>
       </div>
@@ -86,7 +86,7 @@ export default async function ServiceDetailPage({
           <h2 className="text-2xl font-extrabold text-navy">Связанные процедуры</h2>
           <div className="mt-5 grid gap-3 md:grid-cols-2">
             {service.children.map((child) => (
-              <Link key={child.id} href={serviceHref(child)} className="rounded-xl border border-[#eae3d9] bg-[#fbf9f6] p-4 font-bold text-navy transition hover:border-chocolate hover:bg-white hover:text-chocolate">
+              <Link key={child.id} href={serviceHref(child)} className="rounded-xl border border-[#eae3d9] bg-[#fbf9f6] p-4 font-bold text-navy transition hover:border-chocolate hover:bg-white hover:text-accent">
                 {child.title} <span className="float-right text-chocolate">→</span>
               </Link>
             ))}

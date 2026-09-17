@@ -15,7 +15,7 @@ export default async function DoctorsPage() {
   return (
     <div className="mx-auto max-w-[1300px] px-4 py-8 md:px-8 md:py-12">
       <div className="max-w-2xl rounded-2xl border border-[#eae3d9] bg-white p-6 shadow-xs md:p-8">
-        <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
+        <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
           Специалисты
         </span>
         <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">
@@ -49,7 +49,7 @@ export default async function DoctorsPage() {
               </div>
 
               <div className="p-4">
-                <h2 className="text-xl font-bold leading-snug text-navy group-hover:text-chocolate transition-colors">
+                <h2 className="text-xl font-bold leading-snug text-navy group-hover:text-accent transition-colors">
                   {doctor.name}
                 </h2>
                 <p className="mt-1 text-xs text-muted">{doctor.role}</p>

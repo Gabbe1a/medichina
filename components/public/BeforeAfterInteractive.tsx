@@ -85,7 +85,7 @@ export function BeforeAfterInteractive() {
     <div className="relative overflow-hidden rounded-2xl border border-[#eae3d9] bg-white p-7 shadow-xs md:p-10">
       {/* Header */}
       <div className="text-center">
-        <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
+        <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
           Клинические случаи
         </span>
         <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-navy md:text-4xl">
@@ -106,7 +106,7 @@ export function BeforeAfterInteractive() {
             className={`rounded-xl px-4 py-2 text-xs font-bold transition-all cursor-pointer ${
               activeTab === c.id
                 ? "bg-chocolate text-white shadow-2xs"
-                : "bg-transparent text-navy hover:bg-[#f6f1ea] hover:text-chocolate"
+                : "bg-transparent text-navy hover:bg-[#f6f1ea] hover:text-accent"
             }`}
           >
             {c.tab}

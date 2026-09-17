@@ -18,7 +18,7 @@ export default async function ReviewsPage() {
     <div className="mx-auto max-w-[1300px] px-4 py-8 md:px-8 md:py-12">
       {/* Header */}
       <div className="max-w-2xl rounded-2xl border border-[#eae3d9] bg-white p-6 shadow-xs md:p-8">
-        <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
+        <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
           Репутация и опыт
         </span>
         <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">

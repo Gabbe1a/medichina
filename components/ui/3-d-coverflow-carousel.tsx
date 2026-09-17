@@ -85,7 +85,7 @@ export function CoverFlowCarousel({
       }}
     >
       <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center">
-        <p className="mb-6 text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
+        <p className="mb-6 text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
           {sectionLabel}
         </p>
 

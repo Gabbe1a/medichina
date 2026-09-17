@@ -12,7 +12,7 @@ export default async function ContactsPage() {
   return (
     <div className="mx-auto grid max-w-[1200px] gap-8 px-4 py-8 md:grid-cols-2 md:px-8 md:py-12">
       <div className="rounded-2xl border border-[#eae3d9] bg-white p-6 shadow-xs md:p-8">
-        <p className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-chocolate">Контакты</p>
+        <p className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-accent">Контакты</p>
         <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">Как нас найти</h1>
         <div className="mt-6 grid gap-3 text-sm text-muted">
           <p>
@@ -23,18 +23,18 @@ export default async function ContactsPage() {
           </p>
           <p>
             <strong className="text-navy">Телефоны:</strong>{" "}
-            <a className="hover:text-chocolate font-medium" href={phoneHref(settings.phone1)}>{settings.phone1}</a>,{" "}
-            <a className="hover:text-chocolate font-medium" href={phoneHref(settings.phone2)}>{settings.phone2}</a>
+            <a className="hover:text-accent font-medium" href={phoneHref(settings.phone1)}>{settings.phone1}</a>,{" "}
+            <a className="hover:text-accent font-medium" href={phoneHref(settings.phone2)}>{settings.phone2}</a>
           </p>
           <p>
             <strong className="text-navy">Email:</strong>{" "}
-            <a className="hover:text-chocolate font-medium" href={`mailto:${settings.email}`}>{settings.email}</a>
+            <a className="hover:text-accent font-medium" href={`mailto:${settings.email}`}>{settings.email}</a>
           </p>
           <p>
             <strong className="text-navy">Часы:</strong> {settings.hours}
           </p>
           <p>
-            <a className="font-bold text-chocolate underline hover:text-chocolate-light" href={settings.whatsapp} target="_blank" rel="noreferrer">
+            <a className="font-bold text-chocolate underline hover:text-accent" href={settings.whatsapp} target="_blank" rel="noreferrer">
               Написать в WhatsApp
             </a>
           </p>

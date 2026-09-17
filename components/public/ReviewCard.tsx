@@ -50,7 +50,7 @@ export function ReviewCard({
             href={sourceHref}
             target="_blank"
             rel="noreferrer"
-            className="text-[11px] font-bold uppercase tracking-wider text-chocolate hover:text-chocolate-light"
+            className="text-[11px] font-bold uppercase tracking-wider text-chocolate hover:text-accent"
           >
             Яндекс Карты
           </a>
@@ -58,7 +58,7 @@ export function ReviewCard({
           <span className="text-[11px] font-bold uppercase tracking-wider text-chocolate">Яндекс Карты</span>
         )}
         <details className="group">
-          <summary className="cursor-pointer list-none text-xs font-bold text-navy hover:text-chocolate transition-colors [&::-webkit-details-marker]:hidden">
+          <summary className="cursor-pointer list-none text-xs font-bold text-navy hover:text-accent transition-colors [&::-webkit-details-marker]:hidden">
             Читать полностью →
           </summary>
           <p className="mt-3 text-sm leading-relaxed text-muted">{review.text}</p>

@@ -8,7 +8,7 @@ import { serviceHref } from "@/lib/routes";
 type NavService = Service & { children: Service[] };
 
 const navLinkClass =
-  "inline-flex h-9 items-center justify-center rounded-lg px-3 text-[11px] font-extrabold uppercase leading-none tracking-[0.14em] text-navy hover:bg-[#f7f2eb] hover:text-chocolate transition-colors";
+  "inline-flex h-9 items-center justify-center rounded-lg px-3 text-[11px] font-extrabold uppercase leading-none tracking-[0.14em] text-navy hover:bg-[#eef4fc] hover:text-accent transition-colors";
 
 export function Header({
   services,
@@ -51,7 +51,7 @@ export function Header({
                       <Link
                         key={item.id}
                         href={serviceHref(item)}
-                        className="rounded-xl px-3 py-2 text-sm font-semibold text-navy transition hover:bg-[#f7f2eb] hover:text-chocolate"
+                        className="rounded-xl px-3 py-2 text-sm font-semibold text-navy transition hover:bg-[#f7f2eb] hover:text-accent"
                       >
                         {item.title}
                       </Link>
@@ -84,7 +84,7 @@ export function Header({
         <div className="flex items-center gap-2">
           <a
             href={`tel:${phone.replace(/[^\d+]/g, "")}`}
-            className="hidden text-sm font-bold text-navy hover:text-chocolate transition-colors md:block"
+            className="hidden text-sm font-bold text-navy hover:text-accent transition-colors md:block"
           >
             {phone}
           </a>
@@ -139,7 +139,7 @@ export function Header({
                     <Link
                       key={item.id}
                       href={serviceHref(item)}
-                      className="rounded-lg px-3 py-2 text-sm font-medium text-muted transition hover:bg-white hover:text-chocolate"
+                      className="rounded-lg px-3 py-2 text-sm font-medium text-muted transition hover:bg-white hover:text-accent"
                       onClick={() => setOpen(false)}
                     >
                       {item.title}

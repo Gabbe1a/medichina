@@ -41,7 +41,7 @@ export function VideoReviewsSection() {
     <div className="relative overflow-hidden rounded-2xl border border-[#eae3d9] bg-white p-7 shadow-xs md:p-10">
       <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
         <div>
-          <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
+          <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
             Видеоотзывы
           </span>
           <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-navy md:text-4xl">
@@ -95,7 +95,7 @@ export function VideoReviewsSection() {
                 {vid.author}
               </p>
               <p className="mt-1 text-xs text-muted">{vid.role}</p>
-              <h3 className="mt-2 text-sm font-bold leading-snug text-navy group-hover:text-chocolate transition-colors">
+              <h3 className="mt-2 text-sm font-bold leading-snug text-navy group-hover:text-accent transition-colors">
                 {vid.title}
               </h3>
               <p className="mt-2 line-clamp-2 text-xs italic text-muted">

@@ -45,7 +45,7 @@ export default async function CategoryPage({
             <Link href="/services" className="text-xs font-bold text-chocolate hover:text-navy">
               ← Все услуги
             </Link>
-            <p className="mt-8 text-[11px] font-extrabold uppercase tracking-[0.22em] text-chocolate">
+            <p className="mt-8 text-[11px] font-extrabold uppercase tracking-[0.22em] text-accent">
               Направление стоматологии
             </p>
             <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">{service.title}</h1>
@@ -65,7 +65,7 @@ export default async function CategoryPage({
           </div>
           <div className="relative min-h-[280px] overflow-hidden bg-[#182332] md:min-h-[420px]">
             <Image src={serviceArtwork(category)} alt={service.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover opacity-90" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#151d28]/85 via-[#151d28]/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#402924]/85 via-[#402924]/30 to-transparent" />
             <span className="absolute bottom-6 left-6 rounded-lg border border-[#eae3d9] bg-white/95 px-4 py-2 text-xs font-bold text-chocolate shadow-xs">
               Бережный план лечения
             </span>
@@ -76,7 +76,7 @@ export default async function CategoryPage({
       <section className="mt-8 rounded-2xl border border-[#eae3d9] bg-white p-6 shadow-xs md:p-10">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <p className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-chocolate">Выберите услугу</p>
+            <p className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-accent">Выберите услугу</p>
             <h2 className="mt-2 text-2xl font-extrabold text-navy md:text-4xl">Подразделы направления</h2>
           </div>
           <Link href="/contacts#zapis" className="hidden rounded-xl bg-chocolate px-5 py-3 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-chocolate-light md:inline-flex">
@@ -93,7 +93,7 @@ export default async function CategoryPage({
               <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-white border border-[#eae3d9] text-xs font-black text-chocolate">
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <span className="flex-1 font-bold text-navy group-hover:text-chocolate transition-colors">{child.title}</span>
+              <span className="flex-1 font-bold text-navy group-hover:text-accent transition-colors">{child.title}</span>
               <span className="text-lg text-chocolate transition-transform group-hover:translate-x-1">→</span>
             </Link>
           ))}

@@ -31,7 +31,7 @@ export default function PromotionsPage() {
   return (
     <div className="mx-auto max-w-[1200px] px-4 py-8 md:px-8 md:py-12">
       <div className="rounded-2xl border border-[#eae3d9] bg-white p-7 shadow-xs md:p-12">
-        <p className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">Специальные условия</p>
+        <p className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">Специальные условия</p>
         <h1 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-tight text-navy md:text-5xl">Акции для заботы об улыбке</h1>
         <p className="mt-4 max-w-xl text-base leading-relaxed text-muted md:text-[17px]">
           Выберите подходящее предложение и оставьте заявку — администратор подтвердит актуальность и подберёт удобное время визита.

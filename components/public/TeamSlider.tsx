@@ -18,7 +18,7 @@ export function TeamSlider({ doctors }: { doctors: Doctor[] }) {
     <div className="relative overflow-hidden rounded-2xl border border-[#eae3d9] bg-white p-7 shadow-xs md:p-10">
       <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
         <div className="max-w-xl">
-          <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">Команда</span>
+          <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">Команда</span>
           <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-navy md:text-4xl">
             Команда экспертов: 10 врачей с практикой до 30 лет
           </h2>

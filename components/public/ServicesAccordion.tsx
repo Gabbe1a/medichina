@@ -73,7 +73,7 @@ export function ServicesAccordion() {
   return (
     <div className="relative overflow-hidden rounded-2xl border border-[#eae3d9] bg-[#fbf9f6] p-7 md:p-10">
       <div className="text-center">
-        <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
+        <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
           Услуги
         </span>
         <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-navy md:text-4xl">
@@ -112,12 +112,12 @@ export function ServicesAccordion() {
                   active ? "scale-[1.04]" : "scale-100"
                 }`}
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-[#fbf9f6]/92 via-[#fbf9f6]/28 to-[#432816]/45" />
+              <div className="absolute inset-0 bg-gradient-to-b from-[#fbf9f6]/92 via-[#fbf9f6]/28 to-[#402924]/45" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#2d1a0e]/35 via-transparent to-transparent" />
 
               <div className="relative z-10 flex h-full flex-col justify-between p-5">
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-chocolate">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-accent">
                     {item.category}
                   </span>
                   <h3 className="mt-2 max-w-[16rem] text-xl font-extrabold leading-tight text-navy md:text-[1.35rem]">

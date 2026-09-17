@@ -40,7 +40,7 @@ export default async function HomePage() {
       {/* SECTION 3: ABOUT CLINIC & VALUES */}
       <section id="about-clinic" className="mt-16 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="rounded-2xl border border-[#eae3d9] bg-white p-7 shadow-xs md:p-10">
-          <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
+          <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
             О клинике
           </span>
           <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-navy md:text-4xl">
@@ -106,7 +106,7 @@ export default async function HomePage() {
 
       {/* SECTION 7: PROCESS (4 STEPS) */}
       <section id="process" className="mt-16 rounded-2xl border border-[#eae3d9] bg-white p-7 shadow-xs md:p-12">
-        <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
+        <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
           Как мы работаем
         </span>
         <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-navy md:text-4xl">
@@ -133,14 +133,14 @@ export default async function HomePage() {
       <section className="mt-16">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">Отзывы Яндекса</span>
+            <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">Отзывы Яндекса</span>
             <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-navy md:text-4xl">
               Слова благодарности от пациентов
             </h2>
             <p className="mt-3 text-sm text-muted">
               {settings.rating} из 5 на основе {settings.ratingsCount} оценок на{" "}
               <a
-                className="font-bold text-chocolate underline decoration-chocolate/30 hover:text-chocolate-light"
+                className="font-bold text-chocolate underline decoration-accent/40 hover:text-accent"
                 href={`https://yandex.ru/maps/org/${settings.yandexOrgId}/`}
                 target="_blank"
                 rel="noreferrer"
@@ -171,7 +171,7 @@ export default async function HomePage() {
       {/* SECTION 10: FAQ */}
       <section id="faq" className="mt-16 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
-          <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
+          <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
             Вопросы и ответы
           </span>
           <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-navy md:text-4xl">
@@ -190,7 +190,7 @@ export default async function HomePage() {
         <div className="grid gap-3">
           {faqs.slice(0, 6).map((faq) => (
             <details key={faq.id} className="rounded-xl border border-[#eae3d9] bg-white px-5 py-4 shadow-2xs">
-              <summary className="cursor-pointer font-bold text-navy hover:text-chocolate transition-colors">{faq.question}</summary>
+              <summary className="cursor-pointer font-bold text-navy hover:text-accent transition-colors">{faq.question}</summary>
               <p className="mt-3 text-xs leading-relaxed text-muted">{faq.answer}</p>
             </details>
           ))}
@@ -200,7 +200,7 @@ export default async function HomePage() {
       {/* SECTION 11: APPOINTMENT & MAP */}
       <section className="mt-16 grid gap-8 rounded-2xl border border-[#eae3d9] bg-white p-7 shadow-xs md:grid-cols-2 md:p-10">
         <div>
-          <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
+          <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
             Запись на приём
           </span>
           <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-navy md:text-4xl">
@@ -208,7 +208,7 @@ export default async function HomePage() {
           </h2>
           <p className="mt-3 text-sm text-muted">
             Или позвоните нам напрямую:{" "}
-            <a href={`tel:${settings.phone1.replace(/\D/g, "")}`} className="font-bold text-navy hover:text-chocolate transition-colors">
+            <a href={`tel:${settings.phone1.replace(/\D/g, "")}`} className="font-bold text-navy hover:text-accent transition-colors">
               {settings.phone1}
             </a>
             . Мы всегда на связи с 09:00 до 21:00.

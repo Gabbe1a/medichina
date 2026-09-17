@@ -20,7 +20,7 @@ export default async function ServicesPage() {
 
       {/* Full 11-category directory */}
       <div className="mt-16 rounded-2xl border border-[#eae3d9] bg-white p-7 shadow-xs md:p-10">
-        <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
+        <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
           Все направления
         </span>
         <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-navy md:text-4xl">
@@ -41,7 +41,7 @@ export default async function ServicesPage() {
                   {service.children.length} процедур
                 </span>
                 <Link href={serviceHref(service)}>
-                  <h3 className="mt-1 text-xl font-bold text-navy hover:text-chocolate transition-colors">
+                  <h3 className="mt-1 text-xl font-bold text-navy hover:text-accent transition-colors">
                     {service.title}
                   </h3>
                 </Link>
@@ -71,7 +71,7 @@ export default async function ServicesPage() {
               <div className="mt-6 border-t border-[#eae3d9] pt-3">
                 <Link
                   href={serviceHref(service)}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-chocolate hover:text-chocolate-light"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-chocolate hover:text-accent"
                 >
                   <span>Все услуги раздела</span>
                   <span>→</span>
