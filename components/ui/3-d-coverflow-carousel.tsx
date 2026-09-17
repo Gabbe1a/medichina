@@ -73,7 +73,7 @@ export function CoverFlowCarousel({
 
   return (
     <section
-      className="relative min-h-[560px] overflow-hidden rounded-2xl px-2 py-4 text-navy md:min-h-[640px] md:px-4"
+      className="relative min-h-[560px] overflow-hidden rounded-2xl bg-white px-2 py-4 text-navy md:min-h-[640px] md:px-4"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onTouchStart={(event) => {

@@ -34,7 +34,7 @@ export function TeamSlider({ doctors }: { doctors: Doctor[] }) {
         </div>
       </div>
 
-      <div className="mt-10">
+      <div className="mt-10 rounded-[32px] border-2 border-accent bg-white px-2 py-3 md:px-4 md:py-5">
         <CoverFlowCarousel
           items={items}
           sectionLabel="Специалисты клиники"
