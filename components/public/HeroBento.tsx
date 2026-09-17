@@ -88,7 +88,7 @@ export function HeroBento({ settings, doctors, gallery }: HeroBentoProps) {
             </div>
           </article>
 
-          <article className="order-3 flex flex-col justify-between gap-6 rounded-[28px] border border-accent/30 bg-[#eef4fc] px-6 py-6 md:px-8 md:py-7 lg:order-none lg:col-start-1 lg:row-start-2">
+          <article className="order-3 flex flex-col justify-between gap-6 rounded-[28px] border border-accent/20 bg-white px-6 py-6 shadow-[0_4px_24px_rgba(124,167,235,0.08)] md:px-8 md:py-7 lg:order-none lg:col-start-1 lg:row-start-2">
             <div>
               <h2 className="text-xl font-extrabold tracking-tight text-navy md:text-2xl">
                 Современный подход без лишних процедур
@@ -166,26 +166,26 @@ export function HeroBento({ settings, doctors, gallery }: HeroBentoProps) {
             className="object-cover object-[50%_42%]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1a120c]/55 via-transparent to-transparent" />
-          <div className="absolute inset-x-3 bottom-3 grid gap-3 sm:grid-cols-2 lg:inset-x-4 lg:bottom-5">
+          <div className="absolute inset-x-3 bottom-3 grid gap-3 sm:grid-cols-2 lg:inset-x-5 lg:bottom-5">
             <Link
               href="/services/implantaciya_zubov"
-              className="rounded-2xl border border-white/50 bg-white/80 p-4 shadow-xs backdrop-blur-md transition hover:bg-white"
+              className="min-h-[148px] rounded-2xl border border-white/60 bg-white/88 p-5 shadow-xs backdrop-blur-md transition hover:bg-white lg:min-h-[196px] lg:p-6"
             >
-              <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-accent">
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-accent">
                 Имплантация
               </p>
-              <p className="mt-1.5 text-sm font-bold leading-snug text-navy">
+              <p className="mt-2 text-[15px] font-bold leading-snug text-navy md:text-base">
                 Швейцарские системы с цифровым планированием
               </p>
             </Link>
             <Link
               href="/services/protesirovanie_zubov"
-              className="rounded-2xl border border-white/50 bg-white/80 p-4 shadow-xs backdrop-blur-md transition hover:bg-white"
+              className="min-h-[148px] rounded-2xl border border-white/60 bg-white/88 p-5 shadow-xs backdrop-blur-md transition hover:bg-white lg:min-h-[196px] lg:p-6"
             >
-              <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-accent">
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-accent">
                 Протезирование
               </p>
-              <p className="mt-1.5 text-sm font-bold leading-snug text-navy">
+              <p className="mt-2 text-[15px] font-bold leading-snug text-navy md:text-base">
                 Циркониевые коронки и естественная эстетика
               </p>
             </Link>
