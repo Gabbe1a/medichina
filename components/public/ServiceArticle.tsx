@@ -5,38 +5,38 @@ const LIST_STYLES: Record<
   { box: string; kicker: string; mark: string }
 > = {
   indications: {
-    box: "border-[#cfe4ff] bg-[#f4f9ff]",
+    box: "border-[#d8cfc2] bg-[#fbf9f6]",
     kicker: "Можно",
-    mark: "text-accent",
+    mark: "text-chocolate",
   },
   contraindications: {
-    box: "border-[#ead7c8] bg-[#fff8f2]",
+    box: "border-[#e6c9b3] bg-[#fdf8f4]",
     kicker: "Осторожно",
-    mark: "text-[#b45309]",
+    mark: "text-[#8a3c0e]",
   },
   steps: {
-    box: "border-[#dceafd] bg-white",
+    box: "border-[#eae3d9] bg-white",
     kicker: "Как проходит",
-    mark: "text-accent",
+    mark: "text-chocolate",
   },
   default: {
-    box: "border-[#dceafd] bg-white",
+    box: "border-[#eae3d9] bg-white",
     kicker: "Подробнее",
-    mark: "text-accent",
+    mark: "text-chocolate",
   },
 };
 
 function ListCard({ block }: { block: Extract<ServiceBlock, { type: "list" }> }) {
   const style = LIST_STYLES[block.variant];
   return (
-    <section className={`rounded-[28px] border p-5 shadow-sm md:p-6 ${style.box}`}>
+    <section className={`rounded-xl border p-5 shadow-2xs md:p-6 ${style.box}`}>
       <p className={`text-[11px] font-extrabold uppercase tracking-[0.2em] ${style.mark}`}>{style.kicker}</p>
       <h2 className="mt-2 text-xl font-extrabold tracking-tight text-navy md:text-2xl">{block.title}</h2>
       {block.variant === "steps" ? (
         <ol className="mt-4 space-y-3">
           {block.items.map((item, index) => (
             <li key={item} className="flex gap-3 text-sm leading-relaxed text-muted">
-              <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#dbeaff] text-[11px] font-black text-accent">
+              <span className="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-[#f7f1eb] border border-[#eae3d9] text-[11px] font-black text-chocolate">
                 {String(index + 1).padStart(2, "0")}
               </span>
               <span className="pt-0.5 font-medium text-navy">{item}</span>
@@ -61,13 +61,13 @@ function ProseCard({ block }: { block: Extract<ServiceBlock, { type: "prose" }> 
   if (!block.title && !block.paragraphs.length) return null;
   if (block.title && !block.paragraphs.length) {
     return (
-      <h2 className="rounded-[22px] bg-navy px-5 py-3 text-lg font-extrabold tracking-tight text-white md:px-6 md:text-xl">
+      <h2 className="rounded-xl bg-chocolate px-5 py-3 text-lg font-extrabold tracking-tight text-white md:px-6 md:text-xl">
         {block.title}
       </h2>
     );
   }
   return (
-    <section className="rounded-[28px] bg-white p-5 shadow-[0_16px_40px_rgba(0,47,108,0.08)] md:p-7">
+    <section className="rounded-xl border border-[#eae3d9] bg-white p-5 shadow-2xs md:p-7">
       {block.title ? <h2 className="text-xl font-extrabold tracking-tight text-navy md:text-2xl">{block.title}</h2> : null}
       <div className={block.title ? "mt-3 space-y-3" : "space-y-3"}>
         {block.paragraphs.map((paragraph) => (

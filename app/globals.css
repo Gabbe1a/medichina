@@ -1,39 +1,44 @@
 @import "tailwindcss";
 
 :root {
-  --page: #e8f2ff;
-  --page-2: #f7fbff;
-  --ink: #001133;
-  --navy: #002f6c;
-  --accent: #0055ff;
-  --muted: #4b6488;
-  --lime: #e7ff4a;
+  --page: #fbf9f6;
+  --page-2: #f4eee6;
+  --ink: #1c2024;
+  --navy: #0f2c4f;
+  --accent: #19487c;
+  --muted: #646b77;
+  --chocolate: #432816;
+  --chocolate-light: #5f3a21;
+  --chocolate-soft: #f7f1eb;
   --card: #ffffff;
-  --footer: #071324;
-  --line: rgba(0, 47, 108, 0.12);
+  --footer: #151d28;
+  --line: rgba(67, 40, 20, 0.09);
+  --border-subtle: #eae4db;
 }
 
 @theme inline {
   --color-page: var(--page);
+  --color-page-2: var(--page-2);
   --color-ink: var(--ink);
   --color-navy: var(--navy);
   --color-accent: var(--accent);
   --color-muted: var(--muted);
-  --color-lime: var(--lime);
+  --color-chocolate: var(--chocolate);
+  --color-chocolate-light: var(--chocolate-light);
+  --color-chocolate-soft: var(--chocolate-soft);
   --color-card: var(--card);
   --color-footer: var(--footer);
+  --color-line: var(--line);
   --font-sans: var(--font-manrope);
 }
 
 html {
   scroll-behavior: auto;
-  background: #1a6fd8;
+  background: #fbf9f6;
 }
 
 body {
-  background:
-    radial-gradient(1400px 700px at 50% -5%, rgba(0, 85, 255, 0.28), transparent 70%),
-    linear-gradient(180deg, #125bb5 0%, #1a6fd8 20%, #d8eaff 60%, #f4f8ff 100%);
+  background: #fbf9f6;
   color: var(--ink);
   font-family: var(--font-manrope), "Manrope", sans-serif;
   min-height: 100vh;
@@ -59,6 +64,15 @@ a {
   font-weight: 700;
   color: var(--navy);
   margin: 1.6rem 0 0.7rem;
+}
+
+.prose-clinic a {
+  color: var(--chocolate);
+  text-decoration: underline;
+}
+
+.prose-clinic a:hover {
+  color: var(--chocolate-light);
 }
 
 .prose-clinic p,

@@ -29,18 +29,18 @@ export default async function HomePage() {
 
   return (
     <div className="home-page mx-auto max-w-[1440px] px-4 pb-20 md:px-8">
-      {/* HERO SECTION — Full-bleed artwork with a readable left text veil */}
-      <section className="relative mt-6 min-h-[760px] overflow-hidden rounded-[32px] border border-white/60 bg-[#b9ddff] shadow-[0_30px_90px_rgba(0,85,255,0.18)] md:min-h-[620px] md:rounded-[40px]">
-        <div className="grid min-h-[760px] md:min-h-[620px] md:grid-cols-[0.95fr_1.05fr]">
+      {/* HERO SECTION — Calm light beige luxury styling without anxious surgical screws */}
+      <section className="relative mt-6 min-h-[720px] overflow-hidden rounded-2xl border border-[#eae3d9] bg-[#fbf9f6] shadow-[0_4px_24px_rgba(30,20,10,0.04)] md:min-h-[580px]">
+        <div className="grid min-h-[720px] md:min-h-[580px] md:grid-cols-[1.05fr_0.95fr]">
           {/* Left Column: Solid text layer */}
-          <div className="relative z-10 flex flex-col justify-between bg-gradient-to-b from-[#98c9ff]/95 via-[#98c9ff]/75 to-[#98c9ff]/25 px-6 py-8 md:bg-gradient-to-r md:from-[#98c9ff] md:via-[#98c9ff]/95 md:to-transparent md:px-10 md:py-12 lg:px-14 lg:py-16">
+          <div className="relative z-10 flex flex-col justify-between bg-gradient-to-b from-[#fbf9f6] via-[#fbf9f6]/95 to-[#fbf9f6]/80 px-6 py-8 md:bg-gradient-to-r md:from-[#fbf9f6] md:via-[#fbf9f6]/95 md:to-transparent md:px-10 md:py-12 lg:px-14 lg:py-14">
             <div>
-              <span className="inline-block rounded-full bg-white/75 px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-[0.24em] text-navy">
+              <span className="inline-block rounded-full border border-[#e4dcce] bg-[#f4ece1] px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
                 Стоматология на Войковской
               </span>
 
-              <h1 className="mt-4 max-w-xl text-4xl font-extrabold leading-[1.02] tracking-tight text-navy sm:text-6xl md:text-6xl lg:text-7xl">
-                Вернём уверенность в улыбке
+              <h1 className="mt-4 max-w-xl text-3xl font-extrabold leading-[1.06] tracking-tight text-navy sm:text-5xl md:text-5xl lg:text-6xl">
+                Точная цифровая стоматология с бережным сохранением зубов
               </h1>
 
               {/* Social proof badge */}
@@ -54,7 +54,7 @@ export default async function HomePage() {
                       width={40}
                       height={40}
                       sizes="40px"
-                      className="h-10 w-10 rounded-full border-2 border-white object-cover shadow-sm"
+                      className="h-10 w-10 rounded-full border-2 border-white object-cover shadow-xs"
                     />
                   ))}
                 </div>
@@ -62,10 +62,10 @@ export default async function HomePage() {
                   <p className="text-sm font-bold text-navy">
                     {settings.rating} ★ · {settings.reviewsCount} отзывов
                   </p>
-                  <p className="text-xs text-navy/70">
+                  <p className="text-xs text-muted">
                     Реальные оценки на{" "}
                     <a
-                      className="font-bold underline decoration-navy/20"
+                      className="font-bold underline decoration-chocolate/30 text-chocolate hover:text-chocolate-light"
                       href={`https://yandex.ru/maps/org/${settings.yandexOrgId}/`}
                       target="_blank"
                       rel="noreferrer"
@@ -76,23 +76,23 @@ export default async function HomePage() {
                 </div>
               </div>
 
-              <p className="mt-6 max-w-lg text-base leading-relaxed text-navy/85 md:text-lg">
-                Современная цифровая диагностика и бережное лечение в клинике «Один к Одному».
-                Безболезненно, на материалах экспертного класса и с сохранением ваших собственных зубов.
+              <p className="mt-6 max-w-lg text-base leading-relaxed text-muted md:text-[17px]">
+                Диагностика Sirona и приём 10 опытных специалистов в одном здании клиники «Один к Одному».
+                Работаем под микроскопом, используем швейцарские и немецкие материалы и спасаем каждый живой зуб без навязывания лишних процедур.
               </p>
 
               {/* CTAs and Rating Pill */}
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Link
                   href="/contacts#zapis"
-                  className="inline-flex items-center gap-2 rounded-full bg-navy px-8 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-xl transition hover:bg-accent"
+                  className="inline-flex items-center gap-2 rounded-xl bg-chocolate px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-white shadow-xs transition hover:bg-chocolate-light"
                 >
                   <span>Записаться на приём</span>
                   <span>→</span>
                 </Link>
                 <Link
                   href="/prices"
-                  className="inline-flex items-center gap-2 rounded-full border border-navy/20 bg-white/85 px-6 py-4 text-sm font-bold text-navy transition-colors hover:bg-white"
+                  className="inline-flex items-center gap-2 rounded-xl border border-[#d8cfc2] bg-white px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-navy transition hover:bg-[#f6f1ea] hover:border-chocolate"
                 >
                   Посмотреть цены
                 </Link>
@@ -100,8 +100,8 @@ export default async function HomePage() {
             </div>
 
             {/* Rating card */}
-            <div className="mt-8 inline-flex max-w-md items-center gap-4 rounded-[22px] bg-white p-4 shadow-sm">
-              <span className="text-3xl font-black text-navy">{settings.rating}</span>
+            <div className="mt-8 inline-flex max-w-md items-center gap-4 rounded-xl border border-[#eae3d9] bg-white p-4 shadow-2xs">
+              <span className="text-3xl font-black text-chocolate">{settings.rating}</span>
               <div className="text-xs leading-tight text-muted">
                 <p className="font-bold text-navy">Рейтинг клиники</p>
                 <p className="mt-0.5">{settings.ratingsCount} подтвержденных оценок на Яндексе</p>
@@ -109,22 +109,22 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* Right Column: artwork fills the panel instead of sitting in a white box */}
-          <div className="absolute inset-0 z-0 m-0 min-h-0 overflow-hidden md:relative md:inset-auto md:z-auto md:-ml-12 md:min-h-[620px] lg:absolute lg:inset-0 lg:z-0 lg:m-0 lg:min-h-0">
+          {/* Right Column: peaceful aesthetic smile artwork */}
+          <div className="absolute inset-0 z-0 m-0 min-h-0 overflow-hidden md:relative md:inset-auto md:z-auto md:min-h-[580px] lg:absolute lg:inset-0 lg:z-0 lg:m-0 lg:min-h-0">
             <Image
-              src="/images/hero-clean.webp"
-              alt="Сюрреалистичный 3D-образ: имплант и врачи клиники"
+              src="/images/hero-aesthetic.webp"
+              alt="Эстетичный и естественный результат лечения в клинике Один к Одному"
               fill
               priority
               sizes="100vw"
-              className="absolute inset-0 h-full w-full scale-[1.08] object-cover object-[72%_50%] lg:object-[70%_50%]"
+              className="absolute inset-0 h-full w-full object-cover object-[70%_50%]"
             />
           </div>
         </div>
 
         {/* Bottom micro info */}
-        <div className="relative z-10 border-t border-white/30 bg-white/65 px-6 py-3 md:px-14">
-          <p className="text-xs font-semibold text-navy/80">
+        <div className="relative z-10 border-t border-[#eae3d9] bg-white/80 px-6 py-3 md:px-14">
+          <p className="text-xs font-semibold text-muted">
             Москва, 1-й Новоподмосковный пер., 2/1 (5 мин от м. Войковская) · Ежедневно 09:00–21:00
           </p>
         </div>
@@ -136,15 +136,15 @@ export default async function HomePage() {
       </section>
 
       {/* SECTION 3: ABOUT CLINIC & VALUES */}
-      <section id="about-clinic" className="mt-20 grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="rounded-[36px] bg-white p-8 shadow-[0_15px_40px_rgba(0,47,108,0.05)] md:p-10">
-          <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
+      <section id="about-clinic" className="mt-16 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="rounded-2xl border border-[#eae3d9] bg-white p-7 shadow-xs md:p-10">
+          <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
             О клинике
           </span>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">
+          <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-navy md:text-4xl">
             Почему лечение ведут в одном здании у Войковской?
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-muted md:text-lg">
+          <p className="mt-4 text-base leading-relaxed text-muted md:text-[17px]">
             Мы работаем у Войковской больше пятнадцати лет: терапия, микроскопия, хирургия, имплантация,
             ортодонтия и протезирование — в одном здании и в одной сплочённой команде. Наш главный
             принцип — не навязывать избыточных вмешательств и спасать каждый живой зуб.
@@ -155,16 +155,16 @@ export default async function HomePage() {
               ["10 000+", "пациентов доверили нам зубы"],
               ["Лицензия", settings.license],
             ].map(([title, text]) => (
-              <div key={title} className="rounded-[22px] bg-[#f4f8ff] p-4 text-left">
-                <p className="text-xl font-extrabold text-navy">{title}</p>
+              <div key={title} className="rounded-xl border border-[#eae3d9] bg-[#fbf9f6] p-4 text-left">
+                <p className="text-xl font-extrabold text-chocolate">{title}</p>
                 <p className="mt-1 text-xs text-muted">{text}</p>
               </div>
             ))}
           </div>
-          <div className="mt-6">
+          <div className="mt-7">
             <Link
               href="/about"
-              className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-accent transition hover:text-navy"
+              className="inline-flex items-center gap-2 rounded-xl border border-[#d8cfc2] bg-white px-5 py-3 text-xs font-bold uppercase tracking-wider text-navy transition hover:bg-[#f6f1ea] hover:border-chocolate"
             >
               Подробнее об истории и стандартах клиники →
             </Link>
@@ -174,15 +174,15 @@ export default async function HomePage() {
         {/* Gallery preview */}
         <div className="grid grid-cols-2 gap-3">
           {gallery.slice(0, 4).map((image) => (
-                  <div key={image.id} className="relative h-44 overflow-hidden rounded-[26px] shadow-sm md:h-52">
-                    <Image
-                      src={image.url}
-                      alt={image.alt}
-                      fill
-                      sizes="(max-width: 768px) 50vw, 25vw"
-                      className="object-cover"
-                    />
-                  </div>
+            <div key={image.id} className="relative h-44 overflow-hidden rounded-2xl border border-[#eae3d9] shadow-xs md:h-52">
+              <Image
+                src={image.url}
+                alt={image.alt}
+                fill
+                sizes="(max-width: 768px) 50vw, 25vw"
+                className="object-cover"
+              />
+            </div>
           ))}
         </div>
       </section>
@@ -203,13 +203,13 @@ export default async function HomePage() {
       </section>
 
       {/* SECTION 7: PROCESS (4 STEPS) */}
-      <section id="process" className="mt-20 rounded-[36px] bg-white p-8 shadow-[0_15px_40px_rgba(0,47,108,0.05)] md:p-12">
-        <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
+      <section id="process" className="mt-16 rounded-2xl border border-[#eae3d9] bg-white p-7 shadow-xs md:p-12">
+        <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
           Как мы работаем
         </span>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">
-            Как проходит первый визит и лечение?
-          </h2>
+        <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-navy md:text-4xl">
+          Как проходит первый визит и лечение?
+        </h2>
         <div className="mt-8 grid gap-4 md:grid-cols-4">
           {[
             ["01", "Консультация и диалог", "Вы рассказываете, что беспокоит. Мы внимательно слушаем и проводим первичный осмотр без спешки."],
@@ -217,9 +217,9 @@ export default async function HomePage() {
             ["03", "Бережное лечение", "Современная безопасная анестезия, микроскоп и сохранение максимального объема собственных тканей."],
             ["04", "Гарантия и забота", "Юридическая гарантия, контрольные осмотры и постоянная связь с вашим лечащим доктором."],
           ].map(([num, title, text]) => (
-            <div key={num} className="rounded-[24px] bg-[#f4f8ff] p-5">
-              <span className="text-xs font-black text-accent">{num}</span>
-              <h3 className="mt-2 text-lg font-bold text-navy">{title}</h3>
+            <div key={num} className="rounded-xl border border-[#eae3d9] bg-[#fbf9f6] p-5">
+              <span className="text-xs font-black text-chocolate">{num}</span>
+              <h3 className="mt-2 text-base font-bold text-navy">{title}</h3>
               <p className="mt-2 text-xs leading-relaxed text-muted">{text}</p>
             </div>
           ))}
@@ -228,17 +228,17 @@ export default async function HomePage() {
 
       <DirectionsCatalog services={services} />
 
-      <section className="mt-20">
+      <section className="mt-16">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">Отзывы Яндекса</span>
-            <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">
+            <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">Отзывы Яндекса</span>
+            <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-navy md:text-4xl">
               Слова благодарности от пациентов
             </h2>
             <p className="mt-3 text-sm text-muted">
               {settings.rating} из 5 на основе {settings.ratingsCount} оценок на{" "}
               <a
-                className="font-bold text-accent hover:text-navy"
+                className="font-bold text-chocolate underline decoration-chocolate/30 hover:text-chocolate-light"
                 href={`https://yandex.ru/maps/org/${settings.yandexOrgId}/`}
                 target="_blank"
                 rel="noreferrer"
@@ -249,7 +249,7 @@ export default async function HomePage() {
           </div>
           <Link
             href="/reviews"
-            className="rounded-full bg-white px-5 py-2.5 text-sm font-bold text-navy shadow-sm transition hover:bg-navy hover:text-white"
+            className="inline-flex items-center gap-2 rounded-xl border border-[#d8cfc2] bg-white px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-navy transition hover:bg-[#f6f1ea] hover:border-chocolate"
           >
             Все отзывы →
           </Link>
@@ -267,25 +267,28 @@ export default async function HomePage() {
       </section>
 
       {/* SECTION 10: FAQ */}
-      <section id="faq" className="mt-20 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+      <section id="faq" className="mt-16 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
-          <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
+          <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
             Вопросы и ответы
           </span>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">
+          <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-navy md:text-4xl">
             Какие вопросы пациенты задают чаще всего?
           </h2>
           <p className="mt-3 text-sm text-muted">
             Собрали ответы на самые популярные вопросы пациентов об обезболивании, гарантиях и приёме.
           </p>
-          <Link href="/patients/faq" className="mt-5 inline-block text-sm font-bold text-accent">
+          <Link
+            href="/patients/faq"
+            className="mt-6 inline-flex items-center gap-2 rounded-xl border border-[#d8cfc2] bg-white px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-navy transition hover:bg-[#f6f1ea] hover:border-chocolate"
+          >
             Все частые вопросы →
           </Link>
         </div>
         <div className="grid gap-3">
           {faqs.slice(0, 6).map((faq) => (
-            <details key={faq.id} className="rounded-[24px] bg-white px-5 py-4 shadow-sm">
-              <summary className="cursor-pointer font-bold text-navy">{faq.question}</summary>
+            <details key={faq.id} className="rounded-xl border border-[#eae3d9] bg-white px-5 py-4 shadow-2xs">
+              <summary className="cursor-pointer font-bold text-navy hover:text-chocolate transition-colors">{faq.question}</summary>
               <p className="mt-3 text-xs leading-relaxed text-muted">{faq.answer}</p>
             </details>
           ))}
@@ -293,17 +296,17 @@ export default async function HomePage() {
       </section>
 
       {/* SECTION 11: APPOINTMENT & MAP */}
-      <section className="mt-20 grid gap-8 rounded-[36px] bg-white p-6 shadow-sm md:grid-cols-2 md:p-10">
+      <section className="mt-16 grid gap-8 rounded-2xl border border-[#eae3d9] bg-white p-7 shadow-xs md:grid-cols-2 md:p-10">
         <div>
-          <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
+          <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
             Запись на приём
           </span>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-navy md:text-4xl">
-            Как записаться на приём?
+          <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-navy md:text-4xl">
+            Как записаться на консультацию?
           </h2>
           <p className="mt-3 text-sm text-muted">
             Или позвоните нам напрямую:{" "}
-            <a href={`tel:${settings.phone1.replace(/\D/g, "")}`} className="font-bold text-navy">
+            <a href={`tel:${settings.phone1.replace(/\D/g, "")}`} className="font-bold text-navy hover:text-chocolate transition-colors">
               {settings.phone1}
             </a>
             . Мы всегда на связи с 09:00 до 21:00.
@@ -311,7 +314,7 @@ export default async function HomePage() {
           <LazyIframe
             title="Клиника Один к Одному на карте"
             src={`https://yandex.ru/map-widget/v1/?ll=${settings.lon}%2C${settings.lat}&z=16&pt=${settings.lon},${settings.lat},pm2rdm&oid=${settings.yandexOrgId}`}
-            className="mt-6 h-64 rounded-[26px]"
+            className="mt-6 h-64 rounded-xl border border-[#eae3d9]"
           />
         </div>
         <AppointmentForm />

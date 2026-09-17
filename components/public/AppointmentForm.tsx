@@ -44,33 +44,33 @@ export function AppointmentForm({ compact = false }: { compact?: boolean }) {
         name="name"
         required
         placeholder="Имя"
-        className="rounded-2xl border border-[var(--line)] bg-white px-4 py-3 text-sm outline-none focus:border-accent"
+        className="rounded-xl border border-[#d8cfc2] bg-white px-4 py-3 text-sm text-navy outline-none placeholder:text-muted/60 focus:border-chocolate focus:ring-1 focus:ring-chocolate/20"
       />
       <input
         name="phone"
         required
         placeholder="Телефон"
-        className="rounded-2xl border border-[var(--line)] bg-white px-4 py-3 text-sm outline-none focus:border-accent"
+        className="rounded-xl border border-[#d8cfc2] bg-white px-4 py-3 text-sm text-navy outline-none placeholder:text-muted/60 focus:border-chocolate focus:ring-1 focus:ring-chocolate/20"
       />
       <input
         name="email"
         type="email"
         placeholder="Email (необязательно)"
-        className="rounded-2xl border border-[var(--line)] bg-white px-4 py-3 text-sm outline-none focus:border-accent"
+        className="rounded-xl border border-[#d8cfc2] bg-white px-4 py-3 text-sm text-navy outline-none placeholder:text-muted/60 focus:border-chocolate focus:ring-1 focus:ring-chocolate/20"
       />
       {!compact ? (
         <textarea
           name="message"
           rows={4}
           placeholder="Коротко о запросе"
-          className="rounded-2xl border border-[var(--line)] bg-white px-4 py-3 text-sm outline-none focus:border-accent"
+          className="rounded-xl border border-[#d8cfc2] bg-white px-4 py-3 text-sm text-navy outline-none placeholder:text-muted/60 focus:border-chocolate focus:ring-1 focus:ring-chocolate/20"
         />
       ) : null}
       <label className="flex items-start gap-2 text-xs leading-5 text-muted">
-        <input name="consent" type="checkbox" required className="mt-1" />
+        <input name="consent" type="checkbox" required className="mt-1 accent-chocolate" />
         <span>
           Соглашаюсь с{" "}
-          <a href="/privacy" className="font-semibold text-accent">
+          <a href="/privacy" className="font-semibold text-chocolate underline">
             политикой обработки персональных данных
           </a>
         </span>
@@ -78,7 +78,7 @@ export function AppointmentForm({ compact = false }: { compact?: boolean }) {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="rounded-full bg-navy px-5 py-3 text-sm font-bold text-white disabled:opacity-60"
+        className="rounded-xl bg-chocolate px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-chocolate-light disabled:opacity-60 cursor-pointer"
       >
         {status === "loading" ? "Отправляем…" : "Записаться на консультацию"}
       </button>

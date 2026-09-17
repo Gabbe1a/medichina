@@ -26,12 +26,12 @@ export default async function DoctorPage({
   if (!doctor) notFound();
 
   return (
-    <div className="mx-auto max-w-[1200px] px-4 py-12 md:px-8">
+    <div className="mx-auto max-w-[1200px] px-4 py-8 md:px-8 md:py-12">
       <nav
         aria-label="Навигация"
-        className="inline-flex max-w-full flex-wrap items-center gap-x-2 rounded-full bg-white px-4 py-2 text-xs font-bold uppercase tracking-widest text-navy shadow-[0_10px_30px_rgba(0,47,108,0.12)]"
+        className="inline-flex max-w-full flex-wrap items-center gap-x-2 rounded-xl border border-[#eae3d9] bg-white px-4 py-2 text-xs font-bold uppercase tracking-widest text-navy shadow-2xs"
       >
-        <Link href="/doctors" className="text-accent transition hover:text-navy">
+        <Link href="/doctors" className="text-chocolate transition hover:text-navy">
           Врачи
         </Link>
         <span className="text-slate-400" aria-hidden>
@@ -40,21 +40,21 @@ export default async function DoctorPage({
         <span className="truncate">{doctor.name}</span>
       </nav>
 
-      <div className="mt-6 grid gap-10 lg:grid-cols-[380px_1fr]">
+      <div className="mt-6 grid gap-8 lg:grid-cols-[380px_1fr]">
         {/* Left: Photo & quick facts */}
         <div>
-          <div className="relative h-[484px] overflow-hidden rounded-[36px] bg-gradient-to-b from-[#0e3b75] to-[#07244b] p-3 shadow-xl">
+          <div className="relative h-[484px] overflow-hidden rounded-2xl border border-[#eae3d9] bg-[#1a120b] p-2 shadow-xs">
             <Image
               src={doctor.photoUrl}
               alt={doctor.name}
               fill
               sizes="(max-width: 1024px) 100vw, 380px"
-              className="h-[460px] w-full rounded-[28px] object-cover"
+              className="h-[464px] w-full rounded-xl object-cover"
             />
           </div>
 
-          <div className="mt-5 rounded-[28px] bg-white p-6 shadow-sm">
-            <h3 className="text-xs font-extrabold uppercase tracking-wider text-accent">
+          <div className="mt-5 rounded-2xl border border-[#eae3d9] bg-white p-6 shadow-2xs">
+            <h3 className="text-xs font-extrabold uppercase tracking-wider text-chocolate">
               Сведения о специалисте
             </h3>
             <div className="mt-3 space-y-2 text-xs">
@@ -70,7 +70,7 @@ export default async function DoctorPage({
             </div>
             <Link
               href="/contacts#zapis"
-              className="mt-5 block w-full rounded-full bg-navy py-3 text-center text-xs font-bold uppercase tracking-wider text-white transition hover:bg-accent"
+              className="mt-5 block w-full rounded-xl bg-chocolate py-3.5 text-center text-xs font-bold uppercase tracking-wider text-white transition hover:bg-chocolate-light cursor-pointer"
             >
               Записаться к доктору →
             </Link>
@@ -79,17 +79,17 @@ export default async function DoctorPage({
 
         {/* Right: Detailed bio, qualifications, education */}
         <div>
-          <div className="rounded-[28px] bg-white p-6 shadow-[0_20px_60px_rgba(0,47,108,0.1)]">
-            <span className="rounded-full bg-[#e8f2ff] px-3 py-1 text-xs font-bold text-accent">
+          <div className="rounded-2xl border border-[#eae3d9] bg-white p-6 shadow-2xs">
+            <span className="inline-block rounded-md border border-[#eae3d9] bg-[#fbf9f6] px-3 py-1 text-xs font-bold text-chocolate">
               {doctor.role}
             </span>
-            <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-navy md:text-5xl">
+            <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">
               {doctor.name}
             </h1>
           </div>
 
           {/* Education pill box */}
-          <div className="mt-6 rounded-[28px] border border-white/80 bg-white p-6 shadow-sm">
+          <div className="mt-6 rounded-2xl border border-[#eae3d9] bg-white p-6 shadow-2xs">
             <h2 className="text-sm font-extrabold uppercase tracking-wider text-navy">
               Образование и дипломы
             </h2>
@@ -99,7 +99,7 @@ export default async function DoctorPage({
           </div>
 
           {/* Full bio and certificates */}
-          <div className="mt-6 rounded-[28px] border border-white/80 bg-white p-6 shadow-sm">
+          <div className="mt-6 rounded-2xl border border-[#eae3d9] bg-white p-6 shadow-2xs">
             <h2 className="text-sm font-extrabold uppercase tracking-wider text-navy">
               Биография и повышение квалификации
             </h2>

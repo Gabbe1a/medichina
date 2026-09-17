@@ -71,15 +71,15 @@ export function ServicesAccordion() {
   }, []);
 
   return (
-    <div className="relative overflow-hidden rounded-[36px] border border-white/80 bg-white p-6 shadow-[0_20px_60px_rgba(0,47,108,0.06)] md:p-10">
+    <div className="relative overflow-hidden rounded-2xl border border-[#eae3d9] bg-white p-7 shadow-xs md:p-10">
       <div className="text-center">
-        <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
+        <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
           Услуги
         </span>
-        <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">
+        <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-navy md:text-4xl">
           Экспертная помощь каждому пациенту
         </h2>
-        <p className="mx-auto mt-3 max-w-2xl text-base text-muted md:text-lg">
+        <p className="mx-auto mt-3 max-w-2xl text-base text-muted md:text-[17px]">
           Весь спектр стоматологической помощи в одном месте — от профилактической гигиены до сложных
           тотальных реабилитаций на имплантах.
         </p>
@@ -99,10 +99,10 @@ export function ServicesAccordion() {
                 if (coarsePointer) setHoveredId((current) => (current === item.id ? null : item.id));
               }}
               tabIndex={0}
-              className={`group relative h-[360px] cursor-pointer overflow-hidden rounded-[26px] p-5 transition-[flex,background-color,transform] duration-500 ease-out lg:h-full ${
+              className={`group relative h-[360px] cursor-pointer overflow-hidden rounded-xl border border-[#eae3d9] p-5 transition-[flex,background-color,transform] duration-500 ease-out lg:h-full ${
                 hoveredId === item.id
-                  ? "bg-gradient-to-br from-[#0c4080] via-[#093264] to-[#041a36] text-white lg:flex-[2.5]"
-                  : "bg-gradient-to-b from-[#1b5299] to-[#0d3468] text-white/90 hover:from-[#235fae] lg:flex-1"
+                  ? "bg-gradient-to-br from-[#3b2313] via-[#2a170b] to-[#180e07] text-white lg:flex-[2.5]"
+                  : "bg-gradient-to-b from-[#4a2c17] to-[#2f1c0f] text-white/90 hover:from-[#59351c] lg:flex-1"
               }`}
             >
               {/* The artwork is the card surface, not a small icon floating in empty space. */}
@@ -116,12 +116,12 @@ export function ServicesAccordion() {
                     hoveredId === item.id ? "scale-105" : "scale-100"
                   }`}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#061d3d] via-[#061d3d]/45 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1b1008] via-[#1b1008]/45 to-transparent" />
               </div>
 
               <div className="relative z-10 flex h-full flex-col">
                 <div className="shrink-0">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#93c5fd]">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#ffdcb8]">
                     {item.category}
                   </span>
                   <h3 className="mt-1 max-w-[22rem] text-xl font-bold leading-tight md:text-2xl">
@@ -131,7 +131,7 @@ export function ServicesAccordion() {
 
                 {/* Hover content stays inside the card, so it cannot be clipped. */}
                 <div
-                  className={`absolute inset-x-0 bottom-0 rounded-2xl bg-[#092b55]/95 p-4 transition-[opacity,transform,visibility] duration-300 ${
+                  className={`absolute inset-x-0 bottom-0 rounded-xl border border-white/20 bg-[#2f1c0f]/95 p-4 transition-[opacity,transform,visibility] duration-300 ${
                     hoveredId === item.id
                       ? "visible translate-y-0 opacity-100"
                       : "pointer-events-none invisible translate-y-2 opacity-0"
@@ -142,7 +142,7 @@ export function ServicesAccordion() {
                     <span className="line-clamp-2 text-xs text-white/70">{item.desc}</span>
                     <Link
                       href={item.href}
-                      className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-xs font-bold text-navy transition hover:bg-lime hover:text-navy"
+                      className="inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-white px-3.5 py-1.5 text-xs font-bold text-chocolate transition hover:bg-[#ffdcb8] hover:text-chocolate"
                       onClick={(e) => e.stopPropagation()}
                     >
                       Подробнее →
@@ -166,7 +166,7 @@ export function ServicesAccordion() {
       <div className="mt-8 flex justify-center">
         <Link
           href="/contacts#zapis"
-          className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent to-navy px-8 py-3.5 text-sm font-bold text-white shadow-lg transition hover:shadow-xl hover:brightness-110"
+          className="inline-flex items-center gap-2 rounded-xl bg-chocolate px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-white shadow-xs transition hover:bg-chocolate-light"
         >
           <span>Записаться на консультацию</span>
           <span>→</span>

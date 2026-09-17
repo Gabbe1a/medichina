@@ -13,30 +13,30 @@ export default async function DoctorsPage() {
   const doctors = await getDoctors();
 
   return (
-    <div className="mx-auto max-w-[1300px] px-4 py-12 md:px-8">
-      <div className="max-w-2xl rounded-[32px] bg-white p-6 shadow-[0_20px_60px_rgba(0,47,108,0.1)] md:p-8">
-        <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
+    <div className="mx-auto max-w-[1300px] px-4 py-8 md:px-8 md:py-12">
+      <div className="max-w-2xl rounded-2xl border border-[#eae3d9] bg-white p-6 shadow-xs md:p-8">
+        <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
           Специалисты
         </span>
-        <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-navy md:text-6xl">
+        <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">
           Команда клиники «Один к Одному»
         </h1>
-        <p className="mt-4 text-base text-muted md:text-lg">
+        <p className="mt-4 text-base text-muted md:text-[17px]">
           Все 10 врачей клиники — дипломированные специалисты со стажем от 12 до 30 лет, регулярно
           повышающие квалификацию в ведущих центрах России, Швейцарии, Германии и Израиля.
         </p>
       </div>
 
-      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {doctors.map((doctor) => (
           <Link
             key={doctor.id}
             href={`/doctors/${doctor.slug}`}
-            className="group flex flex-col justify-between overflow-hidden rounded-[32px] bg-gradient-to-b from-[#0e3b75] to-[#07244b] p-3.5 text-white shadow-lg transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-2xl"
+            className="group flex flex-col justify-between overflow-hidden rounded-2xl border border-[#eae3d9] bg-white p-3.5 shadow-2xs transition hover:-translate-y-0.5 hover:border-chocolate hover:shadow-xs"
           >
             <div>
-              <div className="relative h-72 overflow-hidden rounded-[24px] bg-white">
-                <span className="absolute left-3 top-3 z-10 rounded-full bg-white px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-navy">
+              <div className="relative h-72 overflow-hidden rounded-xl bg-[#1a120b]">
+                <span className="absolute left-3 top-3 z-10 rounded-md border border-[#eae3d9] bg-white/95 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider text-chocolate">
                   {doctor.specialty || doctor.role.split(",")[0]}
                 </span>
                 <Image
@@ -49,16 +49,16 @@ export default async function DoctorsPage() {
               </div>
 
               <div className="p-4">
-                <h2 className="text-xl font-bold leading-snug group-hover:text-[#93c5fd] transition-colors">
+                <h2 className="text-xl font-bold leading-snug text-navy group-hover:text-chocolate transition-colors">
                   {doctor.name}
                 </h2>
-                <p className="mt-1 text-xs text-white/80">{doctor.role}</p>
+                <p className="mt-1 text-xs text-muted">{doctor.role}</p>
 
-                <div className="mt-3 border-t border-white/10 pt-3 text-xs text-white/70">
-                  <p className="font-semibold text-[#93c5fd]">
+                <div className="mt-3 border-t border-[#eae3d9] pt-3 text-xs">
+                  <p className="font-semibold text-chocolate">
                     {doctor.experience || "Опыт более 12 лет"}
                   </p>
-                  <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed">
+                  <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-muted">
                     {doctor.education}
                   </p>
                 </div>
@@ -66,7 +66,7 @@ export default async function DoctorsPage() {
             </div>
 
             <div className="p-4 pt-0">
-              <span className="block w-full rounded-xl bg-white/10 py-2.5 text-center text-xs font-bold text-white transition group-hover:bg-white group-hover:text-navy">
+              <span className="block w-full rounded-lg border border-[#d8cfc2] bg-[#fbf9f6] py-2.5 text-center text-xs font-bold uppercase tracking-wider text-navy transition group-hover:bg-chocolate group-hover:text-white group-hover:border-chocolate">
                 Смотреть профиль и дипломы →
               </span>
             </div>

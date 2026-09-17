@@ -9,10 +9,10 @@ export default async function PricesPage() {
 
   return (
     <div className="mx-auto max-w-[1200px] px-4 py-8 md:px-8 md:py-12">
-      <div className="rounded-[32px] bg-white p-6 shadow-[0_20px_60px_rgba(0,47,108,0.1)] md:p-10">
-        <p className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-accent">Цены</p>
-        <h1 className="mt-3 text-5xl font-semibold tracking-tight text-navy">Прейскурант</h1>
-        <p className="mt-4 max-w-2xl text-muted">
+      <div className="rounded-2xl border border-[#eae3d9] bg-white p-6 shadow-xs md:p-10">
+        <p className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-chocolate">Цены</p>
+        <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">Прейскурант</h1>
+        <p className="mt-4 max-w-2xl text-base text-muted md:text-[17px]">
           Актуальные позиции с официальной страницы прайса. Точную смету врач назовёт после осмотра.
         </p>
       </div>
