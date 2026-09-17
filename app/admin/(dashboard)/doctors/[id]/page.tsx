@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { toWebpUrl } from "@/lib/media";
 import { saveDoctor } from "../../actions";
 
 export default async function EditDoctorPage({
@@ -20,7 +21,7 @@ export default async function EditDoctorPage({
         <input name="specialty" defaultValue={item?.specialty} placeholder="Специализация (напр. Хирург-имплантолог)" className="rounded-2xl border px-4 py-3" />
         <input name="experience" defaultValue={item?.experience} placeholder="Стаж / Опыт (напр. Практика с 2012 года)" className="rounded-2xl border px-4 py-3" />
         <textarea name="education" defaultValue={item?.education} rows={4} placeholder="Образование и дипломы" className="rounded-2xl border px-4 py-3" />
-        <input name="photoUrl" defaultValue={item?.photoUrl} placeholder="/media/doctors/..." className="rounded-2xl border px-4 py-3" required />
+        <input name="photoUrl" defaultValue={item?.photoUrl ? toWebpUrl(item.photoUrl) : ""} placeholder="/media/doctors/..." className="rounded-2xl border px-4 py-3" required />
         <textarea name="bio" defaultValue={item?.bio} rows={12} className="rounded-2xl border px-4 py-3" />
         <input name="sortOrder" type="number" defaultValue={item?.sortOrder ?? 0} className="rounded-2xl border px-4 py-3" />
         <label className="text-sm">

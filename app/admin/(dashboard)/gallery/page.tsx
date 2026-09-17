@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { toWebpUrl } from "@/lib/media";
 import { deleteGallery, saveGallery } from "../actions";
 
 export default async function AdminGalleryPage() {
@@ -21,10 +22,10 @@ export default async function AdminGalleryPage() {
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {images.map((image) => (
           <div key={image.id} className="rounded-[24px] bg-white p-3">
-            <img src={image.url} alt={image.alt} className="h-40 w-full rounded-2xl object-cover" />
+            <img src={toWebpUrl(image.url)} alt={image.alt} className="h-40 w-full rounded-2xl object-cover" />
             <form action={saveGallery} className="mt-3 grid gap-2">
               <input type="hidden" name="id" value={image.id} />
-              <input name="url" defaultValue={image.url} className="rounded-xl border px-3 py-2 text-xs" />
+              <input name="url" defaultValue={toWebpUrl(image.url)} className="rounded-xl border px-3 py-2 text-xs" />
               <input name="alt" defaultValue={image.alt} className="rounded-xl border px-3 py-2 text-xs" />
               <input name="sortOrder" defaultValue={image.sortOrder} className="rounded-xl border px-3 py-2 text-xs" />
               <label className="text-xs">
