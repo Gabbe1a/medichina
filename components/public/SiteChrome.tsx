@@ -16,7 +16,7 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
   const path = headerList.get("x-pathname") || "/";
 
   return (
-    <div className="min-h-screen text-ink">
+    <div className="site-public min-h-screen text-ink">
       <SeoJsonLd path={path} settings={settings} faqs={faqs} />
       <Metrika counter={settings.metrika} />
       <Header services={services} phone={settings.phone1} />

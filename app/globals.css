@@ -45,6 +45,29 @@ body {
   overflow-x: hidden;
 }
 
+.site-public {
+  position: relative;
+  isolation: isolate;
+}
+
+.site-public::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("/images/bg-dental-pattern.webp");
+  background-repeat: repeat;
+  background-size: 420px 420px;
+  background-position: center top;
+  opacity: 0.05;
+}
+
+.site-public > * {
+  position: relative;
+  z-index: 1;
+}
+
 .defer-render {
   content-visibility: auto;
   contain-intrinsic-size: auto 700px;
