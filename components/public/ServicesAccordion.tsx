@@ -21,7 +21,7 @@ const SERVICES_DATA: ServiceItem[] = [
     category: "Виниры и эстетика",
     desc: "Прямые терапевтические виниры, керамика E-max и художественное восстановление анатомической формы зуба.",
     href: "/services/terapevticheskaja_stomatologija/terapevticheskie_viniry",
-    image: "/images/services/aesthetic.webp",
+    image: "/images/cases/case-after.webp",
     highlight: "Восстановление природной формы за 1–2 визита без агрессивной обточки эмали.",
   },
   {
@@ -39,7 +39,7 @@ const SERVICES_DATA: ServiceItem[] = [
     category: "Имплантология",
     desc: "Установка премиальных систем Astra Tech, Ankylos и Osstem. Одномоментная имплантация и костная пластика.",
     href: "/services/implantaciya_zubov/odnomomentnaja_implantacija",
-    image: "/images/services/implant.webp",
+    image: "/images/hero-smile.webp",
     highlight: "3D-навигационные шаблоны, приживаемость 98.7% и пожизненная поддержка системы.",
   },
   {
@@ -57,13 +57,13 @@ const SERVICES_DATA: ServiceItem[] = [
     category: "Бережная хирургия",
     desc: "Атравматичное удаление, резекция верхушек корней и микрохирургическая пластика десневого контура.",
     href: "/services/hirurgicheskaja_stomatologija/zubosohranjajushhie_manipuljacii",
-    image: "/images/services/surgery.webp",
+    image: "/media/gallery/46.webp",
     highlight: "Приоритет клиники — сохранение собственных корней и тканей пациента при любой возможности.",
   },
 ];
 
 export function ServicesAccordion() {
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [hoveredId, setHoveredId] = useState<string | null>(SERVICES_DATA[0]?.id ?? null);
   const [coarsePointer, setCoarsePointer] = useState(false);
 
   useEffect(() => {
@@ -71,7 +71,7 @@ export function ServicesAccordion() {
   }, []);
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-[#eae3d9] bg-white p-7 shadow-xs md:p-10">
+    <div className="relative overflow-hidden rounded-2xl border border-[#eae3d9] bg-[#fbf9f6] p-7 md:p-10">
       <div className="text-center">
         <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
           Услуги
@@ -85,80 +85,67 @@ export function ServicesAccordion() {
         </p>
       </div>
 
-      {/* Accordion container */}
-      <div className="mt-10 flex flex-col gap-3 lg:h-[380px] lg:flex-row">
+      <div className="mt-10 flex flex-col gap-4 lg:h-[420px] lg:flex-row lg:gap-3">
         {SERVICES_DATA.map((item) => {
+          const active = hoveredId === item.id;
           return (
-            <div
+            <article
               key={item.id}
               onMouseEnter={() => setHoveredId(item.id)}
-              onMouseLeave={() => setHoveredId(null)}
               onFocus={() => setHoveredId(item.id)}
-              onBlur={() => setHoveredId(null)}
               onClick={() => {
-                if (coarsePointer) setHoveredId((current) => (current === item.id ? null : item.id));
+                if (coarsePointer) setHoveredId(item.id);
               }}
               tabIndex={0}
-              className={`group relative h-[360px] cursor-pointer overflow-hidden rounded-xl border border-[#eae3d9] p-5 transition-[flex,background-color,transform] duration-500 ease-out lg:h-full ${
-                hoveredId === item.id
-                  ? "bg-gradient-to-br from-[#3b2313] via-[#2a170b] to-[#180e07] text-white lg:flex-[2.5]"
-                  : "bg-gradient-to-b from-[#4a2c17] to-[#2f1c0f] text-white/90 hover:from-[#59351c] lg:flex-1"
+              className={`group relative h-[340px] cursor-pointer overflow-hidden rounded-[28px] border transition-[flex,box-shadow,border-color] duration-500 ease-out lg:h-full ${
+                active
+                  ? "border-chocolate/25 shadow-[0_18px_40px_rgba(67,40,20,0.12)] lg:flex-[1.85]"
+                  : "border-[#eadfd0] shadow-[0_8px_24px_rgba(67,40,20,0.05)] lg:flex-[0.85]"
               }`}
             >
-              {/* The artwork is the card surface, not a small icon floating in empty space. */}
-              <div className="absolute inset-x-0 bottom-0 h-[78%] overflow-hidden">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 24vw"
-                  className={`h-full w-full object-cover transition-transform duration-500 ${
-                    hoveredId === item.id ? "scale-105" : "scale-100"
-                  }`}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1b1008] via-[#1b1008]/45 to-transparent" />
-              </div>
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                sizes="(max-width: 1024px) 100vw, 28vw"
+                className={`object-cover transition-transform duration-700 ease-out ${
+                  active ? "scale-[1.04]" : "scale-100"
+                }`}
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-[#fbf9f6]/92 via-[#fbf9f6]/28 to-[#432816]/45" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#2d1a0e]/35 via-transparent to-transparent" />
 
-              <div className="relative z-10 flex h-full flex-col">
-                <div className="shrink-0">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#ffdcb8]">
+              <div className="relative z-10 flex h-full flex-col justify-between p-5">
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-chocolate">
                     {item.category}
                   </span>
-                  <h3 className="mt-1 max-w-[22rem] text-xl font-bold leading-tight md:text-2xl">
+                  <h3 className="mt-2 max-w-[16rem] text-xl font-extrabold leading-tight text-navy md:text-[1.35rem]">
                     {item.title}
                   </h3>
                 </div>
 
-                {/* Hover content stays inside the card, so it cannot be clipped. */}
                 <div
-                  className={`absolute inset-x-0 bottom-0 rounded-xl border border-white/20 bg-[#2f1c0f]/95 p-4 transition-[opacity,transform,visibility] duration-300 ${
-                    hoveredId === item.id
-                      ? "visible translate-y-0 opacity-100"
-                      : "pointer-events-none invisible translate-y-2 opacity-0"
+                  className={`overflow-hidden rounded-2xl border border-white/70 bg-white/88 p-4 shadow-[0_8px_24px_rgba(67,40,20,0.08)] backdrop-blur-md transition-[opacity,transform] duration-500 ${
+                    active
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-3 opacity-0 lg:pointer-events-none"
                   }`}
                 >
-                  <p className="text-xs leading-relaxed text-white/90 md:text-sm">{item.highlight}</p>
+                  <p className="text-sm leading-relaxed text-navy">{item.highlight}</p>
                   <div className="mt-3 flex items-end justify-between gap-3">
-                    <span className="line-clamp-2 text-xs text-white/70">{item.desc}</span>
+                    <p className="line-clamp-2 text-xs leading-relaxed text-muted">{item.desc}</p>
                     <Link
                       href={item.href}
-                      className="inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-white px-3.5 py-1.5 text-xs font-bold text-chocolate transition hover:bg-[#ffdcb8] hover:text-chocolate"
+                      className="inline-flex shrink-0 items-center rounded-full bg-chocolate px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-white transition hover:bg-chocolate-light"
                       onClick={(e) => e.stopPropagation()}
                     >
-                      Подробнее →
+                      Подробнее
                     </Link>
                   </div>
                 </div>
-                <div
-                  className={`absolute inset-x-0 bottom-1 flex items-center justify-between text-xs text-white/70 transition-opacity duration-300 ${
-                    hoveredId === item.id ? "opacity-0" : "opacity-100"
-                  }`}
-                >
-                  <span>Наведите для деталей</span>
-                  <span className="text-base font-bold">→</span>
-                </div>
               </div>
-            </div>
+            </article>
           );
         })}
       </div>
@@ -166,7 +153,7 @@ export function ServicesAccordion() {
       <div className="mt-8 flex justify-center">
         <Link
           href="/contacts#zapis"
-          className="inline-flex items-center gap-2 rounded-xl bg-chocolate px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-white shadow-xs transition hover:bg-chocolate-light"
+          className="inline-flex items-center gap-2 rounded-full bg-chocolate px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-white shadow-xs transition hover:bg-chocolate-light"
         >
           <span>Записаться на консультацию</span>
           <span>→</span>
