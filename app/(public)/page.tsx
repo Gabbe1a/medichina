@@ -110,14 +110,14 @@ export default async function HomePage() {
           </div>
 
           {/* Right Column: peaceful aesthetic smile artwork */}
-          <div className="absolute inset-0 z-0 m-0 min-h-0 overflow-hidden md:relative md:inset-auto md:z-auto md:min-h-[580px] lg:absolute lg:inset-0 lg:z-0 lg:m-0 lg:min-h-0">
+          <div className="absolute inset-0 z-0 m-0 min-h-0 overflow-hidden md:relative md:inset-auto md:z-auto md:min-h-[580px] lg:relative lg:inset-auto lg:z-auto lg:m-0 lg:min-h-[580px]">
             <Image
               src="/images/hero-aesthetic.webp"
               alt="Эстетичный и естественный результат лечения в клинике Один к Одному"
               fill
               priority
-              sizes="100vw"
-              className="absolute inset-0 h-full w-full object-cover object-[70%_50%]"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="h-full w-full object-cover object-[70%_50%]"
             />
           </div>
         </div>

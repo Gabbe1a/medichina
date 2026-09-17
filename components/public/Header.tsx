@@ -36,7 +36,7 @@ export function Header({
             О клинике
           </Link>
           <div
-            className="relative flex items-center"
+            className="relative inline-flex items-center"
             onMouseEnter={() => setServicesOpen(true)}
             onMouseLeave={() => setServicesOpen(false)}
           >
