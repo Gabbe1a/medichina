@@ -49,10 +49,9 @@ export function HeroBento({ settings, doctors, gallery }: HeroBentoProps) {
   const next = () => setOffset((value) => (value + 1) % slides.length);
 
   return (
-    <section className="mt-6">
-      <div className="grid gap-3 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:items-stretch">
-        <div className="flex min-h-0 flex-col gap-3">
-          <article className="rounded-[28px] border border-[#eae3d9] bg-white px-6 py-7 shadow-[0_4px_24px_rgba(30,20,10,0.04)] md:px-9 md:py-9">
+    <section id="hero" className="mt-6">
+      <div className="grid grid-cols-1 gap-3 lg:grid-cols-[minmax(0,1.08fr)_minmax(340px,0.92fr)] lg:grid-rows-[auto_auto_minmax(168px,1fr)]">
+          <article className="order-1 rounded-[28px] border border-[#eae3d9] bg-white px-6 py-7 shadow-[0_4px_24px_rgba(30,20,10,0.04)] md:px-9 md:py-9 lg:order-none lg:col-start-1 lg:row-start-1">
             <span className="inline-flex rounded-full border border-[#e4dcce] bg-[#f4ece1] px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
               Стоматология на Войковской
             </span>
@@ -92,7 +91,7 @@ export function HeroBento({ settings, doctors, gallery }: HeroBentoProps) {
             </div>
           </article>
 
-          <article className="flex flex-1 flex-col justify-between gap-6 rounded-[28px] border border-[#eadfd0] bg-[#f3ece3] px-6 py-6 md:px-8 md:py-7">
+          <article className="order-3 flex flex-col justify-between gap-6 rounded-[28px] border border-[#eadfd0] bg-[#f3ece3] px-6 py-6 md:px-8 md:py-7 lg:order-none lg:col-start-1 lg:row-start-2">
             <div>
               <h2 className="text-xl font-extrabold tracking-tight text-navy md:text-2xl">
                 Современный подход без лишних процедур
@@ -123,11 +122,11 @@ export function HeroBento({ settings, doctors, gallery }: HeroBentoProps) {
             </p>
           </article>
 
-          <div className="relative grid grid-cols-2 gap-3">
+          <div className="relative order-4 grid grid-cols-2 gap-3 lg:order-none lg:col-start-1 lg:row-start-3">
             {visible.map((slide) => (
               <div
                 key={slide.url}
-                className="relative h-36 overflow-hidden rounded-[24px] border border-[#eae3d9] bg-[#efe7dc] sm:h-44 lg:h-[168px]"
+                className="relative h-36 overflow-hidden rounded-[24px] border border-[#eae3d9] bg-[#efe7dc] sm:h-44 lg:h-full lg:min-h-[168px]"
               >
                 <Image
                   src={slide.url}
@@ -144,7 +143,7 @@ export function HeroBento({ settings, doctors, gallery }: HeroBentoProps) {
                   type="button"
                   onClick={prev}
                   aria-label="Предыдущие фото клиники"
-                  className="pointer-events-auto grid size-10 place-items-center rounded-full border border-white/70 bg-white/90 text-navy shadow-xs backdrop-blur-sm transition hover:bg-white"
+                  className="pointer-events-auto grid size-10 place-items-center rounded-full border border-[#eadfd0] bg-white text-xl leading-none text-navy shadow-sm transition hover:border-chocolate"
                 >
                   ‹
                 </button>
@@ -152,16 +151,15 @@ export function HeroBento({ settings, doctors, gallery }: HeroBentoProps) {
                   type="button"
                   onClick={next}
                   aria-label="Следующие фото клиники"
-                  className="pointer-events-auto grid size-10 place-items-center rounded-full border border-white/70 bg-white/90 text-navy shadow-xs backdrop-blur-sm transition hover:bg-white"
+                  className="pointer-events-auto grid size-10 place-items-center rounded-full border border-[#eadfd0] bg-white text-xl leading-none text-navy shadow-sm transition hover:border-chocolate"
                 >
                   ›
                 </button>
               </div>
             ) : null}
           </div>
-        </div>
 
-        <article className="relative min-h-[460px] overflow-hidden rounded-[28px] border border-[#eae3d9] bg-[#efe7dc] lg:min-h-full">
+        <article className="relative order-2 min-h-[520px] overflow-hidden rounded-[28px] border border-[#eae3d9] bg-[#efe7dc] lg:order-none lg:col-start-2 lg:row-span-3 lg:min-h-0">
           {portrait ? (
             <Image
               src={portrait.photoUrl}
@@ -169,11 +167,11 @@ export function HeroBento({ settings, doctors, gallery }: HeroBentoProps) {
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 46vw"
-              className="object-cover object-[50%_18%]"
+              className="object-cover object-[50%_12%]"
             />
           ) : null}
           <div className="absolute inset-0 bg-gradient-to-t from-[#1a120c]/55 via-transparent to-transparent" />
-          <div className="absolute inset-x-3 bottom-3 grid gap-3 sm:grid-cols-2 lg:inset-x-4 lg:bottom-4">
+          <div className="absolute inset-x-3 bottom-3 grid gap-3 sm:grid-cols-2 lg:inset-x-4 lg:bottom-5">
             <Link
               href="/services/implantaciya_zubov"
               className="rounded-2xl border border-white/50 bg-white/80 p-4 shadow-xs backdrop-blur-md transition hover:bg-white"
