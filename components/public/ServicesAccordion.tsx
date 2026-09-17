@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type ServiceItem = {
   id: string;
@@ -64,11 +64,6 @@ const SERVICES_DATA: ServiceItem[] = [
 
 export function ServicesAccordion() {
   const [hoveredId, setHoveredId] = useState<string | null>(SERVICES_DATA[0]?.id ?? null);
-  const [coarsePointer, setCoarsePointer] = useState(false);
-
-  useEffect(() => {
-    setCoarsePointer(window.matchMedia("(pointer: coarse)").matches);
-  }, []);
 
   return (
     <div className="relative overflow-hidden rounded-2xl border border-accent/25 bg-[#f4f7fc] p-7 md:p-10">
@@ -89,14 +84,11 @@ export function ServicesAccordion() {
         {SERVICES_DATA.map((item) => {
           const active = hoveredId === item.id;
           return (
-            <article
+            <Link
               key={item.id}
+              href={item.href}
               onMouseEnter={() => setHoveredId(item.id)}
               onFocus={() => setHoveredId(item.id)}
-              onClick={() => {
-                if (coarsePointer) setHoveredId(item.id);
-              }}
-              tabIndex={0}
               className={`group relative h-[340px] cursor-pointer overflow-hidden rounded-[28px] border transition-[flex,box-shadow,border-color] duration-500 ease-out lg:h-full ${
                 active
                   ? "border-accent/45 shadow-[0_18px_40px_rgba(124,167,235,0.22)] lg:flex-[1.85]"
@@ -117,7 +109,7 @@ export function ServicesAccordion() {
 
               <div className="relative z-10 flex h-full flex-col justify-between p-5">
                 <div>
-                  <span className="inline-flex rounded-full bg-[#0f1c33]/78 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-[#c5dbff] backdrop-blur-md">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#c5dbff] drop-shadow-[0_2px_10px_rgba(8,14,28,0.85)]">
                     {item.category}
                   </span>
                   <h3 className="mt-2 max-w-[16rem] text-xl font-extrabold leading-tight text-white drop-shadow-[0_2px_12px_rgba(8,14,28,0.55)] md:text-[1.35rem]">
@@ -135,17 +127,13 @@ export function ServicesAccordion() {
                   <p className="text-sm leading-relaxed text-navy">{item.highlight}</p>
                   <div className="mt-3 flex items-end justify-between gap-3">
                     <p className="line-clamp-2 text-xs leading-relaxed text-muted">{item.desc}</p>
-                    <Link
-                      href={item.href}
-                      className="inline-flex shrink-0 items-center rounded-full bg-chocolate px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-white transition hover:bg-chocolate-light"
-                      onClick={(e) => e.stopPropagation()}
-                    >
+                    <span className="inline-flex shrink-0 items-center rounded-full bg-chocolate px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-white transition group-hover:bg-chocolate-light">
                       Подробнее
-                    </Link>
+                    </span>
                   </div>
                 </div>
               </div>
-            </article>
+            </Link>
           );
         })}
       </div>

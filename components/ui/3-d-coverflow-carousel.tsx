@@ -73,7 +73,7 @@ export function CoverFlowCarousel({
 
   return (
     <section
-      className="relative min-h-[560px] overflow-hidden rounded-2xl px-2 py-4 text-navy md:min-h-[640px] md:px-4"
+      className="relative min-h-[540px] overflow-hidden rounded-2xl bg-transparent px-2 py-2 text-navy md:min-h-[620px] md:px-4"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onTouchStart={(event) => {
@@ -85,7 +85,7 @@ export function CoverFlowCarousel({
       }}
     >
       <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center">
-        <p className="mb-6 text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
+        <p className="mb-5 rounded-full bg-white/70 px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent shadow-[0_6px_20px_rgba(124,167,235,0.12)] backdrop-blur-sm">
           {sectionLabel}
         </p>
 
@@ -129,7 +129,11 @@ export function CoverFlowCarousel({
                 }}
                 role="link"
                 tabIndex={0}
-                className="absolute h-[420px] w-[270px] cursor-pointer overflow-hidden rounded-[28px] border border-accent/25 bg-[#eef4fc] shadow-[0_12px_32px_rgba(124,167,235,0.12)] transition-[transform,opacity] duration-500 ease-[cubic-bezier(.25,1,.5,1)] md:h-[480px] md:w-[320px]"
+                className={`absolute h-[420px] w-[270px] cursor-pointer overflow-hidden rounded-[28px] border bg-[#eef4fc] transition-[transform,opacity,box-shadow] duration-500 ease-[cubic-bezier(.25,1,.5,1)] md:h-[480px] md:w-[320px] ${
+                  isCenter
+                    ? "border-white/80 shadow-[0_24px_50px_rgba(64,41,36,0.18)]"
+                    : "border-accent/20 shadow-[0_10px_24px_rgba(124,167,235,0.12)]"
+                }`}
                 style={{ transform, opacity, zIndex }}
               >
                 <Image
@@ -171,7 +175,7 @@ export function CoverFlowCarousel({
             type="button"
             onClick={prevSlide}
             aria-label="Предыдущий врач"
-            className="absolute left-0 z-40 grid h-11 w-11 place-items-center rounded-full border border-[#eadfd0] bg-white text-chocolate shadow-xs transition-colors hover:border-chocolate md:left-4 cursor-pointer"
+            className="absolute left-0 z-40 grid h-11 w-11 cursor-pointer place-items-center rounded-full border border-accent/40 bg-white text-accent shadow-[0_8px_20px_rgba(124,167,235,0.18)] transition-colors hover:border-accent hover:bg-accent hover:text-chocolate md:left-4"
           >
             <Chevron direction="left" />
           </button>
@@ -179,7 +183,7 @@ export function CoverFlowCarousel({
             type="button"
             onClick={nextSlide}
             aria-label="Следующий врач"
-            className="absolute right-0 z-40 grid h-11 w-11 place-items-center rounded-full border border-[#eadfd0] bg-white text-chocolate shadow-xs transition-colors hover:border-chocolate md:right-4 cursor-pointer"
+            className="absolute right-0 z-40 grid h-11 w-11 cursor-pointer place-items-center rounded-full border border-accent/40 bg-white text-accent shadow-[0_8px_20px_rgba(124,167,235,0.18)] transition-colors hover:border-accent hover:bg-accent hover:text-chocolate md:right-4"
           >
             <Chevron direction="right" />
           </button>
