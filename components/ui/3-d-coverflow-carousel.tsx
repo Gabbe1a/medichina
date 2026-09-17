@@ -73,7 +73,7 @@ export function CoverFlowCarousel({
 
   return (
     <section
-      className="relative min-h-[610px] overflow-hidden rounded-2xl border border-[#eae3d9] bg-[#1a120b] px-4 py-10 text-white md:min-h-[680px] md:px-8"
+      className="relative min-h-[560px] overflow-hidden rounded-2xl px-2 py-4 text-navy md:min-h-[640px] md:px-4"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onTouchStart={(event) => {
@@ -84,18 +84,12 @@ export function CoverFlowCarousel({
         if (Math.abs(diff) > 45) (diff < 0 ? nextSlide : prevSlide)();
       }}
     >
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(95,58,33,.45),rgba(20,13,7,.98)_75%)]" />
-
       <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center">
-        <div className="mb-6 flex items-center gap-3 text-center">
-          <span className="h-px w-9 bg-gradient-to-r from-transparent to-[#ffdcb8]" />
-          <h3 className="text-[11px] font-bold uppercase tracking-[0.28em] text-[#ffdcb8]">
-            {sectionLabel}
-          </h3>
-          <span className="h-px w-9 bg-gradient-to-l from-transparent to-[#ffdcb8]" />
-        </div>
+        <p className="mb-6 text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
+          {sectionLabel}
+        </p>
 
-        <div className="relative flex h-[490px] w-full items-center justify-center md:h-[540px]">
+        <div className="relative flex h-[470px] w-full items-center justify-center md:h-[520px]">
           {items.map((item, itemIndex) => {
             const offset = (itemIndex - currentIndex + total) % total;
             let transform = "translateX(0) scale(.45)";
@@ -135,7 +129,7 @@ export function CoverFlowCarousel({
                 }}
                 role="link"
                 tabIndex={0}
-                className="absolute h-[430px] w-[280px] cursor-pointer overflow-hidden rounded-xl border border-white/20 bg-[#2b190f] shadow-lg transition-[transform,opacity] duration-500 ease-[cubic-bezier(.25,1,.5,1)] md:h-[500px] md:w-[330px]"
+                className="absolute h-[420px] w-[270px] cursor-pointer overflow-hidden rounded-[28px] border border-[#eadfd0] bg-[#f7f1eb] shadow-[0_12px_32px_rgba(67,40,20,0.08)] transition-[transform,opacity] duration-500 ease-[cubic-bezier(.25,1,.5,1)] md:h-[480px] md:w-[320px]"
                 style={{ transform, opacity, zIndex }}
               >
                 <Image
@@ -145,24 +139,23 @@ export function CoverFlowCarousel({
                   sizes="(max-width: 768px) 280px, 330px"
                   className="absolute inset-0 h-full w-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-[#180e07]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#fbf9f6] via-[#fbf9f6]/10 to-transparent" />
                 <div
                   className={`relative z-10 flex h-full flex-col justify-between p-5 transition-opacity duration-500 ${
                     isCenter ? "opacity-100" : "pointer-events-none opacity-0"
                   }`}
                 >
-                  <span className="self-start rounded-md bg-white/95 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-chocolate">
+                  <span className="self-start rounded-full border border-[#eadfd0] bg-white/95 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-chocolate">
                     {item.tag}
                   </span>
-                  <div>
-                    <h2 className="text-2xl font-black leading-tight md:text-[27px]">{item.titleLine1}</h2>
-                    {item.titleLine2 && <p className="text-base font-bold text-white/90">{item.titleLine2}</p>}
-                    <div className="my-3 h-0.5 w-9 bg-[#ffdcb8]" />
-                    {item.desc && <p className="line-clamp-3 text-xs leading-relaxed text-white/85">{item.desc}</p>}
+                  <div className="rounded-2xl border border-white/80 bg-white/92 p-4 shadow-[0_8px_24px_rgba(67,40,20,0.08)] backdrop-blur-md">
+                    <h2 className="text-xl font-extrabold leading-tight text-navy md:text-[22px]">{item.titleLine1}</h2>
+                    {item.titleLine2 && <p className="text-sm font-bold text-muted">{item.titleLine2}</p>}
+                    {item.desc && <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-muted">{item.desc}</p>}
                     {item.ctaUrl && (
                       <Link
                         href={item.ctaUrl}
-                        className="mt-4 inline-flex rounded-lg bg-white px-4 py-2 text-[11px] font-bold text-chocolate transition hover:bg-[#ffdcb8]"
+                        className="mt-3 inline-flex rounded-full bg-chocolate px-4 py-2 text-[11px] font-bold uppercase tracking-wider text-white transition hover:bg-chocolate-light"
                         onClick={(event) => event.stopPropagation()}
                       >
                         {item.ctaText ?? "Открыть профиль"} →
@@ -178,7 +171,7 @@ export function CoverFlowCarousel({
             type="button"
             onClick={prevSlide}
             aria-label="Предыдущий врач"
-            className="absolute left-0 z-40 grid h-11 w-11 place-items-center rounded-xl border border-white/20 bg-black/60 text-white transition-colors hover:bg-white hover:text-chocolate md:left-4 cursor-pointer"
+            className="absolute left-0 z-40 grid h-11 w-11 place-items-center rounded-full border border-[#eadfd0] bg-white text-chocolate shadow-xs transition-colors hover:border-chocolate md:left-4 cursor-pointer"
           >
             <Chevron direction="left" />
           </button>
@@ -186,7 +179,7 @@ export function CoverFlowCarousel({
             type="button"
             onClick={nextSlide}
             aria-label="Следующий врач"
-            className="absolute right-0 z-40 grid h-11 w-11 place-items-center rounded-xl border border-white/20 bg-black/60 text-white transition-colors hover:bg-white hover:text-chocolate md:right-4 cursor-pointer"
+            className="absolute right-0 z-40 grid h-11 w-11 place-items-center rounded-full border border-[#eadfd0] bg-white text-chocolate shadow-xs transition-colors hover:border-chocolate md:right-4 cursor-pointer"
           >
             <Chevron direction="right" />
           </button>
@@ -200,7 +193,7 @@ export function CoverFlowCarousel({
               onClick={() => setCurrentIndex(itemIndex)}
               aria-label={`Врач ${itemIndex + 1}`}
               className={`h-2 rounded-full transition-[width,background-color] ${
-                itemIndex === currentIndex ? "w-7 bg-[#ffdcb8]" : "w-2 bg-white/25"
+                itemIndex === currentIndex ? "w-7 bg-chocolate" : "w-2 bg-[#d8cfc2]"
               }`}
             />
           ))}
