@@ -18,7 +18,7 @@ export function DirectionsCatalog({ services }: { services: CatalogService[] }) 
         </div>
         <Link
           href="/services"
-          className="inline-flex items-center gap-2 rounded-xl border border-[#d8cfc2] bg-white px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-navy transition hover:bg-[#f6f1ea] hover:border-chocolate"
+          className="inline-flex items-center gap-2 rounded-xl border border-accent/40 bg-white px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-navy transition hover:bg-[#eef4fc] hover:border-accent"
         >
           Полный каталог →
         </Link>

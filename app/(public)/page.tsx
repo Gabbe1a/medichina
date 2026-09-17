@@ -39,7 +39,7 @@ export default async function HomePage() {
 
       {/* SECTION 3: ABOUT CLINIC & VALUES */}
       <section id="about-clinic" className="mt-16 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="rounded-2xl border border-[#eae3d9] bg-white p-7 shadow-xs md:p-10">
+        <div className="rounded-2xl border border-accent/20 bg-white p-7 shadow-xs md:p-10">
           <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
             О клинике
           </span>
@@ -57,7 +57,7 @@ export default async function HomePage() {
               ["10 000+", "пациентов доверили нам зубы"],
               ["Лицензия", settings.license],
             ].map(([title, text]) => (
-              <div key={title} className="rounded-xl border border-[#eae3d9] bg-[#fbf9f6] p-4 text-left">
+              <div key={title} className="rounded-xl border border-accent/20 bg-[#eef4fc] p-4 text-left">
                 <p className="text-xl font-extrabold text-chocolate">{title}</p>
                 <p className="mt-1 text-xs text-muted">{text}</p>
               </div>
@@ -66,7 +66,7 @@ export default async function HomePage() {
           <div className="mt-7">
             <Link
               href="/about"
-              className="inline-flex items-center gap-2 rounded-xl border border-[#d8cfc2] bg-white px-5 py-3 text-xs font-bold uppercase tracking-wider text-navy transition hover:bg-[#f6f1ea] hover:border-chocolate"
+              className="inline-flex items-center gap-2 rounded-xl border border-accent/40 bg-white px-5 py-3 text-xs font-bold uppercase tracking-wider text-navy transition hover:bg-[#eef4fc] hover:border-accent"
             >
               Подробнее об истории и стандартах клиники →
             </Link>
@@ -105,7 +105,7 @@ export default async function HomePage() {
       </section>
 
       {/* SECTION 7: PROCESS (4 STEPS) */}
-      <section id="process" className="mt-16 rounded-2xl border border-[#eae3d9] bg-white p-7 shadow-xs md:p-12">
+      <section id="process" className="mt-16 rounded-2xl border border-accent/20 bg-white p-7 shadow-xs md:p-12">
         <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
           Как мы работаем
         </span>
@@ -119,7 +119,7 @@ export default async function HomePage() {
             ["03", "Бережное лечение", "Современная безопасная анестезия, микроскоп и сохранение максимального объема собственных тканей."],
             ["04", "Гарантия и забота", "Юридическая гарантия, контрольные осмотры и постоянная связь с вашим лечащим доктором."],
           ].map(([num, title, text]) => (
-            <div key={num} className="rounded-xl border border-[#eae3d9] bg-[#fbf9f6] p-5">
+            <div key={num} className="rounded-xl border border-accent/20 bg-[#eef4fc] p-5">
               <span className="text-xs font-black text-chocolate">{num}</span>
               <h3 className="mt-2 text-base font-bold text-navy">{title}</h3>
               <p className="mt-2 text-xs leading-relaxed text-muted">{text}</p>
@@ -151,7 +151,7 @@ export default async function HomePage() {
           </div>
           <Link
             href="/reviews"
-            className="inline-flex items-center gap-2 rounded-xl border border-[#d8cfc2] bg-white px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-navy transition hover:bg-[#f6f1ea] hover:border-chocolate"
+            className="inline-flex items-center gap-2 rounded-xl border border-accent/40 bg-white px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-navy transition hover:bg-[#eef4fc] hover:border-accent"
           >
             Все отзывы →
           </Link>
@@ -182,7 +182,7 @@ export default async function HomePage() {
           </p>
           <Link
             href="/patients/faq"
-            className="mt-6 inline-flex items-center gap-2 rounded-xl border border-[#d8cfc2] bg-white px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-navy transition hover:bg-[#f6f1ea] hover:border-chocolate"
+            className="mt-6 inline-flex items-center gap-2 rounded-xl border border-accent/40 bg-white px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-navy transition hover:bg-[#eef4fc] hover:border-accent"
           >
             Все частые вопросы →
           </Link>
@@ -198,7 +198,7 @@ export default async function HomePage() {
       </section>
 
       {/* SECTION 11: APPOINTMENT & MAP */}
-      <section className="mt-16 grid gap-8 rounded-2xl border border-[#eae3d9] bg-white p-7 shadow-xs md:grid-cols-2 md:p-10">
+      <section className="mt-16 grid gap-8 rounded-2xl border border-accent/20 bg-white p-7 shadow-xs md:grid-cols-2 md:p-10">
         <div>
           <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
             Запись на приём

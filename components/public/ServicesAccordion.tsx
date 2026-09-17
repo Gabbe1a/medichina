@@ -71,7 +71,7 @@ export function ServicesAccordion() {
   }, []);
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-[#eae3d9] bg-[#fbf9f6] p-7 md:p-10">
+    <div className="relative overflow-hidden rounded-2xl border border-accent/25 bg-[#f4f7fc] p-7 md:p-10">
       <div className="text-center">
         <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
           Услуги
@@ -99,8 +99,8 @@ export function ServicesAccordion() {
               tabIndex={0}
               className={`group relative h-[340px] cursor-pointer overflow-hidden rounded-[28px] border transition-[flex,box-shadow,border-color] duration-500 ease-out lg:h-full ${
                 active
-                  ? "border-chocolate/25 shadow-[0_18px_40px_rgba(67,40,20,0.12)] lg:flex-[1.85]"
-                  : "border-[#eadfd0] shadow-[0_8px_24px_rgba(67,40,20,0.05)] lg:flex-[0.85]"
+                  ? "border-accent/45 shadow-[0_18px_40px_rgba(124,167,235,0.22)] lg:flex-[1.85]"
+                  : "border-accent/20 shadow-[0_8px_24px_rgba(64,41,36,0.06)] lg:flex-[0.85]"
               }`}
             >
               <Image
@@ -112,15 +112,15 @@ export function ServicesAccordion() {
                   active ? "scale-[1.04]" : "scale-100"
                 }`}
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-[#fbf9f6]/92 via-[#fbf9f6]/28 to-[#402924]/45" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#2d1a0e]/35 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-b from-[#0f1c33]/88 via-[#1a2c4a]/45 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#402924]/45 via-transparent to-transparent" />
 
               <div className="relative z-10 flex h-full flex-col justify-between p-5">
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-accent">
+                  <span className="inline-flex rounded-full bg-[#0f1c33]/78 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-[#c5dbff] backdrop-blur-md">
                     {item.category}
                   </span>
-                  <h3 className="mt-2 max-w-[16rem] text-xl font-extrabold leading-tight text-navy md:text-[1.35rem]">
+                  <h3 className="mt-2 max-w-[16rem] text-xl font-extrabold leading-tight text-white drop-shadow-[0_2px_12px_rgba(8,14,28,0.55)] md:text-[1.35rem]">
                     {item.title}
                   </h3>
                 </div>

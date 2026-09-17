@@ -48,7 +48,7 @@ export function HeroBento({ settings, doctors, gallery }: HeroBentoProps) {
   return (
     <section id="hero" className="mt-6">
       <div className="grid grid-cols-1 gap-3 lg:grid-cols-[minmax(0,1.08fr)_minmax(340px,0.92fr)] lg:grid-rows-[auto_auto_minmax(168px,1fr)]">
-          <article className="order-1 rounded-[28px] border border-[#eae3d9] bg-white px-6 py-7 shadow-[0_4px_24px_rgba(30,20,10,0.04)] md:px-9 md:py-9 lg:order-none lg:col-start-1 lg:row-start-1">
+          <article className="order-1 rounded-[28px] border border-accent/20 bg-white px-6 py-7 shadow-[0_4px_24px_rgba(124,167,235,0.08)] md:px-9 md:py-9 lg:order-none lg:col-start-1 lg:row-start-1">
             <span className="inline-flex rounded-full border border-accent/35 bg-[#eef4fc] px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
               Стоматология на Войковской
             </span>
@@ -88,7 +88,7 @@ export function HeroBento({ settings, doctors, gallery }: HeroBentoProps) {
             </div>
           </article>
 
-          <article className="order-3 flex flex-col justify-between gap-6 rounded-[28px] border border-[#eadfd0] bg-[#f3ece3] px-6 py-6 md:px-8 md:py-7 lg:order-none lg:col-start-1 lg:row-start-2">
+          <article className="order-3 flex flex-col justify-between gap-6 rounded-[28px] border border-accent/30 bg-[#eef4fc] px-6 py-6 md:px-8 md:py-7 lg:order-none lg:col-start-1 lg:row-start-2">
             <div>
               <h2 className="text-xl font-extrabold tracking-tight text-navy md:text-2xl">
                 Современный подход без лишних процедур
@@ -102,7 +102,7 @@ export function HeroBento({ settings, doctors, gallery }: HeroBentoProps) {
             <div className="flex flex-wrap items-center gap-3">
               <Link
                 href="/prices"
-                className="inline-flex items-center gap-2 rounded-full border border-[#d8cfc2] bg-white px-5 py-3 text-[11px] font-bold uppercase tracking-wider text-navy transition hover:border-chocolate hover:bg-[#f6f1ea]"
+                className="inline-flex items-center gap-2 rounded-full border border-accent/45 bg-[#eef4fc] px-5 py-3 text-[11px] font-bold uppercase tracking-wider text-chocolate transition hover:border-accent hover:bg-accent hover:text-chocolate"
               >
                 Посмотреть цены
               </Link>

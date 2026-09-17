@@ -23,7 +23,7 @@ export function Header({
 
   return (
     <header className="sticky top-0 z-40 px-4 pt-4 md:px-8">
-      <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 rounded-full border border-[#eae3d9] bg-white px-4 py-2.5 shadow-[0_4px_20px_rgba(30,20,10,0.04)] md:px-6">
+      <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 rounded-full border border-accent/25 bg-white px-4 py-2.5 shadow-[0_4px_20px_rgba(124,167,235,0.12)] md:px-6">
         <Link href="/" className="flex items-center gap-3">
           <img src="/media/logos/logo.svg" alt="Один к Одному" className="h-10 w-10 rounded-xl" />
           <span className="text-sm font-extrabold tracking-tight text-navy">
@@ -45,13 +45,13 @@ export function Header({
             </Link>
             {servicesOpen ? (
               <div className="absolute left-1/2 top-full z-50 w-[640px] -translate-x-1/2 pt-3">
-                <div className="rounded-2xl border border-[#eae3d9] bg-white p-5 shadow-[0_16px_40px_rgba(30,20,10,0.08)]">
+                <div className="rounded-2xl border border-accent/25 bg-white p-5 shadow-[0_16px_40px_rgba(124,167,235,0.12)]">
                   <div className="grid grid-cols-2 gap-2">
                     {services.map((item) => (
                       <Link
                         key={item.id}
                         href={serviceHref(item)}
-                        className="rounded-xl px-3 py-2 text-sm font-semibold text-navy transition hover:bg-[#f7f2eb] hover:text-accent"
+                        className="rounded-xl px-3 py-2 text-sm font-semibold text-navy transition hover:bg-[#eef4fc] hover:text-accent"
                       >
                         {item.title}
                       </Link>
@@ -84,7 +84,7 @@ export function Header({
         <div className="flex items-center gap-2">
           <a
             href={`tel:${phone.replace(/[^\d+]/g, "")}`}
-            className="hidden text-sm font-bold text-navy hover:text-accent transition-colors md:block"
+            className="hidden text-sm font-bold text-accent hover:text-chocolate transition-colors md:block"
           >
             {phone}
           </a>

@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --page: #fbf9f6;
-  --page-2: #f3eee8;
+  --page: #f3f6fb;
+  --page-2: #e8eef8;
   --ink: #402924;
   --navy: #402924;
   --accent: #7ca7eb;
@@ -34,11 +34,11 @@
 
 html {
   scroll-behavior: auto;
-  background: #fbf9f6;
+  background: #f3f6fb;
 }
 
 body {
-  background: #fbf9f6;
+  background: #f3f6fb;
   color: var(--ink);
   font-family: var(--font-manrope), "Manrope", sans-serif;
   min-height: 100vh;
