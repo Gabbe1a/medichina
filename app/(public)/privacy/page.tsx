@@ -11,13 +11,13 @@ export default async function PrivacyPage() {
   const legalText = fs.existsSync(legalPath) ? fs.readFileSync(legalPath, "utf8") : page?.body;
 
   return (
-    <div className="mx-auto max-w-[900px] px-4 py-12 md:px-8">
-      <div className="rounded-[32px] bg-white p-6 shadow-[0_20px_60px_rgba(0,47,108,0.1)] md:p-10">
-        <h1 className="text-4xl font-semibold tracking-tight text-navy">{page?.title ?? "Политика ПДн"}</h1>
+    <div className="mx-auto max-w-[900px] px-4 py-8 md:px-8 md:py-12">
+      <div className="rounded-2xl border border-[#eae3d9] bg-white p-6 shadow-xs md:p-10">
+        <h1 className="text-3xl font-extrabold tracking-tight text-navy md:text-5xl">{page?.title ?? "Политика ПДн"}</h1>
         <div className="prose-clinic mt-6 whitespace-pre-line">{legalText}</div>
       </div>
       <p className="mt-6">
-        <a className="font-bold text-accent" href="/media/legal/politika_personalnyh_dannyh.pdf">
+        <a className="font-bold text-chocolate underline hover:text-chocolate-light" href="/media/legal/politika_personalnyh_dannyh.pdf">
           Скачать полный PDF
         </a>
       </p>

@@ -15,19 +15,19 @@ export function TeamSlider({ doctors }: { doctors: Doctor[] }) {
   }));
 
   return (
-    <div className="relative overflow-hidden rounded-[36px] border border-white/80 bg-white p-6 shadow-[0_20px_60px_rgba(0,47,108,0.06)] md:p-10">
+    <div className="relative overflow-hidden rounded-2xl border border-[#eae3d9] bg-white p-7 shadow-xs md:p-10">
       <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
         <div className="max-w-xl">
-          <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">Команда</span>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">
-            Врачи, которым доверяют улыбку
+          <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">Команда</span>
+          <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-navy md:text-4xl">
+            Команда экспертов: 10 врачей с практикой до 30 лет
           </h2>
-          <p className="mt-3 text-base text-muted md:text-lg">
-            Опытные хирурги, ортодонты, гигиенисты и ортопеды со средним стажем более 15 лет.
+          <p className="mt-3 text-base text-muted md:text-[17px]">
+            Хирурги, ортодонты, гигиенисты и ортопеды клиники «Один к Одному» со средним стажем более 15 лет ведут приём в одном здании.
           </p>
           <Link
             href="/doctors"
-            className="mt-5 inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[#f4f8ff] px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-navy transition hover:bg-navy hover:text-white"
+            className="mt-5 inline-flex items-center gap-2 rounded-xl border border-[#d8cfc2] bg-white px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-navy transition hover:bg-[#f6f1ea] hover:border-chocolate"
           >
             Все специалисты клиники →
           </Link>

@@ -38,22 +38,22 @@ export function VideoReviewsSection() {
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
   return (
-    <div className="relative overflow-hidden rounded-[36px] border border-white/80 bg-white p-6 shadow-[0_20px_60px_rgba(0,47,108,0.06)] md:p-10">
+    <div className="relative overflow-hidden rounded-2xl border border-[#eae3d9] bg-white p-7 shadow-xs md:p-10">
       <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
         <div>
-          <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
+          <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
             Видеоотзывы
           </span>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">
+          <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-navy md:text-4xl">
             Истории наших пациентов
           </h2>
-          <p className="mt-3 max-w-xl text-base text-muted md:text-lg">
+          <p className="mt-3 max-w-xl text-base text-muted md:text-[17px]">
             Посмотрите короткие видеорассказы о том, как проходило лечение, восстановление зубов и какие эмоции дарит новая улыбка.
           </p>
         </div>
         <Link
           href="/reviews"
-          className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-accent transition hover:text-navy"
+          className="inline-flex items-center gap-2 rounded-xl border border-[#d8cfc2] bg-white px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-navy transition hover:bg-[#f6f1ea] hover:border-chocolate"
         >
           Все 252 отзыва на картах →
         </Link>
@@ -64,7 +64,7 @@ export function VideoReviewsSection() {
           <div
             key={vid.id}
             onClick={() => setActiveVideo(vid.title)}
-            className="group cursor-pointer overflow-hidden rounded-[26px] bg-[#f4f8ff] transition-[transform,box-shadow] hover:-translate-y-1 hover:shadow-xl"
+            className="group cursor-pointer overflow-hidden rounded-xl border border-[#eae3d9] bg-[#fbf9f6] transition hover:-translate-y-0.5 hover:border-chocolate hover:shadow-xs"
           >
             {/* Thumbnail with overlay play button */}
             <div className="relative aspect-video w-full overflow-hidden bg-navy">
@@ -79,7 +79,7 @@ export function VideoReviewsSection() {
               
               {/* Play badge */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="grid h-14 w-14 place-items-center rounded-full bg-white text-navy shadow-lg transition-[transform,background-color,color] duration-300 group-hover:scale-110 group-hover:bg-accent group-hover:text-white">
+                <span className="grid h-12 w-12 place-items-center rounded-full bg-white text-chocolate shadow-md transition-[transform,background-color,color] duration-300 group-hover:scale-110 group-hover:bg-chocolate group-hover:text-white">
                   ▶
                 </span>
               </div>
@@ -91,11 +91,11 @@ export function VideoReviewsSection() {
 
             {/* Video description */}
             <div className="p-5">
-              <p className="text-xs font-bold uppercase tracking-wider text-accent">
+              <p className="text-xs font-bold uppercase tracking-wider text-chocolate">
                 {vid.author}
               </p>
               <p className="mt-1 text-xs text-muted">{vid.role}</p>
-              <h3 className="mt-2 text-sm font-bold leading-snug text-navy group-hover:text-accent">
+              <h3 className="mt-2 text-sm font-bold leading-snug text-navy group-hover:text-chocolate transition-colors">
                 {vid.title}
               </h3>
               <p className="mt-2 line-clamp-2 text-xs italic text-muted">

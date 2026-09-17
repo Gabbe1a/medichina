@@ -82,31 +82,31 @@ export function BeforeAfterInteractive() {
   const activeCase = CASES.find((c) => c.id === activeTab) || CASES[0];
 
   return (
-    <div className="relative overflow-hidden rounded-[36px] border border-white/80 bg-white p-6 shadow-[0_20px_60px_rgba(0,47,108,0.06)] md:p-10">
+    <div className="relative overflow-hidden rounded-2xl border border-[#eae3d9] bg-white p-7 shadow-xs md:p-10">
       {/* Header */}
       <div className="text-center">
-        <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
+        <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
           Клинические случаи
         </span>
-        <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">
+        <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-navy md:text-4xl">
           Реальные улыбки. Реальные истории
         </h2>
-        <p className="mx-auto mt-3 max-w-2xl text-base text-muted md:text-lg">
+        <p className="mx-auto mt-3 max-w-2xl text-base text-muted md:text-[17px]">
           Наглядный результат работы наших врачей: фотографии до и после лечения, клинический протокол и отзывы пациентов.
         </p>
       </div>
 
       {/* Tabs */}
-      <div className="mt-8 flex flex-wrap justify-center gap-2 border-b border-[var(--line)] pb-4">
+      <div className="mt-8 flex flex-wrap justify-center gap-2 border-b border-[#eae3d9] pb-4">
         {CASES.map((c) => (
           <button
             key={c.id}
             type="button"
             onClick={() => setActiveTab(c.id)}
-            className={`rounded-full px-5 py-2 text-xs font-bold transition-[color,background-color,box-shadow] ${
+            className={`rounded-xl px-4 py-2 text-xs font-bold transition-all cursor-pointer ${
               activeTab === c.id
-                ? "bg-navy text-white shadow-md"
-                : "bg-transparent text-navy hover:bg-[#f4f8ff]"
+                ? "bg-chocolate text-white shadow-2xs"
+                : "bg-transparent text-navy hover:bg-[#f6f1ea] hover:text-chocolate"
             }`}
           >
             {c.tab}

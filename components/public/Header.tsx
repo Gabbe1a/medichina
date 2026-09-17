@@ -8,7 +8,7 @@ import { serviceHref } from "@/lib/routes";
 type NavService = Service & { children: Service[] };
 
 const navLinkClass =
-  "inline-flex h-9 items-center rounded-full px-3 text-[11px] font-extrabold uppercase leading-none tracking-[0.14em] text-navy hover:bg-[#f3f8ff]";
+  "inline-flex h-9 items-center justify-center rounded-lg px-3 text-[11px] font-extrabold uppercase leading-none tracking-[0.14em] text-navy hover:bg-[#f7f2eb] hover:text-chocolate transition-colors";
 
 export function Header({
   services,
@@ -23,9 +23,9 @@ export function Header({
 
   return (
     <header className="sticky top-0 z-40 px-4 pt-4 md:px-8">
-      <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 rounded-full border border-white bg-white px-4 py-2.5 shadow-[0_10px_40px_rgba(0,47,108,0.1)] md:px-6">
+      <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 rounded-full border border-[#eae3d9] bg-white px-4 py-2.5 shadow-[0_4px_20px_rgba(30,20,10,0.04)] md:px-6">
         <Link href="/" className="flex items-center gap-3">
-          <img src="/media/logos/logo.svg" alt="Один к Одному" className="h-10 w-10 rounded-2xl" />
+          <img src="/media/logos/logo.svg" alt="Один к Одному" className="h-10 w-10 rounded-xl" />
           <span className="text-sm font-extrabold tracking-tight text-navy">
             Один к Одному
           </span>
@@ -36,7 +36,7 @@ export function Header({
             О клинике
           </Link>
           <div
-            className="relative flex items-center"
+            className="relative inline-flex items-center"
             onMouseEnter={() => setServicesOpen(true)}
             onMouseLeave={() => setServicesOpen(false)}
           >
@@ -45,13 +45,13 @@ export function Header({
             </Link>
             {servicesOpen ? (
               <div className="absolute left-1/2 top-full z-50 w-[640px] -translate-x-1/2 pt-3">
-                <div className="rounded-[28px] border border-white/80 bg-white p-5 shadow-[0_20px_60px_rgba(0,47,108,0.12)]">
+                <div className="rounded-2xl border border-[#eae3d9] bg-white p-5 shadow-[0_16px_40px_rgba(30,20,10,0.08)]">
                   <div className="grid grid-cols-2 gap-2">
                     {services.map((item) => (
                       <Link
                         key={item.id}
                         href={serviceHref(item)}
-                        className="rounded-2xl px-3 py-2 text-sm font-semibold text-navy transition hover:bg-[#f3f8ff]"
+                        className="rounded-xl px-3 py-2 text-sm font-semibold text-navy transition hover:bg-[#f7f2eb] hover:text-chocolate"
                       >
                         {item.title}
                       </Link>
@@ -84,19 +84,19 @@ export function Header({
         <div className="flex items-center gap-2">
           <a
             href={`tel:${phone.replace(/[^\d+]/g, "")}`}
-            className="hidden text-sm font-bold text-navy md:block"
+            className="hidden text-sm font-bold text-navy hover:text-chocolate transition-colors md:block"
           >
             {phone}
           </a>
           <Link
             href="/contacts#zapis"
-            className="hidden rounded-full bg-navy px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-white md:inline-flex"
+            className="hidden rounded-full bg-chocolate px-5 py-2 text-xs font-bold uppercase tracking-[0.14em] text-white transition hover:bg-chocolate-light md:inline-flex"
           >
             Запись
           </Link>
           <button
             type="button"
-            className="rounded-full border border-[var(--line)] px-3 py-2 text-sm font-bold text-navy lg:hidden"
+            className="rounded-full border border-[#eae3d9] px-3.5 py-2 text-sm font-bold text-navy lg:hidden"
             onClick={() => {
               setOpen((value) => {
                 if (value) setMobileServicesOpen(false);
@@ -111,26 +111,26 @@ export function Header({
       </div>
 
       {open ? (
-        <div className="mx-auto mt-2 max-w-[1440px] rounded-[28px] bg-white p-5 shadow-lg lg:hidden">
+        <div className="mx-auto mt-2 max-w-[1440px] rounded-2xl border border-[#eae3d9] bg-white p-5 shadow-lg lg:hidden">
           <div className="grid gap-2 text-sm font-semibold text-navy">
             <Link href="/about" onClick={() => setOpen(false)}>О клинике</Link>
-            <div className="rounded-2xl bg-[#f4f8ff]">
+            <div className="rounded-xl bg-[#f7f2eb]">
               <button
                 type="button"
                 aria-expanded={mobileServicesOpen}
                 onClick={() => setMobileServicesOpen((value) => !value)}
-                className="flex w-full items-center justify-between px-3 py-2.5 text-left"
+                className="flex w-full items-center justify-between px-3 py-2.5 text-left font-bold text-chocolate"
               >
                 <span>Услуги</span>
-                <span className={`text-lg font-bold text-accent transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`}>
+                <span className={`text-lg font-bold text-chocolate transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`}>
                   ⌄
                 </span>
               </button>
               {mobileServicesOpen ? (
-                <div className="grid gap-1 border-t border-[#dceafd] px-3 pb-3 pt-2">
+                <div className="grid gap-1 border-t border-[#eae3d9] px-3 pb-3 pt-2">
                   <Link
                     href="/services"
-                    className="rounded-xl bg-white px-3 py-2 text-sm font-bold text-accent"
+                    className="rounded-lg bg-white px-3 py-2 text-sm font-bold text-chocolate"
                     onClick={() => setOpen(false)}
                   >
                     Все направления →
@@ -139,7 +139,7 @@ export function Header({
                     <Link
                       key={item.id}
                       href={serviceHref(item)}
-                      className="rounded-xl px-3 py-2 text-sm font-medium text-muted transition hover:bg-white hover:text-navy"
+                      className="rounded-lg px-3 py-2 text-sm font-medium text-muted transition hover:bg-white hover:text-chocolate"
                       onClick={() => setOpen(false)}
                     >
                       {item.title}

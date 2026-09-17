@@ -39,47 +39,47 @@ export default async function CategoryPage({
 
   return (
     <div className="mx-auto max-w-[1200px] px-4 py-8 md:px-8 md:py-12">
-      <div className="overflow-hidden rounded-[36px] bg-white shadow-[0_20px_60px_rgba(0,47,108,0.1)]">
+      <div className="overflow-hidden rounded-2xl border border-[#eae3d9] bg-white shadow-xs">
         <div className="grid md:grid-cols-[1.05fr_.95fr]">
           <div className="p-6 md:p-10">
-            <Link href="/services" className="text-xs font-bold text-accent hover:text-navy">
+            <Link href="/services" className="text-xs font-bold text-chocolate hover:text-navy">
               ← Все услуги
             </Link>
-            <p className="mt-8 text-[11px] font-extrabold uppercase tracking-[0.22em] text-accent">
+            <p className="mt-8 text-[11px] font-extrabold uppercase tracking-[0.22em] text-chocolate">
               Направление стоматологии
             </p>
-            <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-navy md:text-6xl">{service.title}</h1>
+            <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">{service.title}</h1>
             <p className="mt-5 text-base leading-relaxed text-muted">
               {article.lead[0] ?? service.description}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <span className="rounded-full bg-[#edf5ff] px-4 py-2 text-xs font-bold text-navy">
+              <span className="rounded-lg border border-[#eae3d9] bg-[#fbf9f6] px-4 py-2 text-xs font-bold text-navy">
                 {service.children.length} подразделов
               </span>
               {service.prices.length > 0 && (
-                <span className="rounded-full bg-[#edf5ff] px-4 py-2 text-xs font-bold text-navy">
+                <span className="rounded-lg border border-[#eae3d9] bg-[#fbf9f6] px-4 py-2 text-xs font-bold text-chocolate">
                   {service.prices.length} позиций в прайсе
                 </span>
               )}
             </div>
           </div>
-          <div className="relative min-h-[280px] overflow-hidden bg-[#0a2c5b] md:min-h-[420px]">
+          <div className="relative min-h-[280px] overflow-hidden bg-[#182332] md:min-h-[420px]">
             <Image src={serviceArtwork(category)} alt={service.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover opacity-90" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#061a38]/80 to-transparent" />
-            <span className="absolute bottom-6 left-6 rounded-full bg-white/90 px-4 py-2 text-xs font-bold text-navy">
+            <div className="absolute inset-0 bg-gradient-to-t from-[#151d28]/85 via-[#151d28]/30 to-transparent" />
+            <span className="absolute bottom-6 left-6 rounded-lg border border-[#eae3d9] bg-white/95 px-4 py-2 text-xs font-bold text-chocolate shadow-xs">
               Бережный план лечения
             </span>
           </div>
         </div>
       </div>
 
-      <section className="mt-8 rounded-[36px] bg-white p-6 shadow-sm md:p-10">
+      <section className="mt-8 rounded-2xl border border-[#eae3d9] bg-white p-6 shadow-xs md:p-10">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <p className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-accent">Выберите услугу</p>
-            <h2 className="mt-2 text-3xl font-extrabold text-navy md:text-4xl">Подразделы направления</h2>
+            <p className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-chocolate">Выберите услугу</p>
+            <h2 className="mt-2 text-2xl font-extrabold text-navy md:text-4xl">Подразделы направления</h2>
           </div>
-          <Link href="/contacts#zapis" className="hidden rounded-full bg-navy px-5 py-3 text-xs font-bold text-white md:inline-flex">
+          <Link href="/contacts#zapis" className="hidden rounded-xl bg-chocolate px-5 py-3 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-chocolate-light md:inline-flex">
             Записаться →
           </Link>
         </div>
@@ -88,13 +88,13 @@ export default async function CategoryPage({
             <Link
               key={child.id}
               href={serviceHref(child)}
-              className="group flex items-center gap-4 rounded-[22px] border border-[#dceafd] bg-[#f7fbff] p-4 transition hover:-translate-y-0.5 hover:border-accent hover:bg-white"
+              className="group flex items-center gap-4 rounded-xl border border-[#eae3d9] bg-[#fbf9f6] p-4 transition hover:-translate-y-0.5 hover:border-chocolate hover:bg-white"
             >
-              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#dbeaff] text-xs font-black text-accent">
+              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-white border border-[#eae3d9] text-xs font-black text-chocolate">
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <span className="flex-1 font-bold text-navy">{child.title}</span>
-              <span className="text-lg text-accent transition-transform group-hover:translate-x-1">→</span>
+              <span className="flex-1 font-bold text-navy group-hover:text-chocolate transition-colors">{child.title}</span>
+              <span className="text-lg text-chocolate transition-transform group-hover:translate-x-1">→</span>
             </Link>
           ))}
         </div>
