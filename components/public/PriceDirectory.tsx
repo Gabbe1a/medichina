@@ -24,7 +24,7 @@ export function PriceDirectory({ groups }: { groups: PriceGroup[] }) {
   return (
     <div className="mt-10 grid gap-8 lg:grid-cols-[230px_1fr]">
       <aside className="h-fit rounded-2xl border border-[#eae3d9] bg-white p-4 shadow-2xs lg:sticky lg:top-24">
-        <p className="px-3 pb-2 text-[10px] font-extrabold uppercase tracking-[0.18em] text-chocolate">
+        <p className="px-3 pb-2 text-[10px] font-extrabold uppercase tracking-[0.18em] text-accent">
           Разделы прайса
         </p>
         <nav className="grid gap-1">
@@ -32,7 +32,7 @@ export function PriceDirectory({ groups }: { groups: PriceGroup[] }) {
             <a
               key={group.categoryName}
               href={`#price-${index}`}
-              className="rounded-lg px-3 py-2 text-sm font-semibold text-navy transition hover:bg-[#fbf9f6] hover:text-chocolate"
+              className="rounded-lg px-3 py-2 text-sm font-semibold text-navy transition hover:bg-[#fbf9f6] hover:text-accent"
             >
               {group.categoryName}
             </a>

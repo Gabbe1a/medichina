@@ -55,7 +55,7 @@ export default async function AboutPage() {
       <div className="overflow-hidden rounded-2xl border border-[#eae3d9] bg-white shadow-xs">
         <div className="grid md:grid-cols-[1.05fr_.95fr]">
           <div className="p-6 md:p-10">
-            <p className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-chocolate">О клинике</p>
+            <p className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-accent">О клинике</p>
             <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-navy md:text-5xl">«Один к Одному»</h1>
             <p className="mt-4 text-sm font-medium leading-relaxed text-muted md:text-base md:leading-7">{lead}</p>
             <div className="mt-5 flex flex-wrap gap-2">
@@ -78,7 +78,7 @@ export default async function AboutPage() {
           </div>
           <div className="relative min-h-[220px] overflow-hidden bg-[#182332] md:min-h-[420px]">
             <Image src={heroPhoto} alt={heroAlt} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover opacity-95" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#151d28]/75 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#402924]/75 to-transparent" />
             <div className="absolute bottom-5 left-5 right-5 rounded-xl border border-[#eae3d9] bg-white/95 p-4 shadow-xs">
               <p className="text-2xl font-black text-chocolate">
                 {settings.rating} ★
@@ -106,7 +106,7 @@ export default async function AboutPage() {
 
       {principles.length > 0 && (
         <section className="mt-8">
-          <p className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-chocolate">Принципы лечения</p>
+          <p className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-accent">Принципы лечения</p>
           <div className="mt-3 grid gap-4 md:grid-cols-3">
             {principles.map((item) => (
               <article
@@ -149,7 +149,7 @@ export default async function AboutPage() {
           <p className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-chocolate">Лицензия</p>
           <h2 className="mt-2 text-xl font-extrabold text-navy">{settings.legalEntity}</h2>
           <p className="mt-3 text-sm leading-relaxed text-muted">Лицензия {settings.license}</p>
-          <Link href="/legal" className="mt-4 inline-flex text-xs font-bold text-chocolate hover:text-chocolate-light">
+          <Link href="/legal" className="mt-4 inline-flex text-xs font-bold text-chocolate hover:text-accent">
             Официальные документы →
           </Link>
         </article>
@@ -159,7 +159,7 @@ export default async function AboutPage() {
         <section className="mt-10">
           <div className="flex items-end justify-between gap-4">
             <div>
-              <p className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-chocolate">Пространство</p>
+              <p className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-accent">Пространство</p>
               <h2 className="mt-2 text-2xl font-extrabold text-navy md:text-3xl">Галерея клиники</h2>
             </div>
             <Link href="/contacts" className="inline-flex rounded-xl border border-[#d8cfc2] bg-white px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-navy transition hover:bg-[#f6f1ea] hover:border-chocolate">

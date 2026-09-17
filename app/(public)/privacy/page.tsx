@@ -17,7 +17,7 @@ export default async function PrivacyPage() {
         <div className="prose-clinic mt-6 whitespace-pre-line">{legalText}</div>
       </div>
       <p className="mt-6">
-        <a className="font-bold text-chocolate underline hover:text-chocolate-light" href="/media/legal/politika_personalnyh_dannyh.pdf">
+        <a className="font-bold text-chocolate underline hover:text-accent" href="/media/legal/politika_personalnyh_dannyh.pdf">
           Скачать полный PDF
         </a>
       </p>

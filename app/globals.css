@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --page: #fbf9f6;
-  --page-2: #f4eee6;
-  --ink: #1c2024;
-  --navy: #0f2c4f;
-  --accent: #19487c;
-  --muted: #646b77;
-  --chocolate: #432816;
-  --chocolate-light: #5f3a21;
-  --chocolate-soft: #f7f1eb;
+  --page: #f3f6fb;
+  --page-2: #e8eef8;
+  --ink: #402924;
+  --navy: #402924;
+  --accent: #7ca7eb;
+  --muted: #7a6b64;
+  --chocolate: #402924;
+  --chocolate-light: #5c3d36;
+  --chocolate-soft: #f4ebe6;
   --card: #ffffff;
-  --footer: #151d28;
-  --line: rgba(67, 40, 20, 0.09);
-  --border-subtle: #eae4db;
+  --footer: #402924;
+  --line: rgba(64, 41, 36, 0.1);
+  --border-subtle: #eadfd6;
 }
 
 @theme inline {
@@ -34,11 +34,11 @@
 
 html {
   scroll-behavior: auto;
-  background: #fbf9f6;
+  background: #f3f6fb;
 }
 
 body {
-  background: #fbf9f6;
+  background: #f3f6fb;
   color: var(--ink);
   font-family: var(--font-manrope), "Manrope", sans-serif;
   min-height: 100vh;
@@ -90,12 +90,12 @@ a {
 }
 
 .prose-clinic a {
-  color: var(--chocolate);
+  color: var(--accent);
   text-decoration: underline;
 }
 
 .prose-clinic a:hover {
-  color: var(--chocolate-light);
+  color: var(--chocolate);
 }
 
 .prose-clinic p,

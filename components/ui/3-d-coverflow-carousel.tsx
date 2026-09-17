@@ -85,7 +85,7 @@ export function CoverFlowCarousel({
       }}
     >
       <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center">
-        <p className="mb-6 text-[11px] font-extrabold uppercase tracking-[0.24em] text-chocolate">
+        <p className="mb-6 text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent">
           {sectionLabel}
         </p>
 
@@ -129,7 +129,7 @@ export function CoverFlowCarousel({
                 }}
                 role="link"
                 tabIndex={0}
-                className="absolute h-[420px] w-[270px] cursor-pointer overflow-hidden rounded-[28px] border border-[#eadfd0] bg-[#f7f1eb] shadow-[0_12px_32px_rgba(67,40,20,0.08)] transition-[transform,opacity] duration-500 ease-[cubic-bezier(.25,1,.5,1)] md:h-[480px] md:w-[320px]"
+                className="absolute h-[420px] w-[270px] cursor-pointer overflow-hidden rounded-[28px] border border-accent/25 bg-[#eef4fc] shadow-[0_12px_32px_rgba(124,167,235,0.12)] transition-[transform,opacity] duration-500 ease-[cubic-bezier(.25,1,.5,1)] md:h-[480px] md:w-[320px]"
                 style={{ transform, opacity, zIndex }}
               >
                 <Image
@@ -139,13 +139,13 @@ export function CoverFlowCarousel({
                   sizes="(max-width: 768px) 280px, 330px"
                   className="absolute inset-0 h-full w-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#fbf9f6] via-[#fbf9f6]/10 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#eef4fc] via-[#eef4fc]/10 to-transparent" />
                 <div
                   className={`relative z-10 flex h-full flex-col justify-between p-5 transition-opacity duration-500 ${
                     isCenter ? "opacity-100" : "pointer-events-none opacity-0"
                   }`}
                 >
-                  <span className="self-start rounded-full border border-[#eadfd0] bg-white/95 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-chocolate">
+                  <span className="self-start rounded-full border border-accent/35 bg-white/95 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-accent">
                     {item.tag}
                   </span>
                   <div className="rounded-2xl border border-white/80 bg-white/92 p-4 shadow-[0_8px_24px_rgba(67,40,20,0.08)] backdrop-blur-md">
@@ -193,7 +193,7 @@ export function CoverFlowCarousel({
               onClick={() => setCurrentIndex(itemIndex)}
               aria-label={`Врач ${itemIndex + 1}`}
               className={`h-2 rounded-full transition-[width,background-color] ${
-                itemIndex === currentIndex ? "w-7 bg-chocolate" : "w-2 bg-[#d8cfc2]"
+                itemIndex === currentIndex ? "w-7 bg-accent" : "w-2 bg-accent/30"
               }`}
             />
           ))}

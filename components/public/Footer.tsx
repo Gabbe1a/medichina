@@ -11,7 +11,7 @@ export function Footer({ settings }: { settings: Setting }) {
             <img src="/media/logos/logo.svg" alt="Логотип стоматологии «Один к Одному»" className="h-12 w-12 rounded-2xl bg-white" />
             <div>
               <p className="text-lg font-extrabold">Один к Одному</p>
-              <p className="text-xs uppercase tracking-[0.16em] text-white/60">стоматология</p>
+              <p className="text-xs uppercase tracking-[0.16em] text-accent">стоматология</p>
             </div>
           </div>
           <p className="mt-4 max-w-xs text-sm leading-6 text-white/70">
@@ -20,7 +20,7 @@ export function Footer({ settings }: { settings: Setting }) {
         </div>
 
         <div>
-          <p className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-white/50">Разделы</p>
+          <p className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-accent">Разделы</p>
           <div className="mt-4 grid gap-2 text-sm">
             <Link href="/about">О клинике</Link>
             <Link href="/services">Услуги</Link>
@@ -32,7 +32,7 @@ export function Footer({ settings }: { settings: Setting }) {
         </div>
 
         <div>
-          <p className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-white/50">Пациентам</p>
+          <p className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-accent">Пациентам</p>
           <div className="mt-4 grid gap-2 text-sm">
             <Link href="/contacts">Как добраться</Link>
             <Link href="/legal">Официальная информация</Link>
@@ -44,7 +44,7 @@ export function Footer({ settings }: { settings: Setting }) {
         </div>
 
         <div>
-          <p className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-white/50">Контакты</p>
+          <p className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-accent">Контакты</p>
           <div className="mt-4 grid gap-2 text-sm text-white/80">
             <a href={phoneHref(settings.phone1)}>{settings.phone1}</a>
             <a href={phoneHref(settings.phone2)}>{settings.phone2}</a>
